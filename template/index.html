@@ -23,7 +23,6 @@
 		}
 
 		.menu-bar {
-
 			width: 100%;
 			display: flex;
 		}
@@ -310,19 +309,21 @@
 		}
 
 		/* Full-width input fields */
-		.form-container input[type=email],
-		.form-container input[type=text] {
+		.form-container input,
+		textarea,
+		select {
 			width: 100%;
-			padding: 15px;
 			margin: 5px 0 22px 0;
-			border: chocolate;
-			background: #f1f1f1;
+			background-color: transparent;
+			border: 1.5px solid black;
+			padding: 10px 5px;
+			border-radius: 5px;
 		}
 
 		/* When the inputs get focus, do something */
-		.form-container input[type=email]:focus,
-		.form-container input[type=text]:focus {
-			background-color: #ddd;
+		.form-container input:focus,
+		textarea:focus,
+		select:focus {
 			outline: none;
 		}
 
@@ -332,6 +333,8 @@
 			color: white;
 			padding: 16px 20px;
 			border: none;
+			border-radius: 5px;
+			font-weight: bold;
 			cursor: pointer;
 			width: 100%;
 			margin-bottom: 10px;
@@ -423,7 +426,7 @@
 <header>
 	{% load static %}
 	<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4"
-		style="display: flex; align-items: center; justify-content: space-between;">
+		style="display: flex; align-items: center; justify-content: space-between; padding: 0 10px;">
 		<div class="container-x1">
 			<a class="navbar-brand" href="https://lawmin.gov.in/"
 				onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');"
@@ -538,7 +541,7 @@
 <button class="open-button" onclick="openForm()">Talk to Expert</button>
 
 <div class="form-popup" id="myForm">
-	<form action="/action_page.php" class="form-container">
+	<form action="/action_page.php" class="form-container" style="background: blanchedalmond; border-radius: 10px;">
 		<h1>Need Help??</h1>
 		<label for="name">Name</label>
 		<input name='name' type="text" class="form-control" id="name" aria-describedby="first name"
