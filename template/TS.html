@@ -1,616 +1,752 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins@1&display=swap" rel="stylesheet">
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+	<style>
+		body {
+			background-color: rgba(255, 235, 205, 0.5);
+		}
 
-.previous {
-  background-color: #f1f1f1;
-  color: black;
-}
+		*,
+		*::after,
+		*::before {
+			font-family: 'Poppins', sans-serif;
+		}
 
-.next {
-  background-color: #04AA6D;
-  color: white;
-}
+		section {
+			background: blanchedalmond;
+			padding: 10px 40px;
+			border-radius: 10px;
+			margin: 10px auto;
+			width: 60%;
+		}
 
-.round {
-  border-radius: 50%;
-}
-* {
-  box-sizing: border-box;
-}
+		a {
+			text-decoration: none;
+			padding: 8px 16px;
+		}
 
-/* Create a column layout with Flexbox */
-.row {
-  display: flex;
-}
+		a:hover {
+			background-color: #ddd;
+			color: black;
+		}
 
-/* Left column (menu) */
-.left {
-  flex: 35%;
-  padding: 15px 0;
-}
+		.previous {
+			background-color: #f1f1f1;
+			color: black;
+		}
 
-.left h2 {
-  padding-left: 8px;
-}
+		.next {
+			background-color: #04AA6D;
+			color: white;
+		}
 
-/* Right column (page content) */
-.right {
-  flex: 65%;
-  padding: 15px;
-}
+		.round {
+			border-radius: 50%;
+		}
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
+		* {
+			box-sizing: border-box;
+		}
 
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+		/* Create a column layout with Flexbox */
+		.row {
+			display: flex;
+		}
 
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
+		/* Left column (menu) */
+		.left {
+			flex: 35%;
+			padding: 15px 0;
+		}
 
-#myMenu li a:hover {
-  background-color: #eee;
-}
-.header{
-    border: 1% solid black;
-    height: 85%auto;
-    }
-    .menu-bar{background-color:blanchedalmond;
-    height: 100%;
-    width: 100%;
-    display: inline-flex; 
-    }
-    .menu-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .menu-bar ul li {
-    background-color: rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .menu-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: whitesmoke;
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .menu-bar ul li:hover {
-    background-color: green;
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar{background-color:rgb(238, 218, 218);
-    height: 62px fit-content;
-    width: 59% fit-content;
-    float: right;
-    }
-    .foot-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .foot-bar ul li {
-    background-color: rgb(233, 227, 220);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px  fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: rgb(23, 2, 43);
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .foot-bar ul li:hover {
-    background-color: darkgrey;
-    border-radius: 100px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .footer{
-    border: 1px solid rgb(17, 17, 17);
-    height: 100px fit-content;
-    }
-    .open-button {
-  background-color: #555;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  width: 180px;
-}
-.form-popup {
-  display: none;
-  position:sticky;
-  bottom: 50px;
-  right: 20px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+		.left h2 {
+			padding-left: 8px;
+		}
 
-/* Add styles to the form container */
-.form-container {
-  max-width: fit-content;
-  padding: 40px;
-  background-color: white;
-}
+		/* Right column (page content) */
+		.right {
+			flex: 65%;
+			padding: 15px;
+		}
 
-/* Full-width input fields */
-.form-container input[type=email], .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border:chocolate;
-  background: #f1f1f1;
-}
+		/* Style the search box */
+		#mySearch {
+			width: 100%;
+			font-size: 18px;
+			padding: 11px;
+			border: 1px solid #ddd;
+		}
 
-/* When the inputs get focus, do something */
-.form-container input[type=email]:focus, .form-container input[type=text]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+		/* Style the navigation menu inside the left column */
+		#myMenu {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+		#myMenu li a {
+			padding: 12px;
+			text-decoration: none;
+			color: black;
+			display: block
+		}
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
+		#myMenu li a:hover {
+			background-color: burlywood;
+		}
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 10px;
-  font-size: 17px;
-  width: 50px fit-content;
-  height:25px fit-content;
-}
+		.header {
+			border: 1% solid black;
+			height: 85%auto;
+		}
 
-.tablink:hover {
-  background-color: #777;
-}
+		.menu-bar {
 
-/* Style the tab content */
-.tabcontent {
-  color: red;
-  display: none;
-  padding: 50px;
-  text-align: left;
-}
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 99;
-  font-size: 12px;
-  border: none;
-  outline: none;
-  background-color: tomato;
-  color: rgb(255, 252, 51);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 1px;
-  height: 20px fit-content;
-  width: 20px fit-content;
-}
+			width: 100%;
+			display: inline-flex;
+		}
 
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
+		.menu-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.menu-bar ul li {
+			background-color: rgb(0, 0, 0);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.menu-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: whitesmoke;
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.menu-bar ul li:hover {
+			background-color: green;
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar {
+			background-color: rgb(238, 218, 218);
+			height: 62px fit-content;
+			width: 59% fit-content;
+			float: right;
+		}
+
+		.foot-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.foot-bar ul li {
+			background-color: rgb(233, 227, 220);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: rgb(23, 2, 43);
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.foot-bar ul li:hover {
+			background-color: darkgrey;
+			border-radius: 100px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.footer {
+			border: 1px solid rgb(17, 17, 17);
+			height: 100px fit-content;
+		}
+
+		.open-button {
+			background-color: #555;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			opacity: 0.8;
+			position: fixed;
+			bottom: 10px;
+			right: 20px;
+			width: 180px;
+		}
+
+		.form-popup {
+			display: none;
+			position: sticky;
+			bottom: 50px;
+			right: 20px;
+			border: 3px solid #f1f1f1;
+			z-index: 9;
+		}
+
+		/* Add styles to the form container */
+		.form-container {
+			max-width: fit-content;
+			padding: 40px;
+			background-color: white;
+		}
+
+		/* Full-width input fields */
+		.form-container input[type=email],
+		.form-container input[type=text] {
+			width: 100%;
+			padding: 15px;
+			margin: 5px 0 22px 0;
+			border: chocolate;
+			background: #f1f1f1;
+		}
+
+		/* When the inputs get focus, do something */
+		.form-container input[type=email]:focus,
+		.form-container input[type=text]:focus {
+			background-color: #ddd;
+			outline: none;
+		}
+
+		/* Set a style for the submit/login button */
+		.form-container .btn {
+			background-color: #04AA6D;
+			color: white;
+			padding: 16px 20px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			margin-bottom: 10px;
+			opacity: 0.8;
+		}
+
+		/* Add a red background color to the cancel button */
+		.form-container .cancel {
+			background-color: red;
+		}
+
+		/* Add some hover effects to buttons */
+		.form-container .btn:hover,
+		.open-button:hover {
+			opacity: 1;
+		}
+
+		.tablink {
+			background-color: #555;
+			color: white;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 10px 10px;
+			font-size: 17px;
+			width: 50px fit-content;
+			height: 25px fit-content;
+		}
+
+		.tablink:hover {
+			background-color: #777;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			color: red;
+			display: none;
+			padding: 50px;
+			text-align: left;
+		}
+
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+			z-index: 1000;
+			font-size: 12px;
+			border: none;
+			outline: none;
+			background-color: tomato;
+			color: white;
+			cursor: pointer;
+			padding: 10px;
+			border-radius: 5px;
+			/* height: 20px fit-content; */
+			width: 20px fit-content;
+		}
+
+		#myBtn:hover {
+			background-color: #555;
+		}
+	</style>
 </head>
-<div class="border" style="background-color: antiquewhite;">
-  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div >Instagram</div>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div>Facebook</div>
-  </a>                        
-</div>
 <header>
-{% load static %}
-<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
-<div class="container-x1">
-<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
-<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
-</a>
-</div>
-</nav>
-<div class="header">
-
-<div class="menu-bar">
-<ul>   
-<li class="active" ><a href="http://localhost:8000/">Home</a></li>
-<li><a href="http://localhost:8000/about_us/">About</a></li>
-<li><a href="http://localhost:8000/advocate">Advocates</a></li>
-<li><a href="http://localhost:8000/solution">Solutions</a></li>
-</ul>
-</div>
-</div>
-
+	{% load static %}
+	<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4"
+		style="display: flex; align-items: center; justify-content: space-between;">
+		<div class="container-x1">
+			<a class="navbar-brand" href="https://lawmin.gov.in/"
+				onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');"
+				title="Ministry of Law & Justice" target="_blank">
+				<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left"
+					margin-top="100px" class="h-14" alt="Ministry pf Law & Justice">
+			</a>
+		</div>
+		<div style="display:flex; align-items: center; justify-content: right; gap: 10px">
+			<a style="    color: white;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 10px;
+			background: black;
+			border-radius: 5px;" href="https://www.instagram.com/justice.for.all.adv.pankaj/"
+				onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');"
+				class="smaller text-dark text-primary-hover" target="_blank">
+				Instagram
+			</a>
+			<a style="color: white;font-weight: bold;text-decoration: none;padding: 10px;background: black;border-radius: 5px;"
+				href="https://www.facebook.com/profile.php?id=100089989995300" " onclick=" return confirm('You are\
+				being\ redirected to an external website. Please note that Justice For All cannot be held responsible\
+				for\ external website content & privacy policies');" class="smaller text-dark text-primary-hover"
+				target="_blank">
+				Facebook
+			</a>
+		</div>
+	</nav>
+	<div class="header">
+		<div class="menu-bar">
+			<ul style="display: flex !important; align-items: center !important; padding: 0">
+				<li class="active"><a href="http://localhost:8000/">Home</a></li>
+				<li><a href="http://localhost:8000/about_us/">About</a></li>
+				<li><a href="http://localhost:8000/advocate/">Advocates</a></li>
+				<li><a href="http://localhost:8000/solution">Solutions</a></li>
+			</ul>
+		</div>
+	</div>
 </header>
+
 <body>
 
-<h2>Search For Your Issue</h2>
+	<h2>Search For Your Issue</h2>
 
-<div class="row">
-  <div class="left" style="background-color:#bbb;">
-    <h2>Search</h2>
-    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <ul id="myMenu">
-      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
-      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
-      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
-      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
-      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
-      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
-      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
-      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
-      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
-      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
-      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
-      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
-      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
-      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
-      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
-      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
-      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
-      <li><a href="http://localhost:8000/F">Fundraising</a></li>
-      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
-      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
-      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
-      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
-      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
-      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
-      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
-      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
-      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
-      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
-      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
-      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
-      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
-      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
-      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
-      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
-      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
-      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
-      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
-      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
-      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
-      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
-      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
-      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
-      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
-      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
-      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
-      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
-      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
-      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
-      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
-      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
-      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
-      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
-      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
-      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
-      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
-      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
-      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
-      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
-      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
-      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
-      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
-      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
-    </ul>
-  </div>
-  
-  <div class="right" style="background-color:#ddd;">
-   <h2>Solution.....</h2><br><br>
-   What Is a Term Sheet?<br><br>
-A term sheet is a nonbinding agreement that shows the basic terms and conditions of an investment. The term sheet serves as a template and basis for more detailed, legally binding documents. Once the parties involved reach an agreement on the details laid out in the term sheet, a binding agreement or contract that conforms to the term sheet details is drawn up.
-<br><br>
-KEY TAKEAWAYS<br><br>
-A term sheet is a nonbinding agreement outlining the basic terms and conditions under which an investment will be made.
-<br><br>Term sheets are most often associated with start-ups. Entrepreneurs find that this document is crucial to attracting investors, such as venture capitalists (VC) with capital to fund enterprises.
-<br><br>The company valuation, investment amount, percentage stake, voting rights, liquidation preference, anti-dilutive provisions, and investor commitment are some items that should be spelled out in the term sheet.
-<br><br>Term sheets are also used for mergers, acquisitions, and long-term debt (i.e. commercial real estate development).
-<br><br>Term sheets are non-binding, though may often require an upfront good faith deposit or other indicator of evidence that both parties intend to carry out an executed full agreement.
-Uses of a Term Sheet<br><br>
-The term sheet should cover the significant aspects of a deal without detailing every minor contingency covered by a binding contract. The term sheet essentially lays the groundwork for ensuring that the parties involved in a business transaction agree on most major aspects. The term sheet reduces the likelihood of a misunderstanding or unnecessary dispute. Additionally, the term sheet ensures that expensive legal charges involved in drawing up a binding agreement or contract are not incurred prematurely.
-<br><br>
-All term sheets contain information on the assets, initial purchase price including any contingencies that may affect the price, a timeframe for a response, and other salient information.
-<br><br>
-Term sheets are most often associated with startups. Entrepreneurs find this document crucial for investors, often venture capitalists (VC), who may offer capital to fund startups.
-<br><br>
-A term sheet used as part of a merger or attempted acquisition would typically contain information regarding the initial purchase price offer, the preferred payment method, and the assets included in the deal. The term sheet may also contain information regarding what, if anything, is excluded from the deal or any items that may be considered requirements by one or both parties.
-<br><br><br><br>
+	<div class="row">
+		<div class="left" style="background-color:blanchedalmond;">
+			<h2>Search</h2>
+			<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+			<ul id="myMenu">
+				<li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+				<li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+				<li><a href="http://localhost:8000/SR">Society Registration</a></li>
+				<li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+				<li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+				<li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+				<li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+				<li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+				<li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+				<li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+				<li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+				<li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+				<li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+				<li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+				<li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+				<li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+				<li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+				<li><a href="http://localhost:8000/F">Fundraising</a></li>
+				<li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+				<li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+				<li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+				<li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+				<li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+				<li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+				<li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+				<li><a href="http://localhost:8000/MOU">Memorandum of Understanding (MOU)</a></li>
+				<li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+				<li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+				<li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+				<li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+				<li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+				<li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+				<li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+				<li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+				<li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+				<li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+				<li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+				<li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+				<li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+				<li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+				<li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+				<li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+				<li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+				<li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+				<li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+				<li><a href="http://localhost:8000/PR">Property Registration</a></li>
+				<li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+				<li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+				<li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+				<li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+				<li><a href="http://localhost:8000/RC">Religion Change</a></li>
+				<li><a href="http://localhost:8000/GC">Gender Change</a></li>
+				<li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+				<li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+				<li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+				<li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+				<li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+				<li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+				<li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+				<li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+				<li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+				<li><a href="http://localhost:8000/Dis">Discovery</a></li>
+			</ul>
+		</div>
 
-What's Included in a Term Sheet<br><br>
-The details to be included in a term sheet are highly dependent on the agreement at hand. What is included in a angel investment, early funding investment term sheet will be substantially different than what's included in a commercial real estate development term sheet.
-<br><br>
-Regarding an investment term sheet, commonly included details are:
-<br><br>
-Nonbinding Terms. Neither party is legally obligated to abide by whatever is outlined on the term sheet.<br><br>
-Company valuations, investment amounts, the percentage of stakes, and anti-dilutive provisions should be spelled out clearly.<br><br>
-Voting rights. Startups seeking funding are usually at the mercy of VCs who want to maximize their investment return. This can result in the investor asking for and obtaining a disproportionate influence on the company's direction.
-<br><br>Liquidation preference. The term sheet should state how the proceeds of a sale will be distributed between the entrepreneur and the investors.
-<br><br>Investor commitment. The term sheet should state how long the investor is required to remain vested.
-<br><br>Regarding debt agreements, commonly included details are:
-<br><br>
-Economic details. This includes the term, loan size, interest rate, and other financial matters common to debt.
-<br><br>Risk mitigation preferences. The lender will often require specific conditions be met or specific information be provided on a recurring, timely manner.
-<br><br>Extension rights. The borrower is often allowed to extend a loan, but the term sheet identifies the conditions and cost of extension.
-<br><br>Due diligence at closing. As part of the term sheet, the lender may stipulate what they require when the loan agreement is drafted. This can include a list of requirements the borrower must prepare to be approved for the loan.
-<br><br><br><br>
-Terms Found in a Term Sheet<br><br>
-Term sheets often have standardized language that is commonly and widely accepted by both parties. Here are some specific terms or phrases found in two different types of term sheets.
-<br><br>
-Investment Term Sheets<br><br>
-Valuation (Pre-Money & Post-Money): Investors may want to see the pre-money valuation and post-money valuation before an official investment agreement is drafted. This valuation information should be based on what the valuation is before the investment is made as well as the value of the company including the new investment.
-<br><br>
-Valuation Cap: The valuation cap is the value when convertible notes become eligible to covert into equity. Often an important negotiation point, this figure must be discussed early between the two parties to understand a fair point for the start-up to engage in a proper valuation and what protection is fair for the investor.
-<br><br>
-Drag Alone Clause: Investors may want guarantees that minority stakeholders will follow the guidance of majority stakeholders. A drag along clause requires that smaller investors lead larger investors in business decisions.
-<br><br>
-Dividends: Investors may want upfront clarity on what net income distributions they will be entitled to. In addition to clarifying the dollar amounts, investors may want to know the timing (i.e. monthly, quarterly, or annual).
-<br><br>
-Liquidation Preference: Investors may want to know the order in which owners are paid out in the event the company gets sold. This is important to investors as it reduces investment risk.
-<br><br>
-Voting Rights; Investors may be interested in the say they have over the operations of the company. This may be an agreement on the number of votes the investor receives or any restrictions on matters in which they are not eligible to vote in.
-<br><br>
-Pro-Rata Rights: Investors may want to better understand their rights for future rounds of investing. For example, depending on their current investment, they may be entitled to the right of first offer for an investment offering in the future. On the other hand, there may be penalties for investors that decide to not partake in future rounds of investing.
-<br><br>
-No-Shop Agreement: Investors may want protection from other investors or other investment rounds. A no-shop agreement outlines the terms that restrict the company from taking investment money from other people for a specific period of time.
-<br><br><br><br>
-Loan Term Sheet<br><br>
-Loan Amount: Borrowers are obviously pursuing a specific amount of funds to borrow. This term may be a fixed dollar amount, subject to LTV metrics, or subject to DSCR and NOI calculations.
-<br><br>
-Guaranty: Borrowers may be required to indicate what legal entity with more established credit may vouch for the debt and be held liable in the event that the direct company defaults.
-<br><br>
-Interest Rate: Depending on the loan, these terms may widely vary. For long-term loans, the interest rate may include a fixed spread rate in addition to a variable rate (i.e. one-month term SOFR).
-<br><br>
-Term: Borrowers must understand when the loan is fully payable or due. For open lines of credit or development loans, this is the period in which the loan is assessed interest but principal payments may not be due.
-<br><br>
-Collateral: Borrowers may have to post collateral to substantiate value in the event that they default on a loan. This is often the underlying asset that is supported by the debt, and the lender often stipulates whether they require having the first deed of trust.
-<br><br>
-Financial Covenants: Borrowers may have to substantiate financial health to a lender. This includes providing externally certified financial statements, guarantee statements, or other financial records that are in accordance with covenants agreed to with the lender.
-<br><br>
-Loan Costs: In addition to interest assessments, a lender may require an annual administration fee or a one-time loan closing fee. For very large loans, these expenses may be material, and the lender should take care in reviewing what upfront costs must be paid before any loan proceeds are distributed.
-<br><br><br><br>
-Tips for Writing a Term Sheet<br><br>
-Every term sheet will vary, as the parties, conditions, situation, and agreement will rarely be repeated. Still, there are broad tips to drafting a term sheet that apply to nearly every situation:
-<br><br>Summarize the Conditions. At the beginning of the term sheet, draft a summary that identifies the overall purpose of the agreement and intended outcome. This includes specifically addressing the project (i.e. Seed A funding of Company XYZ or Residential Development of 254 units in Los Angeles, CA). Identify each of the legal parties to be involved.
-<br><br>State Binding/Non-Binding Terms. A term sheet should explicitly state expectations regarding whether the agreement is binding or non-binding. This is often listed early in the term sheet.
-<br><br>List the Terms. Though straightforward, understand that a term sheet is the first piece of formal transparent information the opposing party may receive. Though the term sheet should not be the full list of details in the agreement, be mindful to provide enough information to entice the other party without being too overwhelming with details. The term sheet should cover the primary, most important aspects of a deal with the understanding that the minor aspects can be sorted out later.
-<br><br>State Timeframes. Though the term sheet is non-binding, it should still come with an expiration date that requires the opposing party to take action by a certain time. This will not only encourage participation and action on the term letter but also ensure the terms of the deal do not become stale and unfavorable if held open for too long.
-<br><br>Encourage Feedback. Consider distributing a Word document version of the term sheet that tracks changes. It would be ideal if the first draft of the term sheet was a complete meeting of the minds with no further changes. Realistically, this is rarely achieved. Though you must ensure the other party does not make changes without tracking, tracking changes allows each side to easily identify the areas not yet in agreement.
-<br><br>
-<a href="#" class="previous">&laquo; Previous</a>
-<a href="#" class="next">Next &raquo;</a> </div>
-</div>
+		<div class="right" style="background-color: rgb(255, 235, 205, 0.2);">
+			<h2>Solution.....</h2><br><br>
+			What Is a Term Sheet?<br><br>
+			A term sheet is a nonbinding agreement that shows the basic terms and conditions of an investment. The term
+			sheet serves as a template and basis for more detailed, legally binding documents. Once the parties involved
+			reach an agreement on the details laid out in the term sheet, a binding agreement or contract that conforms
+			to the term sheet details is drawn up.
+			<br><br>
+			KEY TAKEAWAYS<br><br>
+			A term sheet is a nonbinding agreement outlining the basic terms and conditions under which an investment
+			will be made.
+			<br><br>Term sheets are most often associated with start-ups. Entrepreneurs find that this document is
+			crucial to attracting investors, such as venture capitalists (VC) with capital to fund enterprises.
+			<br><br>The company valuation, investment amount, percentage stake, voting rights, liquidation preference,
+			anti-dilutive provisions, and investor commitment are some items that should be spelled out in the term
+			sheet.
+			<br><br>Term sheets are also used for mergers, acquisitions, and long-term debt (i.e. commercial real estate
+			development).
+			<br><br>Term sheets are non-binding, though may often require an upfront good faith deposit or other
+			indicator of evidence that both parties intend to carry out an executed full agreement.
+			Uses of a Term Sheet<br><br>
+			The term sheet should cover the significant aspects of a deal without detailing every minor contingency
+			covered by a binding contract. The term sheet essentially lays the groundwork for ensuring that the parties
+			involved in a business transaction agree on most major aspects. The term sheet reduces the likelihood of a
+			misunderstanding or unnecessary dispute. Additionally, the term sheet ensures that expensive legal charges
+			involved in drawing up a binding agreement or contract are not incurred prematurely.
+			<br><br>
+			All term sheets contain information on the assets, initial purchase price including any contingencies that
+			may affect the price, a timeframe for a response, and other salient information.
+			<br><br>
+			Term sheets are most often associated with startups. Entrepreneurs find this document crucial for investors,
+			often venture capitalists (VC), who may offer capital to fund startups.
+			<br><br>
+			A term sheet used as part of a merger or attempted acquisition would typically contain information regarding
+			the initial purchase price offer, the preferred payment method, and the assets included in the deal. The
+			term sheet may also contain information regarding what, if anything, is excluded from the deal or any items
+			that may be considered requirements by one or both parties.
+			<br><br><br><br>
 
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
+			What's Included in a Term Sheet<br><br>
+			The details to be included in a term sheet are highly dependent on the agreement at hand. What is included
+			in a angel investment, early funding investment term sheet will be substantially different than what's
+			included in a commercial real estate development term sheet.
+			<br><br>
+			Regarding an investment term sheet, commonly included details are:
+			<br><br>
+			Nonbinding Terms. Neither party is legally obligated to abide by whatever is outlined on the term
+			sheet.<br><br>
+			Company valuations, investment amounts, the percentage of stakes, and anti-dilutive provisions should be
+			spelled out clearly.<br><br>
+			Voting rights. Startups seeking funding are usually at the mercy of VCs who want to maximize their
+			investment return. This can result in the investor asking for and obtaining a disproportionate influence on
+			the company's direction.
+			<br><br>Liquidation preference. The term sheet should state how the proceeds of a sale will be distributed
+			between the entrepreneur and the investors.
+			<br><br>Investor commitment. The term sheet should state how long the investor is required to remain vested.
+			<br><br>Regarding debt agreements, commonly included details are:
+			<br><br>
+			Economic details. This includes the term, loan size, interest rate, and other financial matters common to
+			debt.
+			<br><br>Risk mitigation preferences. The lender will often require specific conditions be met or specific
+			information be provided on a recurring, timely manner.
+			<br><br>Extension rights. The borrower is often allowed to extend a loan, but the term sheet identifies the
+			conditions and cost of extension.
+			<br><br>Due diligence at closing. As part of the term sheet, the lender may stipulate what they require when
+			the loan agreement is drafted. This can include a list of requirements the borrower must prepare to be
+			approved for the loan.
+			<br><br><br><br>
+			Terms Found in a Term Sheet<br><br>
+			Term sheets often have standardized language that is commonly and widely accepted by both parties. Here are
+			some specific terms or phrases found in two different types of term sheets.
+			<br><br>
+			Investment Term Sheets<br><br>
+			Valuation (Pre-Money & Post-Money): Investors may want to see the pre-money valuation and post-money
+			valuation before an official investment agreement is drafted. This valuation information should be based on
+			what the valuation is before the investment is made as well as the value of the company including the new
+			investment.
+			<br><br>
+			Valuation Cap: The valuation cap is the value when convertible notes become eligible to covert into equity.
+			Often an important negotiation point, this figure must be discussed early between the two parties to
+			understand a fair point for the start-up to engage in a proper valuation and what protection is fair for the
+			investor.
+			<br><br>
+			Drag Alone Clause: Investors may want guarantees that minority stakeholders will follow the guidance of
+			majority stakeholders. A drag along clause requires that smaller investors lead larger investors in business
+			decisions.
+			<br><br>
+			Dividends: Investors may want upfront clarity on what net income distributions they will be entitled to. In
+			addition to clarifying the dollar amounts, investors may want to know the timing (i.e. monthly, quarterly,
+			or annual).
+			<br><br>
+			Liquidation Preference: Investors may want to know the order in which owners are paid out in the event the
+			company gets sold. This is important to investors as it reduces investment risk.
+			<br><br>
+			Voting Rights; Investors may be interested in the say they have over the operations of the company. This may
+			be an agreement on the number of votes the investor receives or any restrictions on matters in which they
+			are not eligible to vote in.
+			<br><br>
+			Pro-Rata Rights: Investors may want to better understand their rights for future rounds of investing. For
+			example, depending on their current investment, they may be entitled to the right of first offer for an
+			investment offering in the future. On the other hand, there may be penalties for investors that decide to
+			not partake in future rounds of investing.
+			<br><br>
+			No-Shop Agreement: Investors may want protection from other investors or other investment rounds. A no-shop
+			agreement outlines the terms that restrict the company from taking investment money from other people for a
+			specific period of time.
+			<br><br><br><br>
+			Loan Term Sheet<br><br>
+			Loan Amount: Borrowers are obviously pursuing a specific amount of funds to borrow. This term may be a fixed
+			dollar amount, subject to LTV metrics, or subject to DSCR and NOI calculations.
+			<br><br>
+			Guaranty: Borrowers may be required to indicate what legal entity with more established credit may vouch for
+			the debt and be held liable in the event that the direct company defaults.
+			<br><br>
+			Interest Rate: Depending on the loan, these terms may widely vary. For long-term loans, the interest rate
+			may include a fixed spread rate in addition to a variable rate (i.e. one-month term SOFR).
+			<br><br>
+			Term: Borrowers must understand when the loan is fully payable or due. For open lines of credit or
+			development loans, this is the period in which the loan is assessed interest but principal payments may not
+			be due.
+			<br><br>
+			Collateral: Borrowers may have to post collateral to substantiate value in the event that they default on a
+			loan. This is often the underlying asset that is supported by the debt, and the lender often stipulates
+			whether they require having the first deed of trust.
+			<br><br>
+			Financial Covenants: Borrowers may have to substantiate financial health to a lender. This includes
+			providing externally certified financial statements, guarantee statements, or other financial records that
+			are in accordance with covenants agreed to with the lender.
+			<br><br>
+			Loan Costs: In addition to interest assessments, a lender may require an annual administration fee or a
+			one-time loan closing fee. For very large loans, these expenses may be material, and the lender should take
+			care in reviewing what upfront costs must be paid before any loan proceeds are distributed.
+			<br><br><br><br>
+			Tips for Writing a Term Sheet<br><br>
+			Every term sheet will vary, as the parties, conditions, situation, and agreement will rarely be repeated.
+			Still, there are broad tips to drafting a term sheet that apply to nearly every situation:
+			<br><br>Summarize the Conditions. At the beginning of the term sheet, draft a summary that identifies the
+			overall purpose of the agreement and intended outcome. This includes specifically addressing the project
+			(i.e. Seed A funding of Company XYZ or Residential Development of 254 units in Los Angeles, CA). Identify
+			each of the legal parties to be involved.
+			<br><br>State Binding/Non-Binding Terms. A term sheet should explicitly state expectations regarding whether
+			the agreement is binding or non-binding. This is often listed early in the term sheet.
+			<br><br>List the Terms. Though straightforward, understand that a term sheet is the first piece of formal
+			transparent information the opposing party may receive. Though the term sheet should not be the full list of
+			details in the agreement, be mindful to provide enough information to entice the other party without being
+			too overwhelming with details. The term sheet should cover the primary, most important aspects of a deal
+			with the understanding that the minor aspects can be sorted out later.
+			<br><br>State Timeframes. Though the term sheet is non-binding, it should still come with an expiration date
+			that requires the opposing party to take action by a certain time. This will not only encourage
+			participation and action on the term letter but also ensure the terms of the deal do not become stale and
+			unfavorable if held open for too long.
+			<br><br>Encourage Feedback. Consider distributing a Word document version of the term sheet that tracks
+			changes. It would be ideal if the first draft of the term sheet was a complete meeting of the minds with no
+			further changes. Realistically, this is rarely achieved. Though you must ensure the other party does not
+			make changes without tracking, tracking changes allows each side to easily identify the areas not yet in
+			agreement.
+			<br><br>
+			<a href="#" class="previous">&laquo; Previous</a>
+			<a href="#" class="next">Next &raquo;</a>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myMenu");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 
 </body>
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-    <h1>Need Help??</h1> 
-                  <label for="name">Name</label>
-                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
-                  <br>
-                  <label for="SelectService">Select Service</label>
-                  <br>
+	<form action="/action_page.php" class="form-container">
+		<h1>Need Help??</h1>
+		<label for="name">Name</label>
+		<input name='name' type="text" class="form-control" id="name" aria-describedby="first name"
+			placeholder="Enter Your Name" required>
+		<br>
+		<label for="SelectService">Select Service</label>
+		<br>
 
-                  <select class="whatever floating-select" name="service_id" id="service_id" required>
-                    <option value slected disable></option>
-                    <option value="1">Private Limited Company Registration</option>
-                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
-                    <option value="3">>One Person Company Registration</option>
-                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
-                    <option value="5">Partnership Firm Registration</option>
-                    <option value="6">Subsidary Company Registration</option>
-                    <option value="7">Subsidary of an Indian Company in India</option>
-                    <option value="8">Public Limited Company Registratiom</option>
-                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
-                    <option value="10">Trust Registration</option>
-                    <option value="11">Society Registration</option>
-                    <option value="12">USA Company Incorporation</option>
-                    <option value="13">>Register a NBFC Company in India</option>
-                    <option value="14">NIDHI Company Registration</option>
-                    <option value="15">Digital Signature Certificae(DSC)</option>
-                    <option value="16">Tax Deduction Account Number(TAN)</option>
-                    <option value="17">Trademark Registration</option>
-                    <option value="18">Trademark Renewal</option>
-                    <option value="19">International Trademark Application</option>
-                    <option value="20">Trademark Ownership Transfer</option>
-                    <option value="21">File a Trademark Opposition</option>
-                    <option value="22">Respond to a Trademark Objection</option>
-                    <option value="23">Patent Search</option>
-                    <option value="24">Apply for a Provisional Patent</option>
-                    <option value="25">Apply for a Patent</option>
-                    <option value="26">Changes in IEC<</option>
-                    <option value="27">Changes in GST</option>
-                    <option value="28">LUT Application</option>
-                    <option value="29">Professional Tax for Employees</option>
-                    <option value="30">Professional Tax for Directors</option>
-                    <option value="31">ESI Registration</option>
-                    <option value="32">PF Registration</option>
-                    <option value="33">ESI Filing</option>
-                    <option value="34">PF Filing</option>
-                    <option value="35">Cancellation of GST</option>
-                    <option value="36">Professional Tax Registration</option>
-                    <option value="37">DIPP Certification</option>
-                    <option value="38">Loan Agreement</option>
-                    <option value="39">Religion Change</option>
-                    <option value="40">Gender Change</option>
-                    <option value="41">Mutual Divorce</option>
-                    <option value="42">Court Marriage</option>
-                    <option value="43">Breach of Contract Claims</option>
-                    <option value="44">Initial Pleading</option>
-                    <option value="45">Landlord/Tenant Issues</option>
-                    <option value="46">Sale Deed</option>
-                    <option value="47">Post Discovery</option>
-                    <option value="48">Landlord/Tenant Issues</option>
-                    <option value="49">Property Registration</option>
-                    <option value="50">File annual Returns for your Private Limited Company</option>
-                    <option value="51">Something Else.....</option>
-                  </select>
-                  <span class="highlight"></span>
-                  
-                  <br><br>
+		<select class="whatever floating-select" name="service_id" id="service_id" required>
+			<option value slected disable></option>
+			<option value="1">Private Limited Company Registration</option>
+			<option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+			<option value="3">>One Person Company Registration</option>
+			<option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+			<option value="5">Partnership Firm Registration</option>
+			<option value="6">Subsidary Company Registration</option>
+			<option value="7">Subsidary of an Indian Company in India</option>
+			<option value="8">Public Limited Company Registratiom</option>
+			<option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+			<option value="10">Trust Registration</option>
+			<option value="11">Society Registration</option>
+			<option value="12">USA Company Incorporation</option>
+			<option value="13">>Register a NBFC Company in India</option>
+			<option value="14">NIDHI Company Registration</option>
+			<option value="15">Digital Signature Certificae(DSC)</option>
+			<option value="16">Tax Deduction Account Number(TAN)</option>
+			<option value="17">Trademark Registration</option>
+			<option value="18">Trademark Renewal</option>
+			<option value="19">International Trademark Application</option>
+			<option value="20">Trademark Ownership Transfer</option>
+			<option value="21">File a Trademark Opposition</option>
+			<option value="22">Respond to a Trademark Objection</option>
+			<option value="23">Patent Search</option>
+			<option value="24">Apply for a Provisional Patent</option>
+			<option value="25">Apply for a Patent</option>
+			<option value="26">Changes in IEC<< /option>
+			<option value="27">Changes in GST</option>
+			<option value="28">LUT Application</option>
+			<option value="29">Professional Tax for Employees</option>
+			<option value="30">Professional Tax for Directors</option>
+			<option value="31">ESI Registration</option>
+			<option value="32">PF Registration</option>
+			<option value="33">ESI Filing</option>
+			<option value="34">PF Filing</option>
+			<option value="35">Cancellation of GST</option>
+			<option value="36">Professional Tax Registration</option>
+			<option value="37">DIPP Certification</option>
+			<option value="38">Loan Agreement</option>
+			<option value="39">Religion Change</option>
+			<option value="40">Gender Change</option>
+			<option value="41">Mutual Divorce</option>
+			<option value="42">Court Marriage</option>
+			<option value="43">Breach of Contract Claims</option>
+			<option value="44">Initial Pleading</option>
+			<option value="45">Landlord/Tenant Issues</option>
+			<option value="46">Sale Deed</option>
+			<option value="47">Post Discovery</option>
+			<option value="48">Landlord/Tenant Issues</option>
+			<option value="49">Property Registration</option>
+			<option value="50">File annual Returns for your Private Limited Company</option>
+			<option value="51">Something Else.....</option>
+		</select>
+		<span class="highlight"></span>
 
-                
-                  <label for="email">Email</label>
-                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
-                  <br><br>
+		<br><br>
 
-                  <label for="phone">Phone Number</label><br>
-                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
-                  <br><br>
-                
-                  <label for = "subject">Subject</label><br>
-                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
-                  <br>              <br>
-                 
-                 <button type="submit" class="btn">Submit</button>
 
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
+		<label for="email">Email</label>
+		<input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+		<br><br>
+
+		<label for="phone">Phone Number</label><br>
+		<input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+		<br><br>
+
+		<label for="subject">Subject</label><br>
+		<textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..."
+			required></textarea>
+		<br> <br>
+
+		<button type="submit" class="btn">Submit</button>
+
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	</form>
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
 </script>
 <br>
 <br>
 <div>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </div>
 
 <script>
-// Get the button
-let mybutton = document.getElementById("myBtn");
+	// Get the button
+	let mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+	}
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
 </script>
-<footer class="footer mt-auto text-white-50 z-index-2">
-  <div class="container-fluid bg-dark">
-      <div class="container py-12 pe-2">
-          <div class="row">
-              <div class="col-lg-8 mt-2 mt-md-0">
-                  <p class="mb-4"> Disclaimer: </p>
-                  <p>
-                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
+<footer class="mt-auto text-white-50 z-index-2" style="border-radius: 10px; background-color:
+		blanchedalmond; width: 60%; margin: 0 auto; padding: 5px 10px;">
+	<div class="container-fluid bg-dark">
+		<div class="container py-12 pe-2">
+			<div class="row">
+				<div class="col-lg-8 mt-2 mt-md-0">
+					<p class="mb-4"> Disclaimer: </p>
+					<p>
+						This site is designed and hosted by Justice_For_Everyone and the contents are provided by
+						Justice For All also. For any further information, pleace contact us on Contact .
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
+
 </html>

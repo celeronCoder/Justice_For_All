@@ -1,609 +1,703 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins@1&display=swap" rel="stylesheet">
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+	<style>
+		body {
+			background-color: rgba(255, 235, 205, 0.5);
+		}
 
-.previous {
-  background-color: #f1f1f1;
-  color: black;
-}
+		*,
+		*::after,
+		*::before {
+			font-family: 'Poppins', sans-serif;
+		}
 
-.next {
-  background-color: #04AA6D;
-  color: white;
-}
+		section {
+			background: blanchedalmond;
+			padding: 10px 40px;
+			border-radius: 10px;
+			margin: 10px auto;
+			width: 60%;
+		}
 
-.round {
-  border-radius: 50%;
-}
-* {
-  box-sizing: border-box;
-}
+		a {
+			text-decoration: none;
+			padding: 8px 16px;
+		}
 
-/* Create a column layout with Flexbox */
-.row {
-  display: flex;
-}
+		a:hover {
+			background-color: #ddd;
+			color: black;
+		}
 
-/* Left column (menu) */
-.left {
-  flex: 35%;
-  padding: 15px 0;
-}
+		.previous {
+			background-color: #f1f1f1;
+			color: black;
+		}
 
-.left h2 {
-  padding-left: 8px;
-}
+		.next {
+			background-color: #04AA6D;
+			color: white;
+		}
 
-/* Right column (page content) */
-.right {
-  flex: 65%;
-  padding: 15px;
-}
+		.round {
+			border-radius: 50%;
+		}
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
+		* {
+			box-sizing: border-box;
+		}
 
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+		/* Create a column layout with Flexbox */
+		.row {
+			display: flex;
+		}
 
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
+		/* Left column (menu) */
+		.left {
+			flex: 35%;
+			padding: 15px 0;
+		}
 
-#myMenu li a:hover {
-  background-color: #eee;
-}
-.header{
-    border: 1% solid black;
-    height: 85%auto;
-    }
-    .menu-bar{background-color:blanchedalmond;
-    height: 100%;
-    width: 100%;
-    display: inline-flex; 
-    }
-    .menu-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .menu-bar ul li {
-    background-color: rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .menu-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: whitesmoke;
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .menu-bar ul li:hover {
-    background-color: green;
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar{background-color:rgb(238, 218, 218);
-    height: 62px fit-content;
-    width: 59% fit-content;
-    float: right;
-    }
-    .foot-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .foot-bar ul li {
-    background-color: rgb(233, 227, 220);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px  fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: rgb(23, 2, 43);
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .foot-bar ul li:hover {
-    background-color: darkgrey;
-    border-radius: 100px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .footer{
-    border: 1px solid rgb(17, 17, 17);
-    height: 100px fit-content;
-    }
-    .open-button {
-  background-color: #555;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  width: 180px;
-}
-.form-popup {
-  display: none;
-  position:sticky;
-  bottom: 50px;
-  right: 20px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+		.left h2 {
+			padding-left: 8px;
+		}
 
-/* Add styles to the form container */
-.form-container {
-  max-width: fit-content;
-  padding: 40px;
-  background-color: white;
-}
+		/* Right column (page content) */
+		.right {
+			flex: 65%;
+			padding: 15px;
+		}
 
-/* Full-width input fields */
-.form-container input[type=email], .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border:chocolate;
-  background: #f1f1f1;
-}
+		/* Style the search box */
+		#mySearch {
+			width: 100%;
+			font-size: 18px;
+			padding: 11px;
+			border: 1px solid #ddd;
+		}
 
-/* When the inputs get focus, do something */
-.form-container input[type=email]:focus, .form-container input[type=text]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+		/* Style the navigation menu inside the left column */
+		#myMenu {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+		#myMenu li a {
+			padding: 12px;
+			text-decoration: none;
+			color: black;
+			display: block
+		}
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
+		#myMenu li a:hover {
+			background-color: burlywood;
+		}
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 10px;
-  font-size: 17px;
-  width: 50px fit-content;
-  height:25px fit-content;
-}
+		.header {
+			border: 1% solid black;
+			height: 85%auto;
+		}
 
-.tablink:hover {
-  background-color: #777;
-}
+		.menu-bar {
 
-/* Style the tab content */
-.tabcontent {
-  color: red;
-  display: none;
-  padding: 50px;
-  text-align: left;
-}
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 99;
-  font-size: 12px;
-  border: none;
-  outline: none;
-  background-color: tomato;
-  color: rgb(255, 252, 51);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 1px;
-  height: 20px fit-content;
-  width: 20px fit-content;
-}
+			width: 100%;
+			display: inline-flex;
+		}
 
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
+		.menu-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.menu-bar ul li {
+			background-color: rgb(0, 0, 0);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.menu-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: whitesmoke;
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.menu-bar ul li:hover {
+			background-color: green;
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar {
+			background-color: rgb(238, 218, 218);
+			height: 62px fit-content;
+			width: 59% fit-content;
+			float: right;
+		}
+
+		.foot-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.foot-bar ul li {
+			background-color: rgb(233, 227, 220);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: rgb(23, 2, 43);
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.foot-bar ul li:hover {
+			background-color: darkgrey;
+			border-radius: 100px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.footer {
+			border: 1px solid rgb(17, 17, 17);
+			height: 100px fit-content;
+		}
+
+		.open-button {
+			background-color: #555;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			opacity: 0.8;
+			position: fixed;
+			bottom: 10px;
+			right: 20px;
+			width: 180px;
+		}
+
+		.form-popup {
+			display: none;
+			position: sticky;
+			bottom: 50px;
+			right: 20px;
+			border: 3px solid #f1f1f1;
+			z-index: 9;
+		}
+
+		/* Add styles to the form container */
+		.form-container {
+			max-width: fit-content;
+			padding: 40px;
+			background-color: white;
+		}
+
+		/* Full-width input fields */
+		.form-container input[type=email],
+		.form-container input[type=text] {
+			width: 100%;
+			padding: 15px;
+			margin: 5px 0 22px 0;
+			border: chocolate;
+			background: #f1f1f1;
+		}
+
+		/* When the inputs get focus, do something */
+		.form-container input[type=email]:focus,
+		.form-container input[type=text]:focus {
+			background-color: #ddd;
+			outline: none;
+		}
+
+		/* Set a style for the submit/login button */
+		.form-container .btn {
+			background-color: #04AA6D;
+			color: white;
+			padding: 16px 20px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			margin-bottom: 10px;
+			opacity: 0.8;
+		}
+
+		/* Add a red background color to the cancel button */
+		.form-container .cancel {
+			background-color: red;
+		}
+
+		/* Add some hover effects to buttons */
+		.form-container .btn:hover,
+		.open-button:hover {
+			opacity: 1;
+		}
+
+		.tablink {
+			background-color: #555;
+			color: white;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 10px 10px;
+			font-size: 17px;
+			width: 50px fit-content;
+			height: 25px fit-content;
+		}
+
+		.tablink:hover {
+			background-color: #777;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			color: red;
+			display: none;
+			padding: 50px;
+			text-align: left;
+		}
+
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+			z-index: 1000;
+			font-size: 12px;
+			border: none;
+			outline: none;
+			background-color: tomato;
+			color: white;
+			cursor: pointer;
+			padding: 10px;
+			border-radius: 5px;
+			/* height: 20px fit-content; */
+			width: 20px fit-content;
+		}
+
+		#myBtn:hover {
+			background-color: #555;
+		}
+	</style>
 </head>
-<div class="border" style="background-color: antiquewhite;">
-  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div >Instagram</div>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div>Facebook</div>
-  </a>                        
-</div>
 <header>
-{% load static %}
-<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
-<div class="container-x1">
-<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
-<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
-</a>
-</div>
-</nav>
-<div class="header">
-
-<div class="menu-bar">
-<ul>   
-<li class="active" ><a href="http://localhost:8000/">Home</a></li>
-<li><a href="http://localhost:8000/about_us/">About</a></li>
-<li><a href="http://localhost:8000/advocate">Advocates</a></li>
-<li><a href="http://localhost:8000/solution">Solutions</a></li>
-</ul>
-</div>
-</div>
-
+	{% load static %}
+	<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4"
+		style="display: flex; align-items: center; justify-content: space-between;">
+		<div class="container-x1">
+			<a class="navbar-brand" href="https://lawmin.gov.in/"
+				onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');"
+				title="Ministry of Law & Justice" target="_blank">
+				<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left"
+					margin-top="100px" class="h-14" alt="Ministry pf Law & Justice">
+			</a>
+		</div>
+		<div style="display:flex; align-items: center; justify-content: right; gap: 10px">
+			<a style="    color: white;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 10px;
+			background: black;
+			border-radius: 5px;" href="https://www.instagram.com/justice.for.all.adv.pankaj/"
+				onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');"
+				class="smaller text-dark text-primary-hover" target="_blank">
+				Instagram
+			</a>
+			<a style="color: white;font-weight: bold;text-decoration: none;padding: 10px;background: black;border-radius: 5px;"
+				href="https://www.facebook.com/profile.php?id=100089989995300" " onclick=" return confirm('You are\
+				being\ redirected to an external website. Please note that Justice For All cannot be held responsible\
+				for\ external website content & privacy policies');" class="smaller text-dark text-primary-hover"
+				target="_blank">
+				Facebook
+			</a>
+		</div>
+	</nav>
+	<div class="header">
+		<div class="menu-bar">
+			<ul style="display: flex !important; align-items: center !important; padding: 0">
+				<li class="active"><a href="http://localhost:8000/">Home</a></li>
+				<li><a href="http://localhost:8000/about_us/">About</a></li>
+				<li><a href="http://localhost:8000/advocate/">Advocates</a></li>
+				<li><a href="http://localhost:8000/solution">Solutions</a></li>
+			</ul>
+		</div>
+	</div>
 </header>
+
 <body>
 
-<h2>Search For Your Issue</h2>
+	<h2>Search For Your Issue</h2>
 
-<div class="row">
-  <div class="left" style="background-color:#bbb;">
-    <h2>Search</h2>
-    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <ul id="myMenu">
-      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
-      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
-      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
-      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
-      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
-      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
-      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
-      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
-      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
-      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
-      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
-      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
-      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
-      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
-      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
-      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
-      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
-      <li><a href="http://localhost:8000/F">Fundraising</a></li>
-      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
-      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
-      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
-      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
-      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
-      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
-      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
-      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
-      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
-      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
-      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
-      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
-      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
-      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
-      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
-      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
-      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
-      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
-      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
-      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
-      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
-      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
-      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
-      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
-      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
-      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
-      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
-      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
-      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
-      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
-      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
-      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
-      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
-      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
-      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
-      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
-      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
-      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
-      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
-      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
-      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
-      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
-      <li><a href="#">Trial</a></li>
-    </ul>
-  </div>
-  
-  <div class="right" style="background-color:#ddd;">
-   <h2>Solution.....</h2><br><br>
-   A Commercial Rental Agreement is a recognized document to rent business property between a landlord and a tenant. This agreement permits both parties to formalize the Rental and their relationship if the tenant plans to execute a business on the landlord's premises, through a legally documented agreement.
-   <br><br>
-A Commercial Rental Agreement assumes the property is being used for business purposes, not like a Residential Rental Agreement. It believes that it is not for residential purposes. The rented property can be an entire building, a new restaurant, a simple office, an independent retail store, or even an excellent warehouse for manufacturing purposes like a self-storage facility or factory. The landlord can address particular concerns and duties about common areas if the property being rented is part of a larger building, such as lobby areas or parking spaces.
-<br><br>
-Easing commercial space requires hefty investments, which is a big decision overall. A Commercial Rental agreement should not be treated in a hasty way like most of the other legal agreements. For that reason, it is important to 'investigate' the market thoroughly and have a fair idea about the types of commercial Rentals available in India while renting business space for the first time.
-<br><br>
-There are few queries to be discussed concerning Commercial Rental Agreement which should address the following questions-
-<br><br>
-What happens if a fire/other disaster damages cause partial or substantial damage?<br><br>
-Who should pay for utility services?<br><br>
-When can the landlord scrutinize or inspect the premises to make repairs?<br><br>
-Why should a tenant's bankruptcy establish a breach of the Rent?<br><br>
-Whether future problems should be litigated, arbitrated, mediated in court?<br><br>
-Where should disagreements be controlled (i.e., jurisdiction)<br><br>
-How will the tenant and landlord manages instances of eminent domain if the local government takes all or part of the premises for public purposes?
-<br><br>Which laws should govern? Etc.<br><br>
-What are the essential elements of a Commercial Rental Agreement?<br><br>
-This document formalizes their Renting relationship and allows both parties to through a legally standard document. The essential elements are as follows-
-<br><br>
-Landlord<br><br>
-The Landlord is the party who is renting out the commercial property for an exchange of money.<br><br>
-<br><br>
-Tenant<br><br>
-The Tenant is the party who is paying for the rented property and operating a business.<br><br>
-<br><br>
-Term<br><br>
-The Term is the number of years/months for which the physical space will be needed.<br><br>
-<br><br>
-Demised Premise<br><br>
-The demise premise is the space being rented out by the tenant, including a property map (like a store in the mall). It includes details about the size also. It is a condition to the fact that whether the tenant has admission to services like snow removal/landscaping, parking, cleaning, security, and heating/air conditioning
-<br><br>
-Real Property<br><br>
-The Real Property is the landlord's entire property, which includes shared common areas (like the shopping mall, where the market store is situated). It may include the premises such as parking lots and walkways that will be utilized by other tenants also.
-<br><br>
-Base Rent<br><br>
-The Base Rent is the starting cost of renting the space on an annual or monthly basis.
-<br><br>
-Operating Costs<br><br>
-The Operating Costs is something where the landlords may ask tenants to share in the cost of maintaining common spaces. It includes real property taxes, utilities, and collective advertising costs. It operates the entire building as either a designated percentage based on the tenant's footprint or store size or fixed flat fee.
-<br><br>
-Security Deposit<br><br>
-The security deposit is the landlord's amount of money not to break the Rental early or irreparably damage the property and to demonstrate the tenant's good faith & efforts.
-<br><br>
-Property & Occupancy Details<br><br>
-The Property & Occupancy Details are the details associated with both parties in which they can clearly describe what is and is not allowed in the rented space. Those may include common areas after-hours noise, such as smoking, whether certain business activities like food services can occur in an office building, and where the place for dumping garbage is.
-<br><br>
-Developments<br><br>
-Both parties should illuminate who is responsible for paying and overseeing the construction project if the tenant plans on operating a restaurant or another business that necessitates improvements or construction in the 'demised premises.'
-<br><br>
-Who Should Use a Commercial Rental Agreement?<br><br>
-A Commercial Rental Agreement can be used to shelter many diverse types of rented spaces, which are as follows:-
-<br><br>
-What are the Documents mandatory for a Commercial Rental Agreement?<br><br>
-Aadhar card or the receipt received, Any government-issued ID proof<br><br>
-Submit the original passport, if not Indian<br><br>
-Power of Attorney should be presented if ID is demonstrating another person for the registration<br><br>
-Evidence and Nature of Business establishment<br><br>
-Original copy of proof of ownership (landlord's property)<br><br>
-Government Approvals, if any<br><br>
-Two in recent times taken passport size photographs.<br><br>
-Get the Commercial rental agreement printed on the stamp paper of the recommended value.<br><br>
-Memorandum of association ∓ Articles of Association, If any<br><br>
-Association of person's understanding, if any<br><br>
-Bonds and Dealership Proofs, if any<br><br>
-Shareholder & Listing agreements, if any<br><br>
-What is the procedure to use the Commercial Rental Agreement?<br><br>
-The completed document must be provided to all parties, which may also include the guarantor. Each party should be given opportunity and may need some time to read the agreement to fix this given the length of the document.
-<br><br><br><br>
-The Commercial Rental Agreement would require to be printed on 'non-judicial stamp paper' or 'e-stamp paper,' which is accessible in each state. The value of the stamp paper would be contingent on the state in which it is implemented and the 'duration' of the Rent.
-<br><br>Both parties should sign the Rental Agreement after printing the document on stamp paper or e-stamp paper, as applicable. Moreover, each party should hold a copy of the Commercial Rental Agreement.
-<br><br>If the rental period is more than 11 months, then the Commercial Rental agreement would require to be registered. Both the lessor and lessee must go to the sub-registrar's office for the objectives of registration.
-<br><br>
-<a href="#" class="previous">&laquo; Previous</a>
-<a href="#" class="next">Next &raquo;</a>
-</div>
-</div>
+	<div class="row">
+		<div class="left" style="background-color:blanchedalmond;">
+			<h2>Search</h2>
+			<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+			<ul id="myMenu">
+				<li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+				<li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+				<li><a href="http://localhost:8000/SR">Society Registration</a></li>
+				<li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+				<li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+				<li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+				<li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+				<li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+				<li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+				<li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+				<li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+				<li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+				<li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+				<li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+				<li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+				<li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+				<li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+				<li><a href="http://localhost:8000/F">Fundraising</a></li>
+				<li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+				<li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+				<li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+				<li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+				<li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+				<li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+				<li><a href="http://localhost:8000/MOU">Memorandum of Understanding (MOU)</a></li>
+				<li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+				<li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+				<li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+				<li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+				<li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+				<li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+				<li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+				<li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+				<li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+				<li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+				<li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+				<li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+				<li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+				<li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+				<li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+				<li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+				<li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+				<li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+				<li><a href="http://localhost:8000/PR">Property Registration</a></li>
+				<li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+				<li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+				<li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+				<li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+				<li><a href="http://localhost:8000/RC">Religion Change</a></li>
+				<li><a href="http://localhost:8000/GC">Gender Change</a></li>
+				<li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+				<li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+				<li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+				<li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+				<li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+				<li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+				<li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+				<li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+				<li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+				<li><a href="http://localhost:8000/Dis">Discovery</a></li>
+				<li><a href="#">Trial</a></li>
+			</ul>
+		</div>
 
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
+		<div class="right" style="background-color: rgb(255, 235, 205, 0.2);">
+			<h2>Solution.....</h2><br><br>
+			A Commercial Rental Agreement is a recognized document to rent business property between a landlord and a
+			tenant. This agreement permits both parties to formalize the Rental and their relationship if the tenant
+			plans to execute a business on the landlord's premises, through a legally documented agreement.
+			<br><br>
+			A Commercial Rental Agreement assumes the property is being used for business purposes, not like a
+			Residential Rental Agreement. It believes that it is not for residential purposes. The rented property can
+			be an entire building, a new restaurant, a simple office, an independent retail store, or even an excellent
+			warehouse for manufacturing purposes like a self-storage facility or factory. The landlord can address
+			particular concerns and duties about common areas if the property being rented is part of a larger building,
+			such as lobby areas or parking spaces.
+			<br><br>
+			Easing commercial space requires hefty investments, which is a big decision overall. A Commercial Rental
+			agreement should not be treated in a hasty way like most of the other legal agreements. For that reason, it
+			is important to 'investigate' the market thoroughly and have a fair idea about the types of commercial
+			Rentals available in India while renting business space for the first time.
+			<br><br>
+			There are few queries to be discussed concerning Commercial Rental Agreement which should address the
+			following questions-
+			<br><br>
+			What happens if a fire/other disaster damages cause partial or substantial damage?<br><br>
+			Who should pay for utility services?<br><br>
+			When can the landlord scrutinize or inspect the premises to make repairs?<br><br>
+			Why should a tenant's bankruptcy establish a breach of the Rent?<br><br>
+			Whether future problems should be litigated, arbitrated, mediated in court?<br><br>
+			Where should disagreements be controlled (i.e., jurisdiction)<br><br>
+			How will the tenant and landlord manages instances of eminent domain if the local government takes all or
+			part of the premises for public purposes?
+			<br><br>Which laws should govern? Etc.<br><br>
+			What are the essential elements of a Commercial Rental Agreement?<br><br>
+			This document formalizes their Renting relationship and allows both parties to through a legally standard
+			document. The essential elements are as follows-
+			<br><br>
+			Landlord<br><br>
+			The Landlord is the party who is renting out the commercial property for an exchange of money.<br><br>
+			<br><br>
+			Tenant<br><br>
+			The Tenant is the party who is paying for the rented property and operating a business.<br><br>
+			<br><br>
+			Term<br><br>
+			The Term is the number of years/months for which the physical space will be needed.<br><br>
+			<br><br>
+			Demised Premise<br><br>
+			The demise premise is the space being rented out by the tenant, including a property map (like a store in
+			the mall). It includes details about the size also. It is a condition to the fact that whether the tenant
+			has admission to services like snow removal/landscaping, parking, cleaning, security, and heating/air
+			conditioning
+			<br><br>
+			Real Property<br><br>
+			The Real Property is the landlord's entire property, which includes shared common areas (like the shopping
+			mall, where the market store is situated). It may include the premises such as parking lots and walkways
+			that will be utilized by other tenants also.
+			<br><br>
+			Base Rent<br><br>
+			The Base Rent is the starting cost of renting the space on an annual or monthly basis.
+			<br><br>
+			Operating Costs<br><br>
+			The Operating Costs is something where the landlords may ask tenants to share in the cost of maintaining
+			common spaces. It includes real property taxes, utilities, and collective advertising costs. It operates the
+			entire building as either a designated percentage based on the tenant's footprint or store size or fixed
+			flat fee.
+			<br><br>
+			Security Deposit<br><br>
+			The security deposit is the landlord's amount of money not to break the Rental early or irreparably damage
+			the property and to demonstrate the tenant's good faith & efforts.
+			<br><br>
+			Property & Occupancy Details<br><br>
+			The Property & Occupancy Details are the details associated with both parties in which they can clearly
+			describe what is and is not allowed in the rented space. Those may include common areas after-hours noise,
+			such as smoking, whether certain business activities like food services can occur in an office building, and
+			where the place for dumping garbage is.
+			<br><br>
+			Developments<br><br>
+			Both parties should illuminate who is responsible for paying and overseeing the construction project if the
+			tenant plans on operating a restaurant or another business that necessitates improvements or construction in
+			the 'demised premises.'
+			<br><br>
+			Who Should Use a Commercial Rental Agreement?<br><br>
+			A Commercial Rental Agreement can be used to shelter many diverse types of rented spaces, which are as
+			follows:-
+			<br><br>
+			What are the Documents mandatory for a Commercial Rental Agreement?<br><br>
+			Aadhar card or the receipt received, Any government-issued ID proof<br><br>
+			Submit the original passport, if not Indian<br><br>
+			Power of Attorney should be presented if ID is demonstrating another person for the registration<br><br>
+			Evidence and Nature of Business establishment<br><br>
+			Original copy of proof of ownership (landlord's property)<br><br>
+			Government Approvals, if any<br><br>
+			Two in recent times taken passport size photographs.<br><br>
+			Get the Commercial rental agreement printed on the stamp paper of the recommended value.<br><br>
+			Memorandum of association ∓ Articles of Association, If any<br><br>
+			Association of person's understanding, if any<br><br>
+			Bonds and Dealership Proofs, if any<br><br>
+			Shareholder & Listing agreements, if any<br><br>
+			What is the procedure to use the Commercial Rental Agreement?<br><br>
+			The completed document must be provided to all parties, which may also include the guarantor. Each party
+			should be given opportunity and may need some time to read the agreement to fix this given the length of the
+			document.
+			<br><br><br><br>
+			The Commercial Rental Agreement would require to be printed on 'non-judicial stamp paper' or 'e-stamp
+			paper,' which is accessible in each state. The value of the stamp paper would be contingent on the state in
+			which it is implemented and the 'duration' of the Rent.
+			<br><br>Both parties should sign the Rental Agreement after printing the document on stamp paper or e-stamp
+			paper, as applicable. Moreover, each party should hold a copy of the Commercial Rental Agreement.
+			<br><br>If the rental period is more than 11 months, then the Commercial Rental agreement would require to
+			be registered. Both the lessor and lessee must go to the sub-registrar's office for the objectives of
+			registration.
+			<br><br>
+			<a href="#" class="previous">&laquo; Previous</a>
+			<a href="#" class="next">Next &raquo;</a>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myMenu");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 
 </body>
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-    <h1>Need Help??</h1> 
-                  <label for="name">Name</label>
-                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
-                  <br>
-                  <label for="SelectService">Select Service</label>
-                  <br>
+	<form action="/action_page.php" class="form-container">
+		<h1>Need Help??</h1>
+		<label for="name">Name</label>
+		<input name='name' type="text" class="form-control" id="name" aria-describedby="first name"
+			placeholder="Enter Your Name" required>
+		<br>
+		<label for="SelectService">Select Service</label>
+		<br>
 
-                  <select class="whatever floating-select" name="service_id" id="service_id" required>
-                    <option value slected disable></option>
-                    <option value="1">Private Limited Company Registration</option>
-                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
-                    <option value="3">>One Person Company Registration</option>
-                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
-                    <option value="5">Partnership Firm Registration</option>
-                    <option value="6">Subsidary Company Registration</option>
-                    <option value="7">Subsidary of an Indian Company in India</option>
-                    <option value="8">Public Limited Company Registratiom</option>
-                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
-                    <option value="10">Trust Registration</option>
-                    <option value="11">Society Registration</option>
-                    <option value="12">USA Company Incorporation</option>
-                    <option value="13">>Register a NBFC Company in India</option>
-                    <option value="14">NIDHI Company Registration</option>
-                    <option value="15">Digital Signature Certificae(DSC)</option>
-                    <option value="16">Tax Deduction Account Number(TAN)</option>
-                    <option value="17">Trademark Registration</option>
-                    <option value="18">Trademark Renewal</option>
-                    <option value="19">International Trademark Application</option>
-                    <option value="20">Trademark Ownership Transfer</option>
-                    <option value="21">File a Trademark Opposition</option>
-                    <option value="22">Respond to a Trademark Objection</option>
-                    <option value="23">Patent Search</option>
-                    <option value="24">Apply for a Provisional Patent</option>
-                    <option value="25">Apply for a Patent</option>
-                    <option value="26">Changes in IEC<</option>
-                    <option value="27">Changes in GST</option>
-                    <option value="28">LUT Application</option>
-                    <option value="29">Professional Tax for Employees</option>
-                    <option value="30">Professional Tax for Directors</option>
-                    <option value="31">ESI Registration</option>
-                    <option value="32">PF Registration</option>
-                    <option value="33">ESI Filing</option>
-                    <option value="34">PF Filing</option>
-                    <option value="35">Cancellation of GST</option>
-                    <option value="36">Professional Tax Registration</option>
-                    <option value="37">DIPP Certification</option>
-                    <option value="38">Loan Agreement</option>
-                    <option value="39">Religion Change</option>
-                    <option value="40">Gender Change</option>
-                    <option value="41">Mutual Divorce</option>
-                    <option value="42">Court Marriage</option>
-                    <option value="43">Breach of Contract Claims</option>
-                    <option value="44">Initial Pleading</option>
-                    <option value="45">Landlord/Tenant Issues</option>
-                    <option value="46">Sale Deed</option>
-                    <option value="47">Post Discovery</option>
-                    <option value="48">Landlord/Tenant Issues</option>
-                    <option value="49">Property Registration</option>
-                    <option value="50">File annual Returns for your Private Limited Company</option>
-                    <option value="51">Something Else.....</option>
-                  </select>
-                  <span class="highlight"></span>
-                  
-                  <br><br>
+		<select class="whatever floating-select" name="service_id" id="service_id" required>
+			<option value slected disable></option>
+			<option value="1">Private Limited Company Registration</option>
+			<option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+			<option value="3">>One Person Company Registration</option>
+			<option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+			<option value="5">Partnership Firm Registration</option>
+			<option value="6">Subsidary Company Registration</option>
+			<option value="7">Subsidary of an Indian Company in India</option>
+			<option value="8">Public Limited Company Registratiom</option>
+			<option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+			<option value="10">Trust Registration</option>
+			<option value="11">Society Registration</option>
+			<option value="12">USA Company Incorporation</option>
+			<option value="13">>Register a NBFC Company in India</option>
+			<option value="14">NIDHI Company Registration</option>
+			<option value="15">Digital Signature Certificae(DSC)</option>
+			<option value="16">Tax Deduction Account Number(TAN)</option>
+			<option value="17">Trademark Registration</option>
+			<option value="18">Trademark Renewal</option>
+			<option value="19">International Trademark Application</option>
+			<option value="20">Trademark Ownership Transfer</option>
+			<option value="21">File a Trademark Opposition</option>
+			<option value="22">Respond to a Trademark Objection</option>
+			<option value="23">Patent Search</option>
+			<option value="24">Apply for a Provisional Patent</option>
+			<option value="25">Apply for a Patent</option>
+			<option value="26">Changes in IEC<< /option>
+			<option value="27">Changes in GST</option>
+			<option value="28">LUT Application</option>
+			<option value="29">Professional Tax for Employees</option>
+			<option value="30">Professional Tax for Directors</option>
+			<option value="31">ESI Registration</option>
+			<option value="32">PF Registration</option>
+			<option value="33">ESI Filing</option>
+			<option value="34">PF Filing</option>
+			<option value="35">Cancellation of GST</option>
+			<option value="36">Professional Tax Registration</option>
+			<option value="37">DIPP Certification</option>
+			<option value="38">Loan Agreement</option>
+			<option value="39">Religion Change</option>
+			<option value="40">Gender Change</option>
+			<option value="41">Mutual Divorce</option>
+			<option value="42">Court Marriage</option>
+			<option value="43">Breach of Contract Claims</option>
+			<option value="44">Initial Pleading</option>
+			<option value="45">Landlord/Tenant Issues</option>
+			<option value="46">Sale Deed</option>
+			<option value="47">Post Discovery</option>
+			<option value="48">Landlord/Tenant Issues</option>
+			<option value="49">Property Registration</option>
+			<option value="50">File annual Returns for your Private Limited Company</option>
+			<option value="51">Something Else.....</option>
+		</select>
+		<span class="highlight"></span>
 
-                
-                  <label for="email">Email</label>
-                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
-                  <br><br>
+		<br><br>
 
-                  <label for="phone">Phone Number</label><br>
-                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
-                  <br><br>
-                
-                  <label for = "subject">Subject</label><br>
-                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
-                  <br>              <br>
-                 
-                 <button type="submit" class="btn">Submit</button>
 
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
+		<label for="email">Email</label>
+		<input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+		<br><br>
+
+		<label for="phone">Phone Number</label><br>
+		<input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+		<br><br>
+
+		<label for="subject">Subject</label><br>
+		<textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..."
+			required></textarea>
+		<br> <br>
+
+		<button type="submit" class="btn">Submit</button>
+
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	</form>
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
 </script>
 <br>
 <br>
 <div>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </div>
 
 <script>
-// Get the button
-let mybutton = document.getElementById("myBtn");
+	// Get the button
+	let mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+	}
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
 </script>
-<footer class="footer mt-auto text-white-50 z-index-2">
-  <div class="container-fluid bg-dark">
-      <div class="container py-12 pe-2">
-          <div class="row">
-              <div class="col-lg-8 mt-2 mt-md-0">
-                  <p class="mb-4"> Disclaimer: </p>
-                  <p>
-                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
+<footer class="mt-auto text-white-50 z-index-2" style="border-radius: 10px; background-color:
+		blanchedalmond; width: 60%; margin: 0 auto; padding: 5px 10px;">
+	<div class="container-fluid bg-dark">
+		<div class="container py-12 pe-2">
+			<div class="row">
+				<div class="col-lg-8 mt-2 mt-md-0">
+					<p class="mb-4"> Disclaimer: </p>
+					<p>
+						This site is designed and hosted by Justice_For_Everyone and the contents are provided by
+						Justice For All also. For any further information, pleace contact us on Contact .
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
+
 </html>

@@ -30,7 +30,6 @@ SECRET_KEY = 'django-insecure-i!s$gvw)1i33hp+uxq5-=+)rw8!1-h+ye@93igiek)97i(x1t9
 DEBUG = True
 
 
-
 ALLOWED_HOSTS = []
 
 
@@ -184,6 +183,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG
         },
     },
 ]
@@ -198,7 +198,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-            }
+    }
 }
 
 

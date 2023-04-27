@@ -1,631 +1,745 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins@1&display=swap" rel="stylesheet">
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+	<style>
+		body {
+			background-color: rgba(255, 235, 205, 0.5);
+		}
 
-.previous {
-  background-color: #f1f1f1;
-  color: black;
-}
+		*,
+		*::after,
+		*::before {
+			font-family: 'Poppins', sans-serif;
+		}
 
-.next {
-  background-color: #04AA6D;
-  color: white;
-}
+		section {
+			background: blanchedalmond;
+			padding: 10px 40px;
+			border-radius: 10px;
+			margin: 10px auto;
+			width: 60%;
+		}
 
-.round {
-  border-radius: 50%;
-}
-* {
-  box-sizing: border-box;
-}
+		a {
+			text-decoration: none;
+			padding: 8px 16px;
+		}
 
-/* Create a column layout with Flexbox */
-.row {
-  display: flex;
-}
+		a:hover {
+			background-color: #ddd;
+			color: black;
+		}
 
-/* Left column (menu) */
-.left {
-  flex: 35%;
-  padding: 15px 0;
-}
+		.previous {
+			background-color: #f1f1f1;
+			color: black;
+		}
 
-.left h2 {
-  padding-left: 8px;
-}
+		.next {
+			background-color: #04AA6D;
+			color: white;
+		}
 
-/* Right column (page content) */
-.right {
-  flex: 65%;
-  padding: 15px;
-}
+		.round {
+			border-radius: 50%;
+		}
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
+		* {
+			box-sizing: border-box;
+		}
 
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+		/* Create a column layout with Flexbox */
+		.row {
+			display: flex;
+		}
 
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
+		/* Left column (menu) */
+		.left {
+			flex: 35%;
+			padding: 15px 0;
+		}
 
-#myMenu li a:hover {
-  background-color: #eee;
-}
-.header{
-    border: 1% solid black;
-    height: 85%auto;
-    }
-    .menu-bar{background-color:blanchedalmond;
-    height: 100%;
-    width: 100%;
-    display: inline-flex; 
-    }
-    .menu-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .menu-bar ul li {
-    background-color: rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .menu-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: whitesmoke;
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .menu-bar ul li:hover {
-    background-color: green;
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar{background-color:rgb(238, 218, 218);
-    height: 62px fit-content;
-    width: 59% fit-content;
-    float: right;
-    }
-    .foot-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .foot-bar ul li {
-    background-color: rgb(233, 227, 220);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px  fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: rgb(23, 2, 43);
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .foot-bar ul li:hover {
-    background-color: darkgrey;
-    border-radius: 100px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .footer{
-    border: 1px solid rgb(17, 17, 17);
-    height: 100px fit-content;
-    }
-    .open-button {
-  background-color: #555;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  width: 180px;
-}
-.form-popup {
-  display: none;
-  position:sticky;
-  bottom: 50px;
-  right: 20px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+		.left h2 {
+			padding-left: 8px;
+		}
 
-/* Add styles to the form container */
-.form-container {
-  max-width: fit-content;
-  padding: 40px;
-  background-color: white;
-}
+		/* Right column (page content) */
+		.right {
+			flex: 65%;
+			padding: 15px;
+		}
 
-/* Full-width input fields */
-.form-container input[type=email], .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border:chocolate;
-  background: #f1f1f1;
-}
+		/* Style the search box */
+		#mySearch {
+			width: 100%;
+			font-size: 18px;
+			padding: 11px;
+			border: 1px solid #ddd;
+		}
 
-/* When the inputs get focus, do something */
-.form-container input[type=email]:focus, .form-container input[type=text]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+		/* Style the navigation menu inside the left column */
+		#myMenu {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+		#myMenu li a {
+			padding: 12px;
+			text-decoration: none;
+			color: black;
+			display: block
+		}
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
+		#myMenu li a:hover {
+			background-color: burlywood;
+		}
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 10px;
-  font-size: 17px;
-  width: 50px fit-content;
-  height:25px fit-content;
-}
+		.header {
+			border: 1% solid black;
+			height: 85%auto;
+		}
 
-.tablink:hover {
-  background-color: #777;
-}
+		.menu-bar {
 
-/* Style the tab content */
-.tabcontent {
-  color: red;
-  display: none;
-  padding: 50px;
-  text-align: left;
-}
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 99;
-  font-size: 12px;
-  border: none;
-  outline: none;
-  background-color: tomato;
-  color: rgb(255, 252, 51);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 1px;
-  height: 20px fit-content;
-  width: 20px fit-content;
-}
+			width: 100%;
+			display: inline-flex;
+		}
 
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
+		.menu-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.menu-bar ul li {
+			background-color: rgb(0, 0, 0);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.menu-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: whitesmoke;
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.menu-bar ul li:hover {
+			background-color: green;
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar {
+			background-color: rgb(238, 218, 218);
+			height: 62px fit-content;
+			width: 59% fit-content;
+			float: right;
+		}
+
+		.foot-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.foot-bar ul li {
+			background-color: rgb(233, 227, 220);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: rgb(23, 2, 43);
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.foot-bar ul li:hover {
+			background-color: darkgrey;
+			border-radius: 100px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.footer {
+			border: 1px solid rgb(17, 17, 17);
+			height: 100px fit-content;
+		}
+
+		.open-button {
+			background-color: #555;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			opacity: 0.8;
+			position: fixed;
+			bottom: 10px;
+			right: 20px;
+			width: 180px;
+		}
+
+		.form-popup {
+			display: none;
+			position: sticky;
+			bottom: 50px;
+			right: 20px;
+			border: 3px solid #f1f1f1;
+			z-index: 9;
+		}
+
+		/* Add styles to the form container */
+		.form-container {
+			max-width: fit-content;
+			padding: 40px;
+			background-color: white;
+		}
+
+		/* Full-width input fields */
+		.form-container input[type=email],
+		.form-container input[type=text] {
+			width: 100%;
+			padding: 15px;
+			margin: 5px 0 22px 0;
+			border: chocolate;
+			background: #f1f1f1;
+		}
+
+		/* When the inputs get focus, do something */
+		.form-container input[type=email]:focus,
+		.form-container input[type=text]:focus {
+			background-color: #ddd;
+			outline: none;
+		}
+
+		/* Set a style for the submit/login button */
+		.form-container .btn {
+			background-color: #04AA6D;
+			color: white;
+			padding: 16px 20px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			margin-bottom: 10px;
+			opacity: 0.8;
+		}
+
+		/* Add a red background color to the cancel button */
+		.form-container .cancel {
+			background-color: red;
+		}
+
+		/* Add some hover effects to buttons */
+		.form-container .btn:hover,
+		.open-button:hover {
+			opacity: 1;
+		}
+
+		.tablink {
+			background-color: #555;
+			color: white;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 10px 10px;
+			font-size: 17px;
+			width: 50px fit-content;
+			height: 25px fit-content;
+		}
+
+		.tablink:hover {
+			background-color: #777;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			color: red;
+			display: none;
+			padding: 50px;
+			text-align: left;
+		}
+
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+			z-index: 1000;
+			font-size: 12px;
+			border: none;
+			outline: none;
+			background-color: tomato;
+			color: white;
+			cursor: pointer;
+			padding: 10px;
+			border-radius: 5px;
+			/* height: 20px fit-content; */
+			width: 20px fit-content;
+		}
+
+		#myBtn:hover {
+			background-color: #555;
+		}
+	</style>
 </head>
-<div class="border" style="background-color: antiquewhite;">
-  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div >Instagram</div>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div>Facebook</div>
-  </a>                        
-</div>
 <header>
-{% load static %}
-<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
-<div class="container-x1">
-<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
-<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
-</a>
-</div>
-</nav>
-<div class="header">
-
-<div class="menu-bar">
-<ul>   
-<li class="active" ><a href="http://localhost:8000/">Home</a></li>
-<li><a href="http://localhost:8000/about_us/">About</a></li>
-<li><a href="http://localhost:8000/advocate">Advocates</a></li>
-<li><a href="http://localhost:8000/solution">Solutions</a></li>
-</ul>
-</div>
-</div>
-
+	{% load static %}
+	<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4"
+		style="display: flex; align-items: center; justify-content: space-between;">
+		<div class="container-x1">
+			<a class="navbar-brand" href="https://lawmin.gov.in/"
+				onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');"
+				title="Ministry of Law & Justice" target="_blank">
+				<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left"
+					margin-top="100px" class="h-14" alt="Ministry pf Law & Justice">
+			</a>
+		</div>
+		<div style="display:flex; align-items: center; justify-content: right; gap: 10px">
+			<a style="    color: white;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 10px;
+			background: black;
+			border-radius: 5px;" href="https://www.instagram.com/justice.for.all.adv.pankaj/"
+				onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');"
+				class="smaller text-dark text-primary-hover" target="_blank">
+				Instagram
+			</a>
+			<a style="color: white;font-weight: bold;text-decoration: none;padding: 10px;background: black;border-radius: 5px;"
+				href="https://www.facebook.com/profile.php?id=100089989995300" " onclick=" return confirm('You are\
+				being\ redirected to an external website. Please note that Justice For All cannot be held responsible\
+				for\ external website content & privacy policies');" class="smaller text-dark text-primary-hover"
+				target="_blank">
+				Facebook
+			</a>
+		</div>
+	</nav>
+	<div class="header">
+		<div class="menu-bar">
+			<ul style="display: flex !important; align-items: center !important; padding: 0">
+				<li class="active"><a href="http://localhost:8000/">Home</a></li>
+				<li><a href="http://localhost:8000/about_us/">About</a></li>
+				<li><a href="http://localhost:8000/advocate/">Advocates</a></li>
+				<li><a href="http://localhost:8000/solution">Solutions</a></li>
+			</ul>
+		</div>
+	</div>
 </header>
+
 <body>
 
-<h2>Search For Your Issue</h2>
+	<h2>Search For Your Issue</h2>
 
-<div class="row">
-  <div class="left" style="background-color:#bbb;">
-    <h2>Search</h2>
-    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <ul id="myMenu">
-      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
-      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
-      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
-      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
-      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
-      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
-      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
-      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
-      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
-      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
-      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
-      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
-      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
-      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
-      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
-      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
-      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
-      <li><a href="http://localhost:8000/F">Fundraising</a></li>
-      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
-      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
-      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
-      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
-      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
-      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
-      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
-      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
-      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
-      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
-      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
-      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
-      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
-      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
-      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
-      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
-      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
-      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
-      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
-      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
-      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
-      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
-      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
-      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
-      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
-      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
-      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
-      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
-      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
-      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
-      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
-      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
-      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
-      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
-      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
-      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
-      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
-      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
-      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
-      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
-      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
-      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
-      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
-      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+	<div class="row">
+		<div class="left" style="background-color:blanchedalmond;">
+			<h2>Search</h2>
+			<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+			<ul id="myMenu">
+				<li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+				<li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+				<li><a href="http://localhost:8000/SR">Society Registration</a></li>
+				<li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+				<li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+				<li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+				<li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+				<li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+				<li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+				<li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+				<li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+				<li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+				<li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+				<li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+				<li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+				<li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+				<li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+				<li><a href="http://localhost:8000/F">Fundraising</a></li>
+				<li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+				<li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+				<li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+				<li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+				<li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+				<li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+				<li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+				<li><a href="http://localhost:8000/MOU">Memorandum of Understanding (MOU)</a></li>
+				<li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+				<li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+				<li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+				<li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+				<li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+				<li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+				<li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+				<li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+				<li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+				<li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+				<li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+				<li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+				<li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+				<li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+				<li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+				<li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+				<li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+				<li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+				<li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+				<li><a href="http://localhost:8000/PR">Property Registration</a></li>
+				<li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+				<li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+				<li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+				<li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+				<li><a href="http://localhost:8000/RC">Religion Change</a></li>
+				<li><a href="http://localhost:8000/GC">Gender Change</a></li>
+				<li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+				<li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+				<li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+				<li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+				<li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+				<li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+				<li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+				<li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+				<li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+				<li><a href="http://localhost:8000/Dis">Discovery</a></li>
 
-    </ul>
-  </div>
-  
-  <div class="right" style="background-color:#ddd;">
-   <h2>Solution.....</h2><br><br>
-   ISO registration<br><br>
-ISO registration refers to registering an organization with an external certification body to obtain certification for compliance with one or more standards established and published by the International Organization for Standardization (ISO). ISO is a non-governmental, independent international organization that brings together experts worldwide to develop global standards that address various issues and promote technological advancement.
-<br><br>
-ISO registration involves an extensive audit and assessment process by an external certification body to determine whether the organization meets the applicable ISO standard requirements. The certification body will review the organization's operations, procedures, and systems to ensure they comply with the relevant ISO standard.
-<br><br>
-Once the certification body confirms that the organization complies with the applicable ISO standard, it will issue an ISO certificate.
-<br><br>
-The objective of ISO certification<br><br>
-ISO certification aims to provide a framework for businesses to establish, implement, and maintain a management system that meets international standards. The ISO certification process helps companies identify and manage risks, improve operations, and demonstrate a commitment to quality and continuous improvement.
-<br><br>
-ISO certification provides a set of globally recognized standards for various aspects of business operations, including quality management, environmental management, information security management, occupational health, and safety management, food safety management, and energy management. The certification process involves an independent assessment of the business's management system to ensure that it meets the requirements of the relevant ISO standard.
-<br><br>
-ISO Certificate<br><br>
-An ISO certificate is a document that confirms that a company, organization, or product adheres to one or more of the standards established and published by the International Organization for Standardization (ISO). ISO is a non-governmental, independent international organization that brings together experts worldwide to develop global standards that address various issues and promote technological advancement.
-<br><br>
-ISO certification indicates that the business or product meets specific requirements and operates responsibly and in compliance with industry standards and management procedures.
-<br><br>
-An external certification body typically carries out the certification process, which conducts audits and assessments to ensure that the organization or product meets the applicable ISO standard requirements.
-<br><br>
-Benefits of ISO registration:<br><br>
-ISO certification is a globally recognized standard, and achieving it can provide various benefits:
-<br><br>
-Improved quality management: A quality management system that meets international standards can be established and maintained through ISO certification. This can lead to improved quality control, better process management, and increased efficiency in operations.
-<br><br>Increased customer satisfaction: ISO certification demonstrates a commitment to quality and customer satisfaction, which can help businesses attract and retain customers. ISO certification can also help companies to differentiate themselves from their competitors and build a reputation for quality and reliability.
-<br><br>Enhanced credibility: ISO certification is recognized globally as a mark of quality and credibility. ISO certification can help businesses gain recognition and trust from customers, suppliers, and stakeholders.
-<br><br>Improved risk management: ISO certification requires businesses to identify and manage risks associated with their operations. This can help enterprises to identify potential risks and take steps to mitigate them, leading to improved risk management and increased resilience.
-<br><br>Access to new markets: Many businesses require ISO certification as a prerequisite for doing business. ISO certification can help companies to access new markets and expand their customer base.
-<br><br>Improved processes and efficiency: Obtaining ISO certification involves a comprehensive review of a business's processes and procedures, which can help identify areas for improvement and increase efficiency.
-<br><br>Cost savings: By improving processes and efficiency, ISO certification can lead to cost savings for a business.
-<br><br>Overall, ISO certification can help businesses improve their operations, increase customer satisfaction, and enhance their reputation and credibility, leading to long-term success and growth.
-<br><br><br><br>
-Types of ISO certification<br><br>
-The list of types of ISO certification available in India is the same as the global list of ISO certifications. Here are the types of ISO certifications available in India:
-<br><br>
-Quality Management Systems (QMS): ISO 9001:2015 - Quality Management Systems<br><br>
-Environmental Management Systems (EMS): ISO 14001:2015 - Environmental Management Systems<br><br>
-Occupational Health and Safety Management Systems (OHSMS): ISO 45001:2018 - Occupational Health and Safety Management Systems<br><br>
-OHSAS 18001:2007 - Occupational Health and Safety Management Systems<br><br>
-Information Security Management Systems (ISMS): ISO/IEC 27001:2013 - Information Security Management Systems<br><br>
-Energy Management Systems (EnMS): ISO 50001:2018 - Energy Management Systems<br><br>
-Food Safety Management Systems (FSMS): ISO 22000:2018 - Food Safety Management Systems<br><br>
-Social Responsibility: ISO 26000:2010 - Social Responsibility<br><br>
-Asset Management: ISO 55001:2014 - Asset Management<br><br>
-Risk Management: ISO 31000:2018 - Risk Management<br><br>
-Anti-bribery Management Systems: ISO 37001:2016 - Anti-bribery Management Systems<br><br>
-Compliant Management System: ISO 10002:2018 - Compliant Management System<br><br>
-Security Management: ISO 28000:2007 - Security Management<br><br>
-Sustainable Events: ISO 20121:2012 - Sustainable Events<br><br>
-Medical Devices: ISO 13485:2016 - Medical Devices<br><br>
-Testing and Calibration Laboratories: ISO/IEC 17025:2017 - Testing and Calibration Laboratories<br><br>
-Language Codes: ISO 639:2002 - Language Codes<br><br>
-Currency Codes: ISO 4217:2015 - Currency Codes<br><br>
-Country Codes: ISO 3166:2013 - Country Codes<br><br>
-Date and Time Format: ISO 8601:2019 - Date and Time Format<br><br>
-Note that some of these certifications have been updated over time, and the year of the latest version is mentioned alongside the certification name.
-<br><br><br><br>
-ISO Certification Requirements<br><br>
-The ISO certification requirements vary depending on the specific ISO standard, but generally, they include the following:<br><br><br><br>
+			</ul>
+		</div>
 
-Implementing a quality management system (QMS) that addresses the needs of the applicable ISO standard<br><br>
-Documenting processes and procedures related to the QMS<br><br>
-Establishing and maintaining a management system that is focused on continual improvement<br><br>
-Ensuring that employees are trained on the QMS and are aware of their responsibilities<br><br>
-Demonstrating compliance with applicable legal and regulatory requirements<br><br>
-Monitoring and measuring the effectiveness of the QMS through internal audits and management reviews<br><br>
-Identifying and addressing non-conformities and taking corrective and preventive actions<br><br>
-Keeping records related to the QMS and maintaining document control.<br><br>
-Specific ISO standards may have additional requirements depending on the scope of the standard.<br><br><br><br>
+		<div class="right" style="background-color: rgb(255, 235, 205, 0.2);">
+			<h2>Solution.....</h2><br><br>
+			ISO registration<br><br>
+			ISO registration refers to registering an organization with an external certification body to obtain
+			certification for compliance with one or more standards established and published by the International
+			Organization for Standardization (ISO). ISO is a non-governmental, independent international organization
+			that brings together experts worldwide to develop global standards that address various issues and promote
+			technological advancement.
+			<br><br>
+			ISO registration involves an extensive audit and assessment process by an external certification body to
+			determine whether the organization meets the applicable ISO standard requirements. The certification body
+			will review the organization's operations, procedures, and systems to ensure they comply with the relevant
+			ISO standard.
+			<br><br>
+			Once the certification body confirms that the organization complies with the applicable ISO standard, it
+			will issue an ISO certificate.
+			<br><br>
+			The objective of ISO certification<br><br>
+			ISO certification aims to provide a framework for businesses to establish, implement, and maintain a
+			management system that meets international standards. The ISO certification process helps companies identify
+			and manage risks, improve operations, and demonstrate a commitment to quality and continuous improvement.
+			<br><br>
+			ISO certification provides a set of globally recognized standards for various aspects of business
+			operations, including quality management, environmental management, information security management,
+			occupational health, and safety management, food safety management, and energy management. The certification
+			process involves an independent assessment of the business's management system to ensure that it meets the
+			requirements of the relevant ISO standard.
+			<br><br>
+			ISO Certificate<br><br>
+			An ISO certificate is a document that confirms that a company, organization, or product adheres to one or
+			more of the standards established and published by the International Organization for Standardization (ISO).
+			ISO is a non-governmental, independent international organization that brings together experts worldwide to
+			develop global standards that address various issues and promote technological advancement.
+			<br><br>
+			ISO certification indicates that the business or product meets specific requirements and operates
+			responsibly and in compliance with industry standards and management procedures.
+			<br><br>
+			An external certification body typically carries out the certification process, which conducts audits and
+			assessments to ensure that the organization or product meets the applicable ISO standard requirements.
+			<br><br>
+			Benefits of ISO registration:<br><br>
+			ISO certification is a globally recognized standard, and achieving it can provide various benefits:
+			<br><br>
+			Improved quality management: A quality management system that meets international standards can be
+			established and maintained through ISO certification. This can lead to improved quality control, better
+			process management, and increased efficiency in operations.
+			<br><br>Increased customer satisfaction: ISO certification demonstrates a commitment to quality and customer
+			satisfaction, which can help businesses attract and retain customers. ISO certification can also help
+			companies to differentiate themselves from their competitors and build a reputation for quality and
+			reliability.
+			<br><br>Enhanced credibility: ISO certification is recognized globally as a mark of quality and credibility.
+			ISO certification can help businesses gain recognition and trust from customers, suppliers, and
+			stakeholders.
+			<br><br>Improved risk management: ISO certification requires businesses to identify and manage risks
+			associated with their operations. This can help enterprises to identify potential risks and take steps to
+			mitigate them, leading to improved risk management and increased resilience.
+			<br><br>Access to new markets: Many businesses require ISO certification as a prerequisite for doing
+			business. ISO certification can help companies to access new markets and expand their customer base.
+			<br><br>Improved processes and efficiency: Obtaining ISO certification involves a comprehensive review of a
+			business's processes and procedures, which can help identify areas for improvement and increase efficiency.
+			<br><br>Cost savings: By improving processes and efficiency, ISO certification can lead to cost savings for
+			a business.
+			<br><br>Overall, ISO certification can help businesses improve their operations, increase customer
+			satisfaction, and enhance their reputation and credibility, leading to long-term success and growth.
+			<br><br><br><br>
+			Types of ISO certification<br><br>
+			The list of types of ISO certification available in India is the same as the global list of ISO
+			certifications. Here are the types of ISO certifications available in India:
+			<br><br>
+			Quality Management Systems (QMS): ISO 9001:2015 - Quality Management Systems<br><br>
+			Environmental Management Systems (EMS): ISO 14001:2015 - Environmental Management Systems<br><br>
+			Occupational Health and Safety Management Systems (OHSMS): ISO 45001:2018 - Occupational Health and Safety
+			Management Systems<br><br>
+			OHSAS 18001:2007 - Occupational Health and Safety Management Systems<br><br>
+			Information Security Management Systems (ISMS): ISO/IEC 27001:2013 - Information Security Management
+			Systems<br><br>
+			Energy Management Systems (EnMS): ISO 50001:2018 - Energy Management Systems<br><br>
+			Food Safety Management Systems (FSMS): ISO 22000:2018 - Food Safety Management Systems<br><br>
+			Social Responsibility: ISO 26000:2010 - Social Responsibility<br><br>
+			Asset Management: ISO 55001:2014 - Asset Management<br><br>
+			Risk Management: ISO 31000:2018 - Risk Management<br><br>
+			Anti-bribery Management Systems: ISO 37001:2016 - Anti-bribery Management Systems<br><br>
+			Compliant Management System: ISO 10002:2018 - Compliant Management System<br><br>
+			Security Management: ISO 28000:2007 - Security Management<br><br>
+			Sustainable Events: ISO 20121:2012 - Sustainable Events<br><br>
+			Medical Devices: ISO 13485:2016 - Medical Devices<br><br>
+			Testing and Calibration Laboratories: ISO/IEC 17025:2017 - Testing and Calibration Laboratories<br><br>
+			Language Codes: ISO 639:2002 - Language Codes<br><br>
+			Currency Codes: ISO 4217:2015 - Currency Codes<br><br>
+			Country Codes: ISO 3166:2013 - Country Codes<br><br>
+			Date and Time Format: ISO 8601:2019 - Date and Time Format<br><br>
+			Note that some of these certifications have been updated over time, and the year of the latest version is
+			mentioned alongside the certification name.
+			<br><br><br><br>
+			ISO Certification Requirements<br><br>
+			The ISO certification requirements vary depending on the specific ISO standard, but generally, they include
+			the following:<br><br><br><br>
 
-ISO Certification Process in India<br><br>
-The ISO certification process in India typically involves the following steps:<br><br><br><br>
-<br><br>
-Determine the type of ISO certification needed: The first step is to determine the type of ISO certification that best suits your business needs. This could be based on the industry, target market, or customers' specific requirements.
-<br><br>
-Identify a Certification Body: Once you have determined the type of ISO certification needed, you will need to identify a Certification Body (CB) accredited by the National Accreditation Board for Certification Bodies (NABCB). You can also check the list of CBs on the NABCB website.
-<br><br>
-Prepare the documentation: The next step is to prepare the necessary documentation, which includes a Quality Manual, Procedures, and Work Instructions. This documentation will help demonstrate that your business follows the requirements of the relevant ISO standard.
-<br><br>
-Implementation of the Quality Management System (QMS): The QMS must be implemented and maintained per the standard's requirements. This includes identifying and managing risks, documenting and controlling procedures, and performing internal audits.
-<br><br>
-Stage 1 audit: A Stage 1 audit is a documentation review to ensure that the QMS documentation aligns with the requirements of the ISO standard.
-<br><br>Stage 2 audit: A Stage 2 audit is a site audit to ensure that the QMS is implemented and maintained as per the standard's requirements. This audit typically includes interviews with key personnel, observations, and a review of records.
-<br><br>Certification decision: The Certification Body (CB) will decide based on the results of Stage 1 and Stage 2 audits. The CB will issue an ISO certificate if the QMS meets the standard's requirements.
-<br><br>
-Surveillance audits: After certification, the CB will conduct surveillance audits to ensure the QMS meets the standard's requirements.
-<br><br>
-Re-certification audit: After three years, the QMS will be re-certified based on a re-certification audit.
-<br><br>
-It is important to note that the ISO certification process may vary slightly depending on the specific ISO standard and CB.
-<br><br>
-IndiaFilings has a team of experienced professionals who can provide end-to-end support to businesses seeking ISO certification. We can help companies to save time, effort, and resources in the ISO certification process and ensure a smooth and hassle-free experience.
-<br><br>
-<a href="http://localhost:8000/PS" class="previous">&laquo; Previous</a>
-<a href="http://localhost:8000/LWFR" class="next">Next &raquo;</a>
- </div>
-</div>
+			Implementing a quality management system (QMS) that addresses the needs of the applicable ISO
+			standard<br><br>
+			Documenting processes and procedures related to the QMS<br><br>
+			Establishing and maintaining a management system that is focused on continual improvement<br><br>
+			Ensuring that employees are trained on the QMS and are aware of their responsibilities<br><br>
+			Demonstrating compliance with applicable legal and regulatory requirements<br><br>
+			Monitoring and measuring the effectiveness of the QMS through internal audits and management reviews<br><br>
+			Identifying and addressing non-conformities and taking corrective and preventive actions<br><br>
+			Keeping records related to the QMS and maintaining document control.<br><br>
+			Specific ISO standards may have additional requirements depending on the scope of the
+			standard.<br><br><br><br>
 
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
+			ISO Certification Process in India<br><br>
+			The ISO certification process in India typically involves the following steps:<br><br><br><br>
+			<br><br>
+			Determine the type of ISO certification needed: The first step is to determine the type of ISO certification
+			that best suits your business needs. This could be based on the industry, target market, or customers'
+			specific requirements.
+			<br><br>
+			Identify a Certification Body: Once you have determined the type of ISO certification needed, you will need
+			to identify a Certification Body (CB) accredited by the National Accreditation Board for Certification
+			Bodies (NABCB). You can also check the list of CBs on the NABCB website.
+			<br><br>
+			Prepare the documentation: The next step is to prepare the necessary documentation, which includes a Quality
+			Manual, Procedures, and Work Instructions. This documentation will help demonstrate that your business
+			follows the requirements of the relevant ISO standard.
+			<br><br>
+			Implementation of the Quality Management System (QMS): The QMS must be implemented and maintained per the
+			standard's requirements. This includes identifying and managing risks, documenting and controlling
+			procedures, and performing internal audits.
+			<br><br>
+			Stage 1 audit: A Stage 1 audit is a documentation review to ensure that the QMS documentation aligns with
+			the requirements of the ISO standard.
+			<br><br>Stage 2 audit: A Stage 2 audit is a site audit to ensure that the QMS is implemented and maintained
+			as per the standard's requirements. This audit typically includes interviews with key personnel,
+			observations, and a review of records.
+			<br><br>Certification decision: The Certification Body (CB) will decide based on the results of Stage 1 and
+			Stage 2 audits. The CB will issue an ISO certificate if the QMS meets the standard's requirements.
+			<br><br>
+			Surveillance audits: After certification, the CB will conduct surveillance audits to ensure the QMS meets
+			the standard's requirements.
+			<br><br>
+			Re-certification audit: After three years, the QMS will be re-certified based on a re-certification audit.
+			<br><br>
+			It is important to note that the ISO certification process may vary slightly depending on the specific ISO
+			standard and CB.
+			<br><br>
+			IndiaFilings has a team of experienced professionals who can provide end-to-end support to businesses
+			seeking ISO certification. We can help companies to save time, effort, and resources in the ISO
+			certification process and ensure a smooth and hassle-free experience.
+			<br><br>
+			<a href="http://localhost:8000/PS" class="previous">&laquo; Previous</a>
+			<a href="http://localhost:8000/LWFR" class="next">Next &raquo;</a>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myMenu");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 
 </body>
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-    <h1>Need Help??</h1> 
-                  <label for="name">Name</label>
-                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
-                  <br>
-                  <label for="SelectService">Select Service</label>
-                  <br>
+	<form action="/action_page.php" class="form-container">
+		<h1>Need Help??</h1>
+		<label for="name">Name</label>
+		<input name='name' type="text" class="form-control" id="name" aria-describedby="first name"
+			placeholder="Enter Your Name" required>
+		<br>
+		<label for="SelectService">Select Service</label>
+		<br>
 
-                  <select class="whatever floating-select" name="service_id" id="service_id" required>
-                    <option value slected disable></option>
-                    <option value="1">Private Limited Company Registration</option>
-                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
-                    <option value="3">>One Person Company Registration</option>
-                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
-                    <option value="5">Partnership Firm Registration</option>
-                    <option value="6">Subsidary Company Registration</option>
-                    <option value="7">Subsidary of an Indian Company in India</option>
-                    <option value="8">Public Limited Company Registratiom</option>
-                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
-                    <option value="10">Trust Registration</option>
-                    <option value="11">Society Registration</option>
-                    <option value="12">USA Company Incorporation</option>
-                    <option value="13">>Register a NBFC Company in India</option>
-                    <option value="14">NIDHI Company Registration</option>
-                    <option value="15">Digital Signature Certificae(DSC)</option>
-                    <option value="16">Tax Deduction Account Number(TAN)</option>
-                    <option value="17">Trademark Registration</option>
-                    <option value="18">Trademark Renewal</option>
-                    <option value="19">International Trademark Application</option>
-                    <option value="20">Trademark Ownership Transfer</option>
-                    <option value="21">File a Trademark Opposition</option>
-                    <option value="22">Respond to a Trademark Objection</option>
-                    <option value="23">Patent Search</option>
-                    <option value="24">Apply for a Provisional Patent</option>
-                    <option value="25">Apply for a Patent</option>
-                    <option value="26">Changes in IEC<</option>
-                    <option value="27">Changes in GST</option>
-                    <option value="28">LUT Application</option>
-                    <option value="29">Professional Tax for Employees</option>
-                    <option value="30">Professional Tax for Directors</option>
-                    <option value="31">ESI Registration</option>
-                    <option value="32">PF Registration</option>
-                    <option value="33">ESI Filing</option>
-                    <option value="34">PF Filing</option>
-                    <option value="35">Cancellation of GST</option>
-                    <option value="36">Professional Tax Registration</option>
-                    <option value="37">DIPP Certification</option>
-                    <option value="38">Loan Agreement</option>
-                    <option value="39">Religion Change</option>
-                    <option value="40">Gender Change</option>
-                    <option value="41">Mutual Divorce</option>
-                    <option value="42">Court Marriage</option>
-                    <option value="43">Breach of Contract Claims</option>
-                    <option value="44">Initial Pleading</option>
-                    <option value="45">Landlord/Tenant Issues</option>
-                    <option value="46">Sale Deed</option>
-                    <option value="47">Post Discovery</option>
-                    <option value="48">Landlord/Tenant Issues</option>
-                    <option value="49">Property Registration</option>
-                    <option value="50">File annual Returns for your Private Limited Company</option>
-                    <option value="51">Something Else.....</option>
-                  </select>
-                  <span class="highlight"></span>
-                  
-                  <br><br>
+		<select class="whatever floating-select" name="service_id" id="service_id" required>
+			<option value slected disable></option>
+			<option value="1">Private Limited Company Registration</option>
+			<option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+			<option value="3">>One Person Company Registration</option>
+			<option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+			<option value="5">Partnership Firm Registration</option>
+			<option value="6">Subsidary Company Registration</option>
+			<option value="7">Subsidary of an Indian Company in India</option>
+			<option value="8">Public Limited Company Registratiom</option>
+			<option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+			<option value="10">Trust Registration</option>
+			<option value="11">Society Registration</option>
+			<option value="12">USA Company Incorporation</option>
+			<option value="13">>Register a NBFC Company in India</option>
+			<option value="14">NIDHI Company Registration</option>
+			<option value="15">Digital Signature Certificae(DSC)</option>
+			<option value="16">Tax Deduction Account Number(TAN)</option>
+			<option value="17">Trademark Registration</option>
+			<option value="18">Trademark Renewal</option>
+			<option value="19">International Trademark Application</option>
+			<option value="20">Trademark Ownership Transfer</option>
+			<option value="21">File a Trademark Opposition</option>
+			<option value="22">Respond to a Trademark Objection</option>
+			<option value="23">Patent Search</option>
+			<option value="24">Apply for a Provisional Patent</option>
+			<option value="25">Apply for a Patent</option>
+			<option value="26">Changes in IEC<< /option>
+			<option value="27">Changes in GST</option>
+			<option value="28">LUT Application</option>
+			<option value="29">Professional Tax for Employees</option>
+			<option value="30">Professional Tax for Directors</option>
+			<option value="31">ESI Registration</option>
+			<option value="32">PF Registration</option>
+			<option value="33">ESI Filing</option>
+			<option value="34">PF Filing</option>
+			<option value="35">Cancellation of GST</option>
+			<option value="36">Professional Tax Registration</option>
+			<option value="37">DIPP Certification</option>
+			<option value="38">Loan Agreement</option>
+			<option value="39">Religion Change</option>
+			<option value="40">Gender Change</option>
+			<option value="41">Mutual Divorce</option>
+			<option value="42">Court Marriage</option>
+			<option value="43">Breach of Contract Claims</option>
+			<option value="44">Initial Pleading</option>
+			<option value="45">Landlord/Tenant Issues</option>
+			<option value="46">Sale Deed</option>
+			<option value="47">Post Discovery</option>
+			<option value="48">Landlord/Tenant Issues</option>
+			<option value="49">Property Registration</option>
+			<option value="50">File annual Returns for your Private Limited Company</option>
+			<option value="51">Something Else.....</option>
+		</select>
+		<span class="highlight"></span>
 
-                
-                  <label for="email">Email</label>
-                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
-                  <br><br>
+		<br><br>
 
-                  <label for="phone">Phone Number</label><br>
-                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
-                  <br><br>
-                
-                  <label for = "subject">Subject</label><br>
-                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
-                  <br>              <br>
-                 
-                 <button type="submit" class="btn">Submit</button>
 
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
+		<label for="email">Email</label>
+		<input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+		<br><br>
+
+		<label for="phone">Phone Number</label><br>
+		<input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+		<br><br>
+
+		<label for="subject">Subject</label><br>
+		<textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..."
+			required></textarea>
+		<br> <br>
+
+		<button type="submit" class="btn">Submit</button>
+
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	</form>
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
 </script>
 <br>
 <br>
 <div>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </div>
 
 <script>
-// Get the button
-let mybutton = document.getElementById("myBtn");
+	// Get the button
+	let mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+	}
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
 </script>
-<footer class="footer mt-auto text-white-50 z-index-2">
-  <div class="container-fluid bg-dark">
-      <div class="container py-12 pe-2">
-          <div class="row">
-              <div class="col-lg-8 mt-2 mt-md-0">
-                  <p class="mb-4"> Disclaimer: </p>
-                  <p>
-                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
+<footer class="mt-auto text-white-50 z-index-2" style="border-radius: 10px; background-color:
+		blanchedalmond; width: 60%; margin: 0 auto; padding: 5px 10px;">
+	<div class="container-fluid bg-dark">
+		<div class="container py-12 pe-2">
+			<div class="row">
+				<div class="col-lg-8 mt-2 mt-md-0">
+					<p class="mb-4"> Disclaimer: </p>
+					<p>
+						This site is designed and hosted by Justice_For_Everyone and the contents are provided by
+						Justice For All also. For any further information, pleace contact us on Contact .
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
+
 </html>

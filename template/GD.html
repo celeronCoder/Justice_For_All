@@ -1,586 +1,663 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins@1&display=swap" rel="stylesheet">
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+	<style>
+		body {
+			background-color: rgba(255, 235, 205, 0.5);
+		}
 
-.previous {
-  background-color: #f1f1f1;
-  color: black;
-}
+		*,
+		*::after,
+		*::before {
+			font-family: 'Poppins', sans-serif;
+		}
 
-.next {
-  background-color: #04AA6D;
-  color: white;
-}
+		section {
+			background: blanchedalmond;
+			padding: 10px 40px;
+			border-radius: 10px;
+			margin: 10px auto;
+			width: 60%;
+		}
 
-.round {
-  border-radius: 50%;
-}
-* {
-  box-sizing: border-box;
-}
+		a {
+			text-decoration: none;
+			padding: 8px 16px;
+		}
 
-/* Create a column layout with Flexbox */
-.row {
-  display: flex;
-}
+		a:hover {
+			background-color: #ddd;
+			color: black;
+		}
 
-/* Left column (menu) */
-.left {
-  flex: 35%;
-  padding: 15px 0;
-}
+		.previous {
+			background-color: #f1f1f1;
+			color: black;
+		}
 
-.left h2 {
-  padding-left: 8px;
-}
+		.next {
+			background-color: #04AA6D;
+			color: white;
+		}
 
-/* Right column (page content) */
-.right {
-  flex: 65%;
-  padding: 15px;
-}
+		.round {
+			border-radius: 50%;
+		}
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
+		* {
+			box-sizing: border-box;
+		}
 
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+		/* Create a column layout with Flexbox */
+		.row {
+			display: flex;
+		}
 
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
+		/* Left column (menu) */
+		.left {
+			flex: 35%;
+			padding: 15px 0;
+		}
 
-#myMenu li a:hover {
-  background-color: #eee;
-}
-.header{
-    border: 1% solid black;
-    height: 85%auto;
-    }
-    .menu-bar{background-color:blanchedalmond;
-    height: 100%;
-    width: 100%;
-    display: inline-flex; 
-    }
-    .menu-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .menu-bar ul li {
-    background-color: rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .menu-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: whitesmoke;
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .menu-bar ul li:hover {
-    background-color: green;
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar{background-color:rgb(238, 218, 218);
-    height: 62px fit-content;
-    width: 59% fit-content;
-    float: right;
-    }
-    .foot-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .foot-bar ul li {
-    background-color: rgb(233, 227, 220);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px  fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: rgb(23, 2, 43);
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .foot-bar ul li:hover {
-    background-color: darkgrey;
-    border-radius: 100px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .footer{
-    border: 1px solid rgb(17, 17, 17);
-    height: 100px fit-content;
-    }
-    .open-button {
-  background-color: #555;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  width: 180px;
-}
-.form-popup {
-  display: none;
-  position:sticky;
-  bottom: 50px;
-  right: 20px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+		.left h2 {
+			padding-left: 8px;
+		}
 
-/* Add styles to the form container */
-.form-container {
-  max-width: fit-content;
-  padding: 40px;
-  background-color: white;
-}
+		/* Right column (page content) */
+		.right {
+			flex: 65%;
+			padding: 15px;
+		}
 
-/* Full-width input fields */
-.form-container input[type=email], .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border:chocolate;
-  background: #f1f1f1;
-}
+		/* Style the search box */
+		#mySearch {
+			width: 100%;
+			font-size: 18px;
+			padding: 11px;
+			border: 1px solid #ddd;
+		}
 
-/* When the inputs get focus, do something */
-.form-container input[type=email]:focus, .form-container input[type=text]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+		/* Style the navigation menu inside the left column */
+		#myMenu {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+		#myMenu li a {
+			padding: 12px;
+			text-decoration: none;
+			color: black;
+			display: block
+		}
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
+		#myMenu li a:hover {
+			background-color: burlywood;
+		}
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 10px;
-  font-size: 17px;
-  width: 50px fit-content;
-  height:25px fit-content;
-}
+		.header {
+			border: 1% solid black;
+			height: 85%auto;
+		}
 
-.tablink:hover {
-  background-color: #777;
-}
+		.menu-bar {
 
-/* Style the tab content */
-.tabcontent {
-  color: red;
-  display: none;
-  padding: 50px;
-  text-align: left;
-}
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 99;
-  font-size: 12px;
-  border: none;
-  outline: none;
-  background-color: tomato;
-  color: rgb(255, 252, 51);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 1px;
-  height: 20px fit-content;
-  width: 20px fit-content;
-}
+			width: 100%;
+			display: inline-flex;
+		}
 
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
+		.menu-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.menu-bar ul li {
+			background-color: rgb(0, 0, 0);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.menu-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: whitesmoke;
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.menu-bar ul li:hover {
+			background-color: green;
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar {
+			background-color: rgb(238, 218, 218);
+			height: 62px fit-content;
+			width: 59% fit-content;
+			float: right;
+		}
+
+		.foot-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.foot-bar ul li {
+			background-color: rgb(233, 227, 220);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: rgb(23, 2, 43);
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.foot-bar ul li:hover {
+			background-color: darkgrey;
+			border-radius: 100px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.footer {
+			border: 1px solid rgb(17, 17, 17);
+			height: 100px fit-content;
+		}
+
+		.open-button {
+			background-color: #555;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			opacity: 0.8;
+			position: fixed;
+			bottom: 10px;
+			right: 20px;
+			width: 180px;
+		}
+
+		.form-popup {
+			display: none;
+			position: sticky;
+			bottom: 50px;
+			right: 20px;
+			border: 3px solid #f1f1f1;
+			z-index: 9;
+		}
+
+		/* Add styles to the form container */
+		.form-container {
+			max-width: fit-content;
+			padding: 40px;
+			background-color: white;
+		}
+
+		/* Full-width input fields */
+		.form-container input[type=email],
+		.form-container input[type=text] {
+			width: 100%;
+			padding: 15px;
+			margin: 5px 0 22px 0;
+			border: chocolate;
+			background: #f1f1f1;
+		}
+
+		/* When the inputs get focus, do something */
+		.form-container input[type=email]:focus,
+		.form-container input[type=text]:focus {
+			background-color: #ddd;
+			outline: none;
+		}
+
+		/* Set a style for the submit/login button */
+		.form-container .btn {
+			background-color: #04AA6D;
+			color: white;
+			padding: 16px 20px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			margin-bottom: 10px;
+			opacity: 0.8;
+		}
+
+		/* Add a red background color to the cancel button */
+		.form-container .cancel {
+			background-color: red;
+		}
+
+		/* Add some hover effects to buttons */
+		.form-container .btn:hover,
+		.open-button:hover {
+			opacity: 1;
+		}
+
+		.tablink {
+			background-color: #555;
+			color: white;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 10px 10px;
+			font-size: 17px;
+			width: 50px fit-content;
+			height: 25px fit-content;
+		}
+
+		.tablink:hover {
+			background-color: #777;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			color: red;
+			display: none;
+			padding: 50px;
+			text-align: left;
+		}
+
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+			z-index: 1000;
+			font-size: 12px;
+			border: none;
+			outline: none;
+			background-color: tomato;
+			color: white;
+			cursor: pointer;
+			padding: 10px;
+			border-radius: 5px;
+			/* height: 20px fit-content; */
+			width: 20px fit-content;
+		}
+
+		#myBtn:hover {
+			background-color: #555;
+		}
+	</style>
 </head>
-<div class="border" style="background-color: antiquewhite;">
-  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div >Instagram</div>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div>Facebook</div>
-  </a>                        
-</div>
 <header>
-{% load static %}
-<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
-<div class="container-x1">
-<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
-<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
-</a>
-</div>
-</nav>
-<div class="header">
-
-<div class="menu-bar">
-<ul>   
-<li class="active" ><a href="http://localhost:8000/">Home</a></li>
-<li><a href="http://localhost:8000/about_us/">About</a></li>
-<li><a href="http://localhost:8000/advocate">Advocates</a></li>
-<li><a href="http://localhost:8000/solution">Solutions</a></li>
-</ul>
-</div>
-</div>
-
+	{% load static %}
+	<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4"
+		style="display: flex; align-items: center; justify-content: space-between;">
+		<div class="container-x1">
+			<a class="navbar-brand" href="https://lawmin.gov.in/"
+				onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');"
+				title="Ministry of Law & Justice" target="_blank">
+				<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left"
+					margin-top="100px" class="h-14" alt="Ministry pf Law & Justice">
+			</a>
+		</div>
+		<div style="display:flex; align-items: center; justify-content: right; gap: 10px">
+			<a style="    color: white;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 10px;
+			background: black;
+			border-radius: 5px;" href="https://www.instagram.com/justice.for.all.adv.pankaj/"
+				onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');"
+				class="smaller text-dark text-primary-hover" target="_blank">
+				Instagram
+			</a>
+			<a style="color: white;font-weight: bold;text-decoration: none;padding: 10px;background: black;border-radius: 5px;"
+				href="https://www.facebook.com/profile.php?id=100089989995300" " onclick=" return confirm('You are\
+				being\ redirected to an external website. Please note that Justice For All cannot be held responsible\
+				for\ external website content & privacy policies');" class="smaller text-dark text-primary-hover"
+				target="_blank">
+				Facebook
+			</a>
+		</div>
+	</nav>
+	<div class="header">
+		<div class="menu-bar">
+			<ul style="display: flex !important; align-items: center !important; padding: 0">
+				<li class="active"><a href="http://localhost:8000/">Home</a></li>
+				<li><a href="http://localhost:8000/about_us/">About</a></li>
+				<li><a href="http://localhost:8000/advocate/">Advocates</a></li>
+				<li><a href="http://localhost:8000/solution">Solutions</a></li>
+			</ul>
+		</div>
+	</div>
 </header>
+
 <body>
 
-<h2>Search For Your Issue</h2>
+	<h2>Search For Your Issue</h2>
 
-<div class="row">
-  <div class="left" style="background-color:#bbb;">
-    <h2>Search</h2>
-    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <ul id="myMenu">
-      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
-      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
-      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
-      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
-      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
-      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
-      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
-      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
-      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
-      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
-      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
-      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
-      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
-      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
-      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
-      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
-      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
-      <li><a href="http://localhost:8000/F">Fundraising</a></li>
-      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
-      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
-      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
-      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
-      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
-      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
-      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
-      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
-      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
-      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
-      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
-      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
-      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
-      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
-      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
-      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
-      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
-      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
-      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
-      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
-      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
-      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
-      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
-      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
-      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
-      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
-      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
-      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
-      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
-      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
-      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
-      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
-      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
-      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
-      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
-      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
-      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
-      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
-      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
-      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
-      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
-      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
-      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
-      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+	<div class="row">
+		<div class="left" style="background-color:blanchedalmond;">
+			<h2>Search</h2>
+			<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+			<ul id="myMenu">
+				<li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+				<li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+				<li><a href="http://localhost:8000/SR">Society Registration</a></li>
+				<li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+				<li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+				<li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+				<li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+				<li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+				<li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+				<li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+				<li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+				<li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+				<li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+				<li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+				<li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+				<li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+				<li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+				<li><a href="http://localhost:8000/F">Fundraising</a></li>
+				<li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+				<li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+				<li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+				<li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+				<li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+				<li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+				<li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+				<li><a href="http://localhost:8000/MOU">Memorandum of Understanding (MOU)</a></li>
+				<li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+				<li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+				<li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+				<li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+				<li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+				<li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+				<li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+				<li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+				<li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+				<li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+				<li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+				<li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+				<li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+				<li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+				<li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+				<li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+				<li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+				<li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+				<li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+				<li><a href="http://localhost:8000/PR">Property Registration</a></li>
+				<li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+				<li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+				<li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+				<li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+				<li><a href="http://localhost:8000/RC">Religion Change</a></li>
+				<li><a href="http://localhost:8000/GC">Gender Change</a></li>
+				<li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+				<li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+				<li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+				<li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+				<li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+				<li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+				<li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+				<li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+				<li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+				<li><a href="http://localhost:8000/Dis">Discovery</a></li>
 
-    </ul>
-  </div>
-  
-  <div class="right" style="background-color:#ddd;">
-   <h2>Solution.....</h2><br><br>
-   A gift of property, involves conferring the ownership of one’s property on to another, through a gift deed. Gifting a property through a gift deed to a near and dear one, has certain monetary implications that you should consider first
-   <br><br><br><br>
-   What is a gift deed?<br><br>
-A gift deed is an agreement that is used, when a person wishes to gift his property or money to someone else. A moveable or immovable property can be gifted voluntarily using gift deed, from the donor to the donee. A gift deed allows the property owner to gift the property to anyone and avoids any future dispute arising out of succession or inheritance claims. A registered gift deed is also evidence in itself and unlike in the case of a will, the transfer of property is instant and you will not be required to go to the court of law for execution of gift deed and hence, deed of gift also saves time.
-<br><br><br><br>
-Gift deed: What gifts have to be in a gift deed format?<br><br>
-A movable property, or immovable property, or an existing property that is transferable, can be gifted and require a gift deed. Having a registered gift deed, will help you avoid any litigation that comes up thereafter.
-<br><br><br><br>
-Gift deed: How to draft it?<br><br>
-Draft of a gift deed must include the following details:
-<br><br>
-Place and date on which the gift deed is to be executed.<br><br>
-Relevant information on gift deed regarding the donor and the donee, such as their names, address, relationship, date of birth and signatures.
-<br><br>Complete details about the property for which you draft a gift deed.<br><br>
-Two witnesses to bear testimony of the gift deed and their signatures.<br><br>
-<br><br>
-Gift deed: Important clauses to mention<br><br>
-Here are some important things that should be mentioned in the gift deed format.<br><br>
-<br><br><br><br>
-There’s no money or force involved<br><br>
-<br><br>
-Make sure that you add this consideration clause to the gift deed. It must be indicated that there is no exchange of money and that the gift deed is made solely out of love and affection and not due to money or coercion.
-<br><br>
-You are the owner of your property when you gift
-<br><br>
-Only the owner can gift a property. If you are not the owner (title holder) of the property, you cannot give a property as gift deed it to someone else, even in anticipation.
-<br><br>
-Describe the property
-<br><br>
-All information pertaining to the property, such as the structure, type of property, address, area, location, etc., must be mentioned in the property gift deed format.
-<br><br>
-Relationship between the donor and the donee
-<br><br>
-If the donor and donee are blood relatives, some state governments may offer a concession on stamp duty. Even otherwise, it is important to establish the relationship between the donor and done in the property gift deed format.
-<br><br>
-Mention liabilities
-<br><br>
-If there are rights or liabilities attached to the gift, such as whether the donee can sell or lease the property, etc., such clauses should be mentioned in the gift deed.
-<br><br>
-Delivery clause
-<br><br>
-This on the gift deed mentions the expressed or implied action of delivery of possession of the property.
-<br><br>
-Revocation of the gift
-<br><br>
-The donor can also mention clearly if he/she wants a revocation clause to be adhered to the gift deed by the donee. Both, the donor and donee, must agree on this gift deed clause.
-<br><br>
-<a href="#" class="previous">&laquo; Previous</a>
-<a href="#" class="next">Next &raquo;</a>
- </div>
-</div>
+			</ul>
+		</div>
 
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
+		<div class="right" style="background-color: rgb(255, 235, 205, 0.2);">
+			<h2>Solution.....</h2><br><br>
+			A gift of property, involves conferring the ownership of one’s property on to another, through a gift deed.
+			Gifting a property through a gift deed to a near and dear one, has certain monetary implications that you
+			should consider first
+			<br><br><br><br>
+			What is a gift deed?<br><br>
+			A gift deed is an agreement that is used, when a person wishes to gift his property or money to someone
+			else. A moveable or immovable property can be gifted voluntarily using gift deed, from the donor to the
+			donee. A gift deed allows the property owner to gift the property to anyone and avoids any future dispute
+			arising out of succession or inheritance claims. A registered gift deed is also evidence in itself and
+			unlike in the case of a will, the transfer of property is instant and you will not be required to go to the
+			court of law for execution of gift deed and hence, deed of gift also saves time.
+			<br><br><br><br>
+			Gift deed: What gifts have to be in a gift deed format?<br><br>
+			A movable property, or immovable property, or an existing property that is transferable, can be gifted and
+			require a gift deed. Having a registered gift deed, will help you avoid any litigation that comes up
+			thereafter.
+			<br><br><br><br>
+			Gift deed: How to draft it?<br><br>
+			Draft of a gift deed must include the following details:
+			<br><br>
+			Place and date on which the gift deed is to be executed.<br><br>
+			Relevant information on gift deed regarding the donor and the donee, such as their names, address,
+			relationship, date of birth and signatures.
+			<br><br>Complete details about the property for which you draft a gift deed.<br><br>
+			Two witnesses to bear testimony of the gift deed and their signatures.<br><br>
+			<br><br>
+			Gift deed: Important clauses to mention<br><br>
+			Here are some important things that should be mentioned in the gift deed format.<br><br>
+			<br><br><br><br>
+			There’s no money or force involved<br><br>
+			<br><br>
+			Make sure that you add this consideration clause to the gift deed. It must be indicated that there is no
+			exchange of money and that the gift deed is made solely out of love and affection and not due to money or
+			coercion.
+			<br><br>
+			You are the owner of your property when you gift
+			<br><br>
+			Only the owner can gift a property. If you are not the owner (title holder) of the property, you cannot give
+			a property as gift deed it to someone else, even in anticipation.
+			<br><br>
+			Describe the property
+			<br><br>
+			All information pertaining to the property, such as the structure, type of property, address, area,
+			location, etc., must be mentioned in the property gift deed format.
+			<br><br>
+			Relationship between the donor and the donee
+			<br><br>
+			If the donor and donee are blood relatives, some state governments may offer a concession on stamp duty.
+			Even otherwise, it is important to establish the relationship between the donor and done in the property
+			gift deed format.
+			<br><br>
+			Mention liabilities
+			<br><br>
+			If there are rights or liabilities attached to the gift, such as whether the donee can sell or lease the
+			property, etc., such clauses should be mentioned in the gift deed.
+			<br><br>
+			Delivery clause
+			<br><br>
+			This on the gift deed mentions the expressed or implied action of delivery of possession of the property.
+			<br><br>
+			Revocation of the gift
+			<br><br>
+			The donor can also mention clearly if he/she wants a revocation clause to be adhered to the gift deed by the
+			donee. Both, the donor and donee, must agree on this gift deed clause.
+			<br><br>
+			<a href="#" class="previous">&laquo; Previous</a>
+			<a href="#" class="next">Next &raquo;</a>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myMenu");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 
 </body>
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-    <h1>Need Help??</h1> 
-                  <label for="name">Name</label>
-                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
-                  <br>
-                  <label for="SelectService">Select Service</label>
-                  <br>
+	<form action="/action_page.php" class="form-container">
+		<h1>Need Help??</h1>
+		<label for="name">Name</label>
+		<input name='name' type="text" class="form-control" id="name" aria-describedby="first name"
+			placeholder="Enter Your Name" required>
+		<br>
+		<label for="SelectService">Select Service</label>
+		<br>
 
-                  <select class="whatever floating-select" name="service_id" id="service_id" required>
-                    <option value slected disable></option>
-                    <option value="1">Private Limited Company Registration</option>
-                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
-                    <option value="3">>One Person Company Registration</option>
-                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
-                    <option value="5">Partnership Firm Registration</option>
-                    <option value="6">Subsidary Company Registration</option>
-                    <option value="7">Subsidary of an Indian Company in India</option>
-                    <option value="8">Public Limited Company Registratiom</option>
-                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
-                    <option value="10">Trust Registration</option>
-                    <option value="11">Society Registration</option>
-                    <option value="12">USA Company Incorporation</option>
-                    <option value="13">>Register a NBFC Company in India</option>
-                    <option value="14">NIDHI Company Registration</option>
-                    <option value="15">Digital Signature Certificae(DSC)</option>
-                    <option value="16">Tax Deduction Account Number(TAN)</option>
-                    <option value="17">Trademark Registration</option>
-                    <option value="18">Trademark Renewal</option>
-                    <option value="19">International Trademark Application</option>
-                    <option value="20">Trademark Ownership Transfer</option>
-                    <option value="21">File a Trademark Opposition</option>
-                    <option value="22">Respond to a Trademark Objection</option>
-                    <option value="23">Patent Search</option>
-                    <option value="24">Apply for a Provisional Patent</option>
-                    <option value="25">Apply for a Patent</option>
-                    <option value="26">Changes in IEC<</option>
-                    <option value="27">Changes in GST</option>
-                    <option value="28">LUT Application</option>
-                    <option value="29">Professional Tax for Employees</option>
-                    <option value="30">Professional Tax for Directors</option>
-                    <option value="31">ESI Registration</option>
-                    <option value="32">PF Registration</option>
-                    <option value="33">ESI Filing</option>
-                    <option value="34">PF Filing</option>
-                    <option value="35">Cancellation of GST</option>
-                    <option value="36">Professional Tax Registration</option>
-                    <option value="37">DIPP Certification</option>
-                    <option value="38">Loan Agreement</option>
-                    <option value="39">Religion Change</option>
-                    <option value="40">Gender Change</option>
-                    <option value="41">Mutual Divorce</option>
-                    <option value="42">Court Marriage</option>
-                    <option value="43">Breach of Contract Claims</option>
-                    <option value="44">Initial Pleading</option>
-                    <option value="45">Landlord/Tenant Issues</option>
-                    <option value="46">Sale Deed</option>
-                    <option value="47">Post Discovery</option>
-                    <option value="48">Landlord/Tenant Issues</option>
-                    <option value="49">Property Registration</option>
-                    <option value="50">File annual Returns for your Private Limited Company</option>
-                    <option value="51">Something Else.....</option>
-                  </select>
-                  <span class="highlight"></span>
-                  
-                  <br><br>
+		<select class="whatever floating-select" name="service_id" id="service_id" required>
+			<option value slected disable></option>
+			<option value="1">Private Limited Company Registration</option>
+			<option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+			<option value="3">>One Person Company Registration</option>
+			<option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+			<option value="5">Partnership Firm Registration</option>
+			<option value="6">Subsidary Company Registration</option>
+			<option value="7">Subsidary of an Indian Company in India</option>
+			<option value="8">Public Limited Company Registratiom</option>
+			<option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+			<option value="10">Trust Registration</option>
+			<option value="11">Society Registration</option>
+			<option value="12">USA Company Incorporation</option>
+			<option value="13">>Register a NBFC Company in India</option>
+			<option value="14">NIDHI Company Registration</option>
+			<option value="15">Digital Signature Certificae(DSC)</option>
+			<option value="16">Tax Deduction Account Number(TAN)</option>
+			<option value="17">Trademark Registration</option>
+			<option value="18">Trademark Renewal</option>
+			<option value="19">International Trademark Application</option>
+			<option value="20">Trademark Ownership Transfer</option>
+			<option value="21">File a Trademark Opposition</option>
+			<option value="22">Respond to a Trademark Objection</option>
+			<option value="23">Patent Search</option>
+			<option value="24">Apply for a Provisional Patent</option>
+			<option value="25">Apply for a Patent</option>
+			<option value="26">Changes in IEC<< /option>
+			<option value="27">Changes in GST</option>
+			<option value="28">LUT Application</option>
+			<option value="29">Professional Tax for Employees</option>
+			<option value="30">Professional Tax for Directors</option>
+			<option value="31">ESI Registration</option>
+			<option value="32">PF Registration</option>
+			<option value="33">ESI Filing</option>
+			<option value="34">PF Filing</option>
+			<option value="35">Cancellation of GST</option>
+			<option value="36">Professional Tax Registration</option>
+			<option value="37">DIPP Certification</option>
+			<option value="38">Loan Agreement</option>
+			<option value="39">Religion Change</option>
+			<option value="40">Gender Change</option>
+			<option value="41">Mutual Divorce</option>
+			<option value="42">Court Marriage</option>
+			<option value="43">Breach of Contract Claims</option>
+			<option value="44">Initial Pleading</option>
+			<option value="45">Landlord/Tenant Issues</option>
+			<option value="46">Sale Deed</option>
+			<option value="47">Post Discovery</option>
+			<option value="48">Landlord/Tenant Issues</option>
+			<option value="49">Property Registration</option>
+			<option value="50">File annual Returns for your Private Limited Company</option>
+			<option value="51">Something Else.....</option>
+		</select>
+		<span class="highlight"></span>
 
-                
-                  <label for="email">Email</label>
-                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
-                  <br><br>
+		<br><br>
 
-                  <label for="phone">Phone Number</label><br>
-                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
-                  <br><br>
-                
-                  <label for = "subject">Subject</label><br>
-                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
-                  <br>              <br>
-                 
-                 <button type="submit" class="btn">Submit</button>
 
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
+		<label for="email">Email</label>
+		<input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+		<br><br>
+
+		<label for="phone">Phone Number</label><br>
+		<input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+		<br><br>
+
+		<label for="subject">Subject</label><br>
+		<textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..."
+			required></textarea>
+		<br> <br>
+
+		<button type="submit" class="btn">Submit</button>
+
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	</form>
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
 </script>
 <br>
 <br>
 <div>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </div>
 
 <script>
-// Get the button
-let mybutton = document.getElementById("myBtn");
+	// Get the button
+	let mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+	}
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
 </script>
-<footer class="footer mt-auto text-white-50 z-index-2">
-  <div class="container-fluid bg-dark">
-      <div class="container py-12 pe-2">
-          <div class="row">
-              <div class="col-lg-8 mt-2 mt-md-0">
-                  <p class="mb-4"> Disclaimer: </p>
-                  <p>
-                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
+<footer class="mt-auto text-white-50 z-index-2" style="border-radius: 10px; background-color:
+		blanchedalmond; width: 60%; margin: 0 auto; padding: 5px 10px;">
+	<div class="container-fluid bg-dark">
+		<div class="container py-12 pe-2">
+			<div class="row">
+				<div class="col-lg-8 mt-2 mt-md-0">
+					<p class="mb-4"> Disclaimer: </p>
+					<p>
+						This site is designed and hosted by Justice_For_Everyone and the contents are provided by
+						Justice For All also. For any further information, pleace contact us on Contact .
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
+
 </html>
