@@ -1,606 +1,721 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins@1&display=swap" rel="stylesheet">
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+	<style>
+		body {
+			background-color: rgba(255, 235, 205, 0.5);
+		}
 
-.previous {
-  background-color: #f1f1f1;
-  color: black;
-}
+		*,
+		*::after,
+		*::before {
+			font-family: 'Poppins', sans-serif;
+		}
 
-.next {
-  background-color: #04AA6D;
-  color: white;
-}
+		section {
+			background: blanchedalmond;
+			padding: 10px 40px;
+			border-radius: 10px;
+			margin: 10px auto;
+			width: 60%;
+		}
 
-.round {
-  border-radius: 50%;
-}
-* {
-  box-sizing: border-box;
-}
+		a {
+			text-decoration: none;
+			padding: 8px 16px;
+		}
 
-/* Create a column layout with Flexbox */
-.row {
-  display: flex;
-}
+		a:hover {
+			background-color: #ddd;
+			color: black;
+		}
 
-/* Left column (menu) */
-.left {
-  flex: 35%;
-  padding: 15px 0;
-}
+		.previous {
+			background-color: #f1f1f1;
+			color: black;
+		}
 
-.left h2 {
-  padding-left: 8px;
-}
+		.next {
+			background-color: #04AA6D;
+			color: white;
+		}
 
-/* Right column (page content) */
-.right {
-  flex: 65%;
-  padding: 15px;
-}
+		.round {
+			border-radius: 50%;
+		}
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
+		* {
+			box-sizing: border-box;
+		}
 
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+		/* Create a column layout with Flexbox */
+		.row {
+			display: flex;
+		}
 
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
+		/* Left column (menu) */
+		.left {
+			flex: 35%;
+			padding: 15px 0;
+		}
 
-#myMenu li a:hover {
-  background-color: #eee;
-}
-.header{
-    border: 1% solid black;
-    height: 85%auto;
-    }
-    .menu-bar{background-color:blanchedalmond;
-    height: 100%;
-    width: 100%;
-    display: inline-flex; 
-    }
-    .menu-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .menu-bar ul li {
-    background-color: rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .menu-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: whitesmoke;
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .menu-bar ul li:hover {
-    background-color: green;
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar{background-color:rgb(238, 218, 218);
-    height: 62px fit-content;
-    width: 59% fit-content;
-    float: right;
-    }
-    .foot-bar ul{
-    display:inline-flex;
-    list-style: none;
-    margin-bottom: 5px;
-    }
-    .foot-bar ul li {
-    background-color: rgb(233, 227, 220);
-    border-radius: 8px;
-    height: 19px fit-content;
-    width: 60px  fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .foot-bar ul li a{
-    height: 52px fit-content;
-    width: 110px fit-content;
-    text-decoration: none;
-    color: rgb(23, 2, 43);
-    font-size: 18px;
-    padding: 2px;
-    margin-bottom: 90px;
-    }
-    .foot-bar ul li:hover {
-    background-color: darkgrey;
-    border-radius: 100px;
-    height: 19px fit-content;
-    width: 60px fit-content;
-    margin-left:10px;
-    padding: 10px;
-    }
-    .footer{
-    border: 1px solid rgb(17, 17, 17);
-    height: 100px fit-content;
-    }
-    .open-button {
-  background-color: #555;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  width: 180px;
-}
-.form-popup {
-  display: none;
-  position:sticky;
-  bottom: 50px;
-  right: 20px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+		.left h2 {
+			padding-left: 8px;
+		}
 
-/* Add styles to the form container */
-.form-container {
-  max-width: fit-content;
-  padding: 40px;
-  background-color: white;
-}
+		/* Right column (page content) */
+		.right {
+			flex: 65%;
+			padding: 15px;
+		}
 
-/* Full-width input fields */
-.form-container input[type=email], .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border:chocolate;
-  background: #f1f1f1;
-}
+		/* Style the search box */
+		#mySearch {
+			width: 100%;
+			font-size: 18px;
+			padding: 11px;
+			border: 1px solid #ddd;
+		}
 
-/* When the inputs get focus, do something */
-.form-container input[type=email]:focus, .form-container input[type=text]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+		/* Style the navigation menu inside the left column */
+		#myMenu {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+		#myMenu li a {
+			padding: 12px;
+			text-decoration: none;
+			color: black;
+			display: block
+		}
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
+		#myMenu li a:hover {
+			background-color: burlywood;
+		}
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 10px;
-  font-size: 17px;
-  width: 50px fit-content;
-  height:25px fit-content;
-}
+		.header {
+			border: 1% solid black;
+			height: 85%auto;
+		}
 
-.tablink:hover {
-  background-color: #777;
-}
+		.menu-bar {
 
-/* Style the tab content */
-.tabcontent {
-  color: red;
-  display: none;
-  padding: 50px;
-  text-align: left;
-}
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 99;
-  font-size: 12px;
-  border: none;
-  outline: none;
-  background-color: tomato;
-  color: rgb(255, 252, 51);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 1px;
-  height: 20px fit-content;
-  width: 20px fit-content;
-}
+			width: 100%;
+			display: inline-flex;
+		}
 
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
+		.menu-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.menu-bar ul li {
+			background-color: rgb(0, 0, 0);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.menu-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: whitesmoke;
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.menu-bar ul li:hover {
+			background-color: green;
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar {
+			background-color: rgb(238, 218, 218);
+			height: 62px fit-content;
+			width: 59% fit-content;
+			float: right;
+		}
+
+		.foot-bar ul {
+			display: inline-flex;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		.foot-bar ul li {
+			background-color: rgb(233, 227, 220);
+			border-radius: 8px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.foot-bar ul li a {
+			height: 52px fit-content;
+			width: 110px fit-content;
+			text-decoration: none;
+			color: rgb(23, 2, 43);
+			font-size: 18px;
+			padding: 2px;
+			margin-bottom: 90px;
+		}
+
+		.foot-bar ul li:hover {
+			background-color: darkgrey;
+			border-radius: 100px;
+			height: 19px fit-content;
+			width: 60px fit-content;
+			margin-left: 10px;
+			padding: 10px;
+		}
+
+		.footer {
+			border: 1px solid rgb(17, 17, 17);
+			height: 100px fit-content;
+		}
+
+		.open-button {
+			background-color: #555;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			opacity: 0.8;
+			position: fixed;
+			bottom: 10px;
+			right: 20px;
+			width: 180px;
+		}
+
+		.form-popup {
+			display: none;
+			position: sticky;
+			bottom: 50px;
+			right: 20px;
+			border: 3px solid #f1f1f1;
+			z-index: 9;
+		}
+
+		/* Add styles to the form container */
+		.form-container {
+			max-width: fit-content;
+			padding: 40px;
+			background-color: white;
+		}
+
+		/* Full-width input fields */
+		.form-container input[type=email],
+		.form-container input[type=text] {
+			width: 100%;
+			padding: 15px;
+			margin: 5px 0 22px 0;
+			border: chocolate;
+			background: #f1f1f1;
+		}
+
+		/* When the inputs get focus, do something */
+		.form-container input[type=email]:focus,
+		.form-container input[type=text]:focus {
+			background-color: #ddd;
+			outline: none;
+		}
+
+		/* Set a style for the submit/login button */
+		.form-container .btn {
+			background-color: #04AA6D;
+			color: white;
+			padding: 16px 20px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			margin-bottom: 10px;
+			opacity: 0.8;
+		}
+
+		/* Add a red background color to the cancel button */
+		.form-container .cancel {
+			background-color: red;
+		}
+
+		/* Add some hover effects to buttons */
+		.form-container .btn:hover,
+		.open-button:hover {
+			opacity: 1;
+		}
+
+		.tablink {
+			background-color: #555;
+			color: white;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 10px 10px;
+			font-size: 17px;
+			width: 50px fit-content;
+			height: 25px fit-content;
+		}
+
+		.tablink:hover {
+			background-color: #777;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			color: red;
+			display: none;
+			padding: 50px;
+			text-align: left;
+		}
+
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+			z-index: 1000;
+			font-size: 12px;
+			border: none;
+			outline: none;
+			background-color: tomato;
+			color: white;
+			cursor: pointer;
+			padding: 10px;
+			border-radius: 5px;
+			/* height: 20px fit-content; */
+			width: 20px fit-content;
+		}
+
+		#myBtn:hover {
+			background-color: #555;
+		}
+	</style>
 </head>
-<div class="border" style="background-color: antiquewhite;">
-  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div >Instagram</div>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
-  <div>Facebook</div>
-  </a>                        
-</div>
 <header>
-{% load static %}
-<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
-<div class="container-x1">
-<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
-<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
-</a>
-</div>
-</nav>
-<div class="header">
-
-<div class="menu-bar">
-<ul>   
-<li class="active" ><a href="http://localhost:8000/">Home</a></li>
-<li><a href="http://localhost:8000/about_us/">About</a></li>
-<li><a href="http://localhost:8000/advocate">Advocates</a></li>
-<li><a href="http://localhost:8000/solution">Solutions</a></li>
-</ul>
-</div>
-</div>
-
+	{% load static %}
+	<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4"
+		style="display: flex; align-items: center; justify-content: space-between;">
+		<div class="container-x1">
+			<a class="navbar-brand" href="https://lawmin.gov.in/"
+				onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');"
+				title="Ministry of Law & Justice" target="_blank">
+				<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left"
+					margin-top="100px" class="h-14" alt="Ministry pf Law & Justice">
+			</a>
+		</div>
+		<div style="display:flex; align-items: center; justify-content: right; gap: 10px">
+			<a style="    color: white;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 10px;
+			background: black;
+			border-radius: 5px;" href="https://www.instagram.com/justice.for.all.adv.pankaj/"
+				onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');"
+				class="smaller text-dark text-primary-hover" target="_blank">
+				Instagram
+			</a>
+			<a style="color: white;font-weight: bold;text-decoration: none;padding: 10px;background: black;border-radius: 5px;"
+				href="https://www.facebook.com/profile.php?id=100089989995300" " onclick=" return confirm('You are\
+				being\ redirected to an external website. Please note that Justice For All cannot be held responsible\
+				for\ external website content & privacy policies');" class="smaller text-dark text-primary-hover"
+				target="_blank">
+				Facebook
+			</a>
+		</div>
+	</nav>
+	<div class="header">
+		<div class="menu-bar">
+			<ul style="display: flex !important; align-items: center !important; padding: 0">
+				<li class="active"><a href="http://localhost:8000/">Home</a></li>
+				<li><a href="http://localhost:8000/about_us/">About</a></li>
+				<li><a href="http://localhost:8000/advocate/">Advocates</a></li>
+				<li><a href="http://localhost:8000/solution">Solutions</a></li>
+			</ul>
+		</div>
+	</div>
 </header>
+
 <body>
 
-<h2>Search For Your Issue</h2>
+	<h2>Search For Your Issue</h2>
 
-<div class="row">
-  <div class="left" style="background-color:#bbb;">
-    <h2>Search</h2>
-    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <ul id="myMenu">
-      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
-      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
-      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
-      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
-      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
-      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
-      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
-      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
-      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
-      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
-      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
-      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
-      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
-      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
-      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
-      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
-      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
-      <li><a href="http://localhost:8000/F">Fundraising</a></li>
-      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
-      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
-      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
-      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
-      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
-      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
-      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
-      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
-      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
-      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
-      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
-      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
-      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
-      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
-      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
-      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
-      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
-      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
-      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
-      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
-      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
-      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
-      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
-      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
-      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
-      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
-      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
-      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
-      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
-      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
-      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
-      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
-      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
-      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
-      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
-      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
-      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
-      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
-      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
-      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
-      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
-      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
-      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
-      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+	<div class="row">
+		<div class="left" style="background-color:blanchedalmond;">
+			<h2>Search</h2>
+			<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+			<ul id="myMenu">
+				<li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+				<li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+				<li><a href="http://localhost:8000/SR">Society Registration</a></li>
+				<li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+				<li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+				<li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+				<li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+				<li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+				<li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+				<li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+				<li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+				<li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+				<li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+				<li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+				<li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+				<li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+				<li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+				<li><a href="http://localhost:8000/F">Fundraising</a></li>
+				<li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+				<li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+				<li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+				<li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+				<li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+				<li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+				<li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+				<li><a href="http://localhost:8000/MOU">Memorandum of Understanding (MOU)</a></li>
+				<li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+				<li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+				<li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+				<li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+				<li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+				<li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+				<li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+				<li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+				<li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+				<li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+				<li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+				<li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+				<li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+				<li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+				<li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+				<li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+				<li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+				<li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+				<li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+				<li><a href="http://localhost:8000/PR">Property Registration</a></li>
+				<li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+				<li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+				<li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+				<li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+				<li><a href="http://localhost:8000/RC">Religion Change</a></li>
+				<li><a href="http://localhost:8000/GC">Gender Change</a></li>
+				<li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+				<li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+				<li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+				<li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+				<li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+				<li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+				<li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+				<li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+				<li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+				<li><a href="http://localhost:8000/Dis">Discovery</a></li>
 
-    </ul>
-  </div>
-  
-  <div class="right" style="background-color:#ddd;">
-   <h2>Solution.....</h2><br><br>
-   Eunuchs, a castrated male is also known as a transgender person or a Hijra, are those who are not accepted as either men or women in India. They belong to one of the most ignored and unfairly discriminated strata in Indian society and are a totally distinct gender. Hindu eunuchs or hijras are expected to perform dances, songs, and blessings as part of their holy religious obligation during births and weddings. Eunuchs are considered to possess amazing divine power by many Hindus.
-   <br><br>
-Hindus, on the other hand, are equally concerned about being cursed by the hijras. Hijras have experienced both respect and fear. According to activists, most of these persons live in poverty on the periphery of society and are rejected because of their gender identification. The majority of them rely on begging, prostitution, singing, and dancing for a living.
-<br><br>
-According to human rights organisations, they frequently experience severe discrimination and must identify as either male or female in most public settings. In India, the eunuch group is dispersed, with the majority residing in the western and northern states and a smaller number in the southern states. However, Transgender people are accepted as the third gender in some states, including Tamil Nadu, Kerala, and Odisha.
-<br><br><br><br>
-Hardships Faced By Transgenders In Indian Society<br><br>
-In contemporary culture, transgender people come from every colour, nationality, religion, and social class; but, because of “what they are” and “how they are,” they have never led respectable lives. Due to the rigid, forced compliance to sexual dimorphism throughout recorded history, they are subjected to misunderstandings and agony.
-<br><br><br><br>
-Beyond their ceremonial duties, Eunuchs are never allowed to work or attend school since they are demeaned in Indian society. They frequently suffer from poverty as a result, having to rely on begging and prostitution to get by. In addition to being mistreated by law enforcement, refused access to medical care, and insulted and verbally harassed, they are also victims of violence and harassment. Eunuchs are not allowed to take part in politics, decision-making processes, social and cultural activities.
-<br><br>
-They have endured constant verbal and psychological harassment because of it. Due to the rejection of social approval, their lives have always been conditioned to refrain from using colours of the world. They are regarded by society as outlandish individuals who don’t fit within the established moral parameters.
-<br><br><br><br>
-Legal Recognition and Rights of Eunuchs<br><br>
-The Supreme Court of India officially recognised eunuchs or hijras—the third gender—as citizens deserving of the same rights as everyone else and outlawed bigotry against them in the case of National Legal Services Authority v. Union of India in April 2014.
-<br><br><br><br>
-Every human person has the freedom to determine their gender, according to the Supreme Court of India, and the question of group identification “is not a social or medical matter, but a human rights issue.” In a historic judgement, the Supreme Court determined that the Indian Constitution, which stated that third-gender people had fundamental rights, applies to transgender people. Without any discrimination based on sexual identity, everyone must be treated with justice and decency.
-<br><br><br><br>
-Fundamental Rights<br><br>
-The Part III of the Indian Constitution grants the people a number of rights and freedoms, including:
-<br><br><br><br>
-Article 14 –
-<br><br>
-Within the boundaries of India, the State shall not deny anyone’s right to equal protection under the law or equality before the law. They are on an equal ground in terms of employment, healthcare, education, and civil rights. Article 14 prohibits discrimination based on sexual orientation and gender identity.
-<br><br>
-Article 15 –
-<br><br>
-The State is prohibited from discriminating against any citizen solely on the basis of their religion, race, caste, sex, or place of birth. This makes it quite clear that discrimination against any individual will result in punishment. People who identify as the third gender are not subject to discrimination, and they enjoy full access to public restrooms and entertainment venues.
-<br><br>
-Article 16 –
-<br><br>
-In terms of public employment, there is equal opportunity. The professional opportunities available to transgender people are less favourable than those for their gender-identical peers. The ability to learn and earn is also present in third-gendered people. They have the right to find employment and support themselves under Article 16.
-<br><br>
-Article-19 –
-<br><br>
-Protection of rights such as the ability to speak freely, organise associations and unions, and congregate in peace without the use of force. The most significant privilege granted to any Indian citizen is Article 19. The third gender is generally silenced, and those who do so frequently face harassment and even rape.
-<br><br>
-Article 21 –
-<br><br>
-People who identify as third gender have a right to respect and dignity in society. It also includes the right to live a life of dignity. A transgender person’s life is just as valued as anyone else’s, male or female. Everyone should show respect for their right to personal freedom, privacy, and opinion.
-<br><br><br><br>
-Click here to know in detail about how do you legally change gender.
-<br><br>
-Transgender Persons (Protection of Rights) Act, 2019
-The Minister for Social Justice and Empowerment, Mr. Thaawarchand Gehlot, introduced the Transgender Persons (Protection of Rights) Bill, 2019 in Lok Sabha on July 19, 2019. The law covers the following goals: –
-<br><br>
-To promote eunuchs’ rights and a foundation for transgender people to acquire social, physical, and educational empowerment.
-<br><br>Defines the transgender.<br><br>
-Residence Rights.<br><br>
-Certificate of Identity.<br><br>
-Prohibition against discrimination.<br><br>
-To protect transgender people from mistreatment and forced labour, offences and penalties are implemented.<br><br>
-Medical care.<br><br>
-Providing rehabilitation facilities, vocational training, and encouraging their engagement in cultural events are examples of welfare programmes.
-<br><br>Creation of the National Council for Transgenders (NCT) to address complaints and develop laws and regulations pertaining to transgender people.
-<br><br>The Indian Passport Authority declared in 1994 that any person, regardless of sex or gender, could obtain a passport. Eunuchs were given the option to select “E” as their gender on passport applications in place of either “M” or “F.”
-<br><br>
-The Election Commission of India declared a separate identity for eunuchs and transgender people on November 12, 2009. They can identify as “Others” in election roles rather than pretending to be male or female. Additionally, the government started to count the third gender in censuses in 2011. The census form has a checkbox for the third gender as well.
-<br><br>
-To counteract pervasive discrimination against the transgender community, the Indian Railway Catering and Tourism Corporation (IRCTC) has added transgender as a third option on ticket reservation and cancellation forms, besides male and female.
-<br><br>
-Conclusion
-<br><br>
-A major turning point for humanity, the adoption of the third gender law for transgender persons teaches us to embrace and value everyone for who they are. Eunuchs are a wonderful creation of God and a part of Indian society. It takes bravery to grow into who you are and to change into a new version of yourself.
-<br><br>
-We should support transgender Indians in their battle for identity, equality, and respect. Increasing awareness of them and the difficulties they encounter is one method to do this. To make the world more equitable, just, and respectful of all people, we must all work together. Society’s mentality is the main problem, and it needs to be addressed. They are capable of achieving miracles; all they require is love and support.
-<br><br>
-<a href="#" class="previous">&laquo; Previous</a>
-<a href="#" class="next">Next &raquo;</a>
-</div>
-</div>
+			</ul>
+		</div>
 
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
+		<div class="right" style="background-color: rgb(255, 235, 205, 0.2);">
+			<h2>Solution.....</h2><br><br>
+			Eunuchs, a castrated male is also known as a transgender person or a Hijra, are those who are not accepted
+			as either men or women in India. They belong to one of the most ignored and unfairly discriminated strata in
+			Indian society and are a totally distinct gender. Hindu eunuchs or hijras are expected to perform dances,
+			songs, and blessings as part of their holy religious obligation during births and weddings. Eunuchs are
+			considered to possess amazing divine power by many Hindus.
+			<br><br>
+			Hindus, on the other hand, are equally concerned about being cursed by the hijras. Hijras have experienced
+			both respect and fear. According to activists, most of these persons live in poverty on the periphery of
+			society and are rejected because of their gender identification. The majority of them rely on begging,
+			prostitution, singing, and dancing for a living.
+			<br><br>
+			According to human rights organisations, they frequently experience severe discrimination and must identify
+			as either male or female in most public settings. In India, the eunuch group is dispersed, with the majority
+			residing in the western and northern states and a smaller number in the southern states. However,
+			Transgender people are accepted as the third gender in some states, including Tamil Nadu, Kerala, and
+			Odisha.
+			<br><br><br><br>
+			Hardships Faced By Transgenders In Indian Society<br><br>
+			In contemporary culture, transgender people come from every colour, nationality, religion, and social class;
+			but, because of “what they are” and “how they are,” they have never led respectable lives. Due to the rigid,
+			forced compliance to sexual dimorphism throughout recorded history, they are subjected to misunderstandings
+			and agony.
+			<br><br><br><br>
+			Beyond their ceremonial duties, Eunuchs are never allowed to work or attend school since they are demeaned
+			in Indian society. They frequently suffer from poverty as a result, having to rely on begging and
+			prostitution to get by. In addition to being mistreated by law enforcement, refused access to medical care,
+			and insulted and verbally harassed, they are also victims of violence and harassment. Eunuchs are not
+			allowed to take part in politics, decision-making processes, social and cultural activities.
+			<br><br>
+			They have endured constant verbal and psychological harassment because of it. Due to the rejection of social
+			approval, their lives have always been conditioned to refrain from using colours of the world. They are
+			regarded by society as outlandish individuals who don’t fit within the established moral parameters.
+			<br><br><br><br>
+			Legal Recognition and Rights of Eunuchs<br><br>
+			The Supreme Court of India officially recognised eunuchs or hijras—the third gender—as citizens deserving of
+			the same rights as everyone else and outlawed bigotry against them in the case of National Legal Services
+			Authority v. Union of India in April 2014.
+			<br><br><br><br>
+			Every human person has the freedom to determine their gender, according to the Supreme Court of India, and
+			the question of group identification “is not a social or medical matter, but a human rights issue.” In a
+			historic judgement, the Supreme Court determined that the Indian Constitution, which stated that
+			third-gender people had fundamental rights, applies to transgender people. Without any discrimination based
+			on sexual identity, everyone must be treated with justice and decency.
+			<br><br><br><br>
+			Fundamental Rights<br><br>
+			The Part III of the Indian Constitution grants the people a number of rights and freedoms, including:
+			<br><br><br><br>
+			Article 14 –
+			<br><br>
+			Within the boundaries of India, the State shall not deny anyone’s right to equal protection under the law or
+			equality before the law. They are on an equal ground in terms of employment, healthcare, education, and
+			civil rights. Article 14 prohibits discrimination based on sexual orientation and gender identity.
+			<br><br>
+			Article 15 –
+			<br><br>
+			The State is prohibited from discriminating against any citizen solely on the basis of their religion, race,
+			caste, sex, or place of birth. This makes it quite clear that discrimination against any individual will
+			result in punishment. People who identify as the third gender are not subject to discrimination, and they
+			enjoy full access to public restrooms and entertainment venues.
+			<br><br>
+			Article 16 –
+			<br><br>
+			In terms of public employment, there is equal opportunity. The professional opportunities available to
+			transgender people are less favourable than those for their gender-identical peers. The ability to learn and
+			earn is also present in third-gendered people. They have the right to find employment and support themselves
+			under Article 16.
+			<br><br>
+			Article-19 –
+			<br><br>
+			Protection of rights such as the ability to speak freely, organise associations and unions, and congregate
+			in peace without the use of force. The most significant privilege granted to any Indian citizen is Article
+			19. The third gender is generally silenced, and those who do so frequently face harassment and even rape.
+			<br><br>
+			Article 21 –
+			<br><br>
+			People who identify as third gender have a right to respect and dignity in society. It also includes the
+			right to live a life of dignity. A transgender person’s life is just as valued as anyone else’s, male or
+			female. Everyone should show respect for their right to personal freedom, privacy, and opinion.
+			<br><br><br><br>
+			Click here to know in detail about how do you legally change gender.
+			<br><br>
+			Transgender Persons (Protection of Rights) Act, 2019
+			The Minister for Social Justice and Empowerment, Mr. Thaawarchand Gehlot, introduced the Transgender Persons
+			(Protection of Rights) Bill, 2019 in Lok Sabha on July 19, 2019. The law covers the following goals: –
+			<br><br>
+			To promote eunuchs’ rights and a foundation for transgender people to acquire social, physical, and
+			educational empowerment.
+			<br><br>Defines the transgender.<br><br>
+			Residence Rights.<br><br>
+			Certificate of Identity.<br><br>
+			Prohibition against discrimination.<br><br>
+			To protect transgender people from mistreatment and forced labour, offences and penalties are
+			implemented.<br><br>
+			Medical care.<br><br>
+			Providing rehabilitation facilities, vocational training, and encouraging their engagement in cultural
+			events are examples of welfare programmes.
+			<br><br>Creation of the National Council for Transgenders (NCT) to address complaints and develop laws and
+			regulations pertaining to transgender people.
+			<br><br>The Indian Passport Authority declared in 1994 that any person, regardless of sex or gender, could
+			obtain a passport. Eunuchs were given the option to select “E” as their gender on passport applications in
+			place of either “M” or “F.”
+			<br><br>
+			The Election Commission of India declared a separate identity for eunuchs and transgender people on November
+			12, 2009. They can identify as “Others” in election roles rather than pretending to be male or female.
+			Additionally, the government started to count the third gender in censuses in 2011. The census form has a
+			checkbox for the third gender as well.
+			<br><br>
+			To counteract pervasive discrimination against the transgender community, the Indian Railway Catering and
+			Tourism Corporation (IRCTC) has added transgender as a third option on ticket reservation and cancellation
+			forms, besides male and female.
+			<br><br>
+			Conclusion
+			<br><br>
+			A major turning point for humanity, the adoption of the third gender law for transgender persons teaches us
+			to embrace and value everyone for who they are. Eunuchs are a wonderful creation of God and a part of Indian
+			society. It takes bravery to grow into who you are and to change into a new version of yourself.
+			<br><br>
+			We should support transgender Indians in their battle for identity, equality, and respect. Increasing
+			awareness of them and the difficulties they encounter is one method to do this. To make the world more
+			equitable, just, and respectful of all people, we must all work together. Society’s mentality is the main
+			problem, and it needs to be addressed. They are capable of achieving miracles; all they require is love and
+			support.
+			<br><br>
+			<a href="#" class="previous">&laquo; Previous</a>
+			<a href="#" class="next">Next &raquo;</a>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myMenu");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 
 </body>
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-    <h1>Need Help??</h1> 
-                  <label for="name">Name</label>
-                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
-                  <br>
-                  <label for="SelectService">Select Service</label>
-                  <br>
+	<form action="/action_page.php" class="form-container">
+		<h1>Need Help??</h1>
+		<label for="name">Name</label>
+		<input name='name' type="text" class="form-control" id="name" aria-describedby="first name"
+			placeholder="Enter Your Name" required>
+		<br>
+		<label for="SelectService">Select Service</label>
+		<br>
 
-                  <select class="whatever floating-select" name="service_id" id="service_id" required>
-                    <option value slected disable></option>
-                    <option value="1">Private Limited Company Registration</option>
-                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
-                    <option value="3">>One Person Company Registration</option>
-                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
-                    <option value="5">Partnership Firm Registration</option>
-                    <option value="6">Subsidary Company Registration</option>
-                    <option value="7">Subsidary of an Indian Company in India</option>
-                    <option value="8">Public Limited Company Registratiom</option>
-                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
-                    <option value="10">Trust Registration</option>
-                    <option value="11">Society Registration</option>
-                    <option value="12">USA Company Incorporation</option>
-                    <option value="13">>Register a NBFC Company in India</option>
-                    <option value="14">NIDHI Company Registration</option>
-                    <option value="15">Digital Signature Certificae(DSC)</option>
-                    <option value="16">Tax Deduction Account Number(TAN)</option>
-                    <option value="17">Trademark Registration</option>
-                    <option value="18">Trademark Renewal</option>
-                    <option value="19">International Trademark Application</option>
-                    <option value="20">Trademark Ownership Transfer</option>
-                    <option value="21">File a Trademark Opposition</option>
-                    <option value="22">Respond to a Trademark Objection</option>
-                    <option value="23">Patent Search</option>
-                    <option value="24">Apply for a Provisional Patent</option>
-                    <option value="25">Apply for a Patent</option>
-                    <option value="26">Changes in IEC<</option>
-                    <option value="27">Changes in GST</option>
-                    <option value="28">LUT Application</option>
-                    <option value="29">Professional Tax for Employees</option>
-                    <option value="30">Professional Tax for Directors</option>
-                    <option value="31">ESI Registration</option>
-                    <option value="32">PF Registration</option>
-                    <option value="33">ESI Filing</option>
-                    <option value="34">PF Filing</option>
-                    <option value="35">Cancellation of GST</option>
-                    <option value="36">Professional Tax Registration</option>
-                    <option value="37">DIPP Certification</option>
-                    <option value="38">Loan Agreement</option>
-                    <option value="39">Religion Change</option>
-                    <option value="40">Gender Change</option>
-                    <option value="41">Mutual Divorce</option>
-                    <option value="42">Court Marriage</option>
-                    <option value="43">Breach of Contract Claims</option>
-                    <option value="44">Initial Pleading</option>
-                    <option value="45">Landlord/Tenant Issues</option>
-                    <option value="46">Sale Deed</option>
-                    <option value="47">Post Discovery</option>
-                    <option value="48">Landlord/Tenant Issues</option>
-                    <option value="49">Property Registration</option>
-                    <option value="50">File annual Returns for your Private Limited Company</option>
-                    <option value="51">Something Else.....</option>
-                  </select>
-                  <span class="highlight"></span>
-                  
-                  <br><br>
+		<select class="whatever floating-select" name="service_id" id="service_id" required>
+			<option value slected disable></option>
+			<option value="1">Private Limited Company Registration</option>
+			<option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+			<option value="3">>One Person Company Registration</option>
+			<option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+			<option value="5">Partnership Firm Registration</option>
+			<option value="6">Subsidary Company Registration</option>
+			<option value="7">Subsidary of an Indian Company in India</option>
+			<option value="8">Public Limited Company Registratiom</option>
+			<option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+			<option value="10">Trust Registration</option>
+			<option value="11">Society Registration</option>
+			<option value="12">USA Company Incorporation</option>
+			<option value="13">>Register a NBFC Company in India</option>
+			<option value="14">NIDHI Company Registration</option>
+			<option value="15">Digital Signature Certificae(DSC)</option>
+			<option value="16">Tax Deduction Account Number(TAN)</option>
+			<option value="17">Trademark Registration</option>
+			<option value="18">Trademark Renewal</option>
+			<option value="19">International Trademark Application</option>
+			<option value="20">Trademark Ownership Transfer</option>
+			<option value="21">File a Trademark Opposition</option>
+			<option value="22">Respond to a Trademark Objection</option>
+			<option value="23">Patent Search</option>
+			<option value="24">Apply for a Provisional Patent</option>
+			<option value="25">Apply for a Patent</option>
+			<option value="26">Changes in IEC<< /option>
+			<option value="27">Changes in GST</option>
+			<option value="28">LUT Application</option>
+			<option value="29">Professional Tax for Employees</option>
+			<option value="30">Professional Tax for Directors</option>
+			<option value="31">ESI Registration</option>
+			<option value="32">PF Registration</option>
+			<option value="33">ESI Filing</option>
+			<option value="34">PF Filing</option>
+			<option value="35">Cancellation of GST</option>
+			<option value="36">Professional Tax Registration</option>
+			<option value="37">DIPP Certification</option>
+			<option value="38">Loan Agreement</option>
+			<option value="39">Religion Change</option>
+			<option value="40">Gender Change</option>
+			<option value="41">Mutual Divorce</option>
+			<option value="42">Court Marriage</option>
+			<option value="43">Breach of Contract Claims</option>
+			<option value="44">Initial Pleading</option>
+			<option value="45">Landlord/Tenant Issues</option>
+			<option value="46">Sale Deed</option>
+			<option value="47">Post Discovery</option>
+			<option value="48">Landlord/Tenant Issues</option>
+			<option value="49">Property Registration</option>
+			<option value="50">File annual Returns for your Private Limited Company</option>
+			<option value="51">Something Else.....</option>
+		</select>
+		<span class="highlight"></span>
 
-                
-                  <label for="email">Email</label>
-                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
-                  <br><br>
+		<br><br>
 
-                  <label for="phone">Phone Number</label><br>
-                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
-                  <br><br>
-                
-                  <label for = "subject">Subject</label><br>
-                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
-                  <br>              <br>
-                 
-                 <button type="submit" class="btn">Submit</button>
 
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
+		<label for="email">Email</label>
+		<input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+		<br><br>
+
+		<label for="phone">Phone Number</label><br>
+		<input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+		<br><br>
+
+		<label for="subject">Subject</label><br>
+		<textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..."
+			required></textarea>
+		<br> <br>
+
+		<button type="submit" class="btn">Submit</button>
+
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	</form>
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
 </script>
 <br>
 <br>
 <div>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </div>
 
 <script>
-// Get the button
-let mybutton = document.getElementById("myBtn");
+	// Get the button
+	let mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+	}
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
 </script>
-<footer class="footer mt-auto text-white-50 z-index-2">
-  <div class="container-fluid bg-dark">
-      <div class="container py-12 pe-2">
-          <div class="row">
-              <div class="col-lg-8 mt-2 mt-md-0">
-                  <p class="mb-4"> Disclaimer: </p>
-                  <p>
-                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
-                  </p>
-              </div>
-          </div>
-      </div>
-  </div>
+<footer class="mt-auto text-white-50 z-index-2" style="border-radius: 10px; background-color:
+		blanchedalmond; width: 60%; margin: 0 auto; padding: 5px 10px;">
+	<div class="container-fluid bg-dark">
+		<div class="container py-12 pe-2">
+			<div class="row">
+				<div class="col-lg-8 mt-2 mt-md-0">
+					<p class="mb-4"> Disclaimer: </p>
+					<p>
+						This site is designed and hosted by Justice_For_Everyone and the contents are provided by
+						Justice For All also. For any further information, pleace contact us on Contact .
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
+
 </html>
