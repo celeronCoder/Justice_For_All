@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title> Justice_For_Everyone</title>
+            <link
+      rel="shortcut icon"
+      href="./images/title-logo.png"
+      type="image/x-icon"
+    />
+
+    <!-- ----linked font awesome cdn---- -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- ----linked style.css file---- -->
+    <link rel="stylesheet" href="./public/css/style.css" />
+
+    <!-- ----linked media.css file---- -->
+    <link rel="stylesheet" href="./public/css/media.css" />
+
+        <style>
+    .header{
+    border: 1% solid black;
+    height: 85%auto;
+    }
+    .menu-bar{background-color:blanchedalmond;
+    height: 100%;
+    width: 100%;
+    display: inline-flex; 
+    }
+    .menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .menu-bar ul li {
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .menu-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .menu-bar ul li:hover {
+    background-color: green;
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar{background-color:rgb(238, 218, 218);
+    height: 62px fit-content;
+    width: 59% fit-content;
+    float: right;
+    }
+    .foot-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .foot-bar ul li {
+    background-color: rgb(233, 227, 220);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px  fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: rgb(23, 2, 43);
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .foot-bar ul li:hover {
+    background-color: darkgrey;
+    border-radius: 100px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .footer{
+    border: 1px solid rgb(17, 17, 17);
+    height: 100px fit-content;
+    }
+    .Proposal{
+        border: 2px solid palegoldenrod;
+        height: 100px fit content;
+    }
+    .Need{
+        border: 2px solid palegoldenrod;
+        height: 200px fit-content;
+        width: auto;
+    }
+    html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+} 
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 180px;
+}
+.form-popup {
+  display: none;
+  position:sticky;
+  bottom: 50px;
+  right: 20px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: fit-content;
+  padding: 40px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=email], .form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border:chocolate;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=email]:focus, .form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 17px;
+  width: 50px fit-content;
+  height:25px fit-content;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: red;
+  display: none;
+  padding: 50px;
+  text-align: left;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: rgb(255, 252, 51);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 1px;
+  height: 20px fit-content;
+  width: 20px fit-content;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+        </style>
+        
+    </head>
+  
+    
+    <div class="border" style="background-color: antiquewhite;">
+                                    <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+                                    <div >Instagram</div>
+                                    </a>
+                                    <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+                                    <div>Facebook</div>
+                                    </a>                        
+    </div>
+    <header>
+        {% load static %}
+        <nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
+            <div class="container-x1">
+                <a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
+                <img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
+                </a>
+                </div>
+        </nav>
+        <div class="header">
+                
+            <div class="menu-bar">
+                    <ul>   
+                        <li class="active" ><a href="http://localhost:8000/">Home</a></li>
+                        <li><a href="http://localhost:8000/about_us/">About</a></li>
+                        <li><a href="http://localhost:8000/advocate">Advocates</a></li>
+                        <li><a href="http://localhost:8000/solution">Solutions</a></li>
+                    </ul>
+            </div>
+        </div>
+
+    </header>
+    <body>
+      <br>
+      <br>
+      <header class="mouse">
+        <!-- ---navigation--- -->
+        <nav class="navbar">
+          <ul>
+            <li>
+              <a class="active" href="#service_proposal">Service Proposal</a>
+            </li>
+            <li>
+              <a href="#need">Need</a>
+            </li>
+            <li>
+              <a href="#your_views">Your Views</a>
+            </li>
+            <li>
+              <a href="#proposed_solution">Proposed Solution</a>
+            </li>
+            <li>
+              <a href="#contract">Contract Negotiation</a>
+            </li>
+            <li>
+              <a href="#team">Team Members</a>
+            </li>
+          </ul>
+        </nav>
+
+
+  
+      
+    </body>
+    <div class="form-popup" id="myForm">
+      <form action="/action_page.php" class="form-container">
+        <h1>Need Help??</h1> 
+                      <label for="name">Name</label>
+                      <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
+                      <br>
+                      <label for="SelectService">Select Service</label>
+                      <br>
+    
+                      <select class="whatever floating-select" name="service_id" id="service_id" required>
+                        <option value slected disable></option>
+                        <option value="1">Private Limited Company Registration</option>
+                        <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+                        <option value="3">>One Person Company Registration</option>
+                        <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+                        <option value="5">Partnership Firm Registration</option>
+                        <option value="6">Subsidary Company Registration</option>
+                        <option value="7">Subsidary of an Indian Company in India</option>
+                        <option value="8">Public Limited Company Registratiom</option>
+                        <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+                        <option value="10">Trust Registration</option>
+                        <option value="11">Society Registration</option>
+                        <option value="12">USA Company Incorporation</option>
+                        <option value="13">>Register a NBFC Company in India</option>
+                        <option value="14">NIDHI Company Registration</option>
+                        <option value="15">Digital Signature Certificae(DSC)</option>
+                        <option value="16">Tax Deduction Account Number(TAN)</option>
+                        <option value="17">Trademark Registration</option>
+                        <option value="18">Trademark Renewal</option>
+                        <option value="19">International Trademark Application</option>
+                        <option value="20">Trademark Ownership Transfer</option>
+                        <option value="21">File a Trademark Opposition</option>
+                        <option value="22">Respond to a Trademark Objection</option>
+                        <option value="23">Patent Search</option>
+                        <option value="24">Apply for a Provisional Patent</option>
+                        <option value="25">Apply for a Patent</option>
+                        <option value="26">Changes in IEC<</option>
+                        <option value="27">Changes in GST</option>
+                        <option value="28">LUT Application</option>
+                        <option value="29">Professional Tax for Employees</option>
+                        <option value="30">Professional Tax for Directors</option>
+                        <option value="31">ESI Registration</option>
+                        <option value="32">PF Registration</option>
+                        <option value="33">ESI Filing</option>
+                        <option value="34">PF Filing</option>
+                        <option value="35">Cancellation of GST</option>
+                        <option value="36">Professional Tax Registration</option>
+                        <option value="37">DIPP Certification</option>
+                        <option value="38">Loan Agreement</option>
+                        <option value="39">Religion Change</option>
+                        <option value="40">Gender Change</option>
+                        <option value="41">Mutual Divorce</option>
+                        <option value="42">Court Marriage</option>
+                        <option value="43">Breach of Contract Claims</option>
+                        <option value="44">Initial Pleading</option>
+                        <option value="45">Landlord/Tenant Issues</option>
+                        <option value="46">Sale Deed</option>
+                        <option value="47">Post Discovery</option>
+                        <option value="48">Landlord/Tenant Issues</option>
+                        <option value="49">Property Registration</option>
+                        <option value="50">File annual Returns for your Private Limited Company</option>
+                        <option value="51">Something Else.....</option>
+                      </select>
+                      <span class="highlight"></span>
+                      
+                      <br><br>
+    
+                    
+                      <label for="email">Email</label>
+                      <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+                      <br><br>
+    
+                      <label for="phone">Phone Number</label><br>
+                      <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+                      <br><br>
+                    
+                      <label for = "subject">Subject</label><br>
+                      <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
+                      <br>              <br>
+                     
+                     <button type="submit" class="btn">Submit</button>
+    
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+    
+    <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
+    <br>
+    <br>
+    <div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    </div>
+    
+    <script>
+    // Get the button
+    let mybutton = document.getElementById("myBtn");
+    
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+    
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    </script>
+
+     </header>
+
+    <!-- ====markup main element==== -->
+
+    <main>
+      <!-- ====markup home section==== -->
+      <section id="service_proposal" class="service_proposal">
+        <div class="home-desc">
+          <h2>Service Proposal</h2>
+          <p>Justice_For_Everyone Service Proposal</p>
+          Contact Details:-  Address: Chamber:456 Saket District Court Complex, New Delhi 
+                             <br>
+                             Phone Number: 9811572309
+        </div>
+
+        <div class="home-image">
+          <img src="{% static 'service.png' %}" alt="Error" style="width:20%">
+        </div>
+      </section>
+
+      <!-- ====markup about section==== -->
+      <section id="need" class="need">
+        <div class="about-image">
+          <img src="./images/about-frame-img.png" alt="" />
+        </div>
+
+        <div class="about-desc">
+          <h2>Our Need</h2>
+          <p> As an Enrepreneur/Business Person or an indiviual you have to deal with daily in and out of the business. Legal issues have to be the last thing on your mind. A common misconception is that legal services are too expensive and legal matters can be too complicated. this is wehre we play an important part
+            <br>
+            <br>
+            We make these complicated matters simple for you. Our expertise of more than 20years in legal services will help us to resolve all your legal conflict.
+            <br>
+            <br>
+            We look forward to work with you
+            <br>
+            <br>
+        </p>
+
+        </div>
+      </section>
+
+      <!-- ====markup about section==== -->
+      <section id="your_views" class="your_views">
+        <h2>Your Views</h2>
+        <p> What we heard from you
+          <br>
+          1. You need a legal partner to see over all your legal matters.<br>
+          2. You need a consultant and a legal advisior.<br>
+      </p>
+      </section>
+
+      <!-- ====markup popular section==== -->
+      <section id="proposed_solution" class="proposed_solution">
+        <h2><span>Proposed</span> Solutions</h2>
+        <p> Our Proposed Solution <br>
+          1. Legal 1 year binding contact for service and solution on legal matters.<br>
+          2. On call lawyer for any time legal document evaluation.<br>
+          3. One can contact or hire the lawyer online with minimum consultancy fees. <br>
+          </p>
+      </section>
+
+        <!-- ====markup gallery section==== -->
+        <section id="contract" class="contact">
+          <h2>Contract <span>Negotiation</span></h2>
+          <p>Contract Negotiation<br>
+            We negotiate contracts for you.<br>
+        </p>
+        </section>
+
+      <!-- ====markup gallery section==== -->
+      <section id="team" class="team">
+        <h2>Meet Our Team Members</h2>
+
+        <div class="row">
+          <div class="column">
+          <!-- ---gallery card 01--- -->
+          <div class="card">
+            <img src="{% static 'avatar_img1.jpg' %}" alt="Error" style="width:100%">
+            <div class="container">
+              <h2>Adv. Pankaj Kumar Sharma</h2>
+              <p class="title">CEO & Founder</p>
+            </div>
+          </div>
+        </div>
+
+          <!-- ---gallery card 02--- -->
+          <div class="column">
+          <div class="card">
+            <img src="{% static 'avatar_img1.jpg' %}" alt="Error" style="width:100%">
+            <div class="container">
+              <h2>Adv. Ajay Jha</h2>
+              <p class="title">Manager</p>
+            </div>
+          </div>
+        </div>
+
+          <!-- ---gallery card 03--- -->
+          <div class="column">
+          <div class="card">
+            <img src="{% static 'avatar_img1.jpg' %}" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Adv. Gautam Srivastava</h2>
+        <p class="title">Lawyer and Computer Assistant </p>
+      </div>
+          </div>
+        </div>
+      
+        </div>
+      </section>
+
+
+    <footer class="footer mt-auto text-white-50 z-index-2">
+        <div class="container-fluid bg-dark">
+            <div class="container py-12 pe-2">
+                <div class="row">
+                    <div class="col-lg-8 mt-2 mt-md-0">
+                        <p class="mb-4"> Disclaimer: </p>
+                        <p>
+                            " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</html>

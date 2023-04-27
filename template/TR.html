@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create a column layout with Flexbox */
+.row {
+  display: flex;
+}
+
+/* Left column (menu) */
+.left {
+  flex: 35%;
+  padding: 15px 0;
+}
+
+.left h2 {
+  padding-left: 8px;
+}
+
+/* Right column (page content) */
+.right {
+  flex: 65%;
+  padding: 15px;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu inside the left column */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: #eee;
+}
+.header{
+    border: 1% solid black;
+    height: 85%auto;
+    }
+    .menu-bar{background-color:blanchedalmond;
+    height: 100%;
+    width: 100%;
+    display: inline-flex; 
+    }
+    .menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .menu-bar ul li {
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .menu-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .menu-bar ul li:hover {
+    background-color: green;
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar{background-color:rgb(238, 218, 218);
+    height: 62px fit-content;
+    width: 59% fit-content;
+    float: right;
+    }
+    .foot-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .foot-bar ul li {
+    background-color: rgb(233, 227, 220);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px  fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: rgb(23, 2, 43);
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .foot-bar ul li:hover {
+    background-color: darkgrey;
+    border-radius: 100px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .footer{
+    border: 1px solid rgb(17, 17, 17);
+    height: 100px fit-content;
+    }
+    .open-button {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 180px;
+}
+.form-popup {
+  display: none;
+  position:sticky;
+  bottom: 50px;
+  right: 20px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: fit-content;
+  padding: 40px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=email], .form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border:chocolate;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=email]:focus, .form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 17px;
+  width: 50px fit-content;
+  height:25px fit-content;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: red;
+  display: none;
+  padding: 50px;
+  text-align: left;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: rgb(255, 252, 51);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 1px;
+  height: 20px fit-content;
+  width: 20px fit-content;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<div class="border" style="background-color: antiquewhite;">
+  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div >Instagram</div>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div>Facebook</div>
+  </a>                        
+</div>
+<header>
+{% load static %}
+<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
+<div class="container-x1">
+<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
+<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
+</a>
+</div>
+</nav>
+<div class="header">
+
+<div class="menu-bar">
+<ul>   
+<li class="active" ><a href="http://localhost:8000/">Home</a></li>
+<li><a href="http://localhost:8000/about_us/">About</a></li>
+<li><a href="http://localhost:8000/advocate">Advocates</a></li>
+<li><a href="http://localhost:8000/solution">Solutions</a></li>
+</ul>
+</div>
+</div>
+
+</header>
+<body>
+
+<h2>Search For Your Issue</h2>
+
+<div class="row">
+  <div class="left" style="background-color:#bbb;">
+    <h2>Search</h2>
+    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+    <ul id="myMenu">
+      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
+      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+      <li><a href="http://localhost:8000/F">Fundraising</a></li>
+      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
+      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
+      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
+      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
+      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+    </ul>
+  </div>
+  
+  <div class="right" style="background-color:#ddd;">
+   <h2>Solution.....</h2><br>
+   Trust registration is a process of legalizing the trust deed (a legal contract between the settlor and Trustee) from the registrar of the respective jurisdiction. The Trust serves as a legal medium liable for the lawful distribution of the settlor’s assets among the concerned beneficiaries. The Trust comes to an effect as soon as the registrar provides its authorization to the trust deed.
+<br><br>
+What is Trust in an Indian Context?<br><br>
+The Indian Trust Act 1882 governs all registered Trusts in India and facilitates the legal provisions for the same. The Trust is usually referred to as a legal arrangement where the Trust’s owner transfers the property to the concerned Trustee (aka beneficiary). The object of the Trust is to ensure the seamless transfer of the Trustor’s assets among the beneficiaries as per the clauses cited in the Trust deed.
+<br><br>
+A trustee, selected by the grantor, is liable for administering the Trust & finally distributing his/her assets to the designated beneficiaries selected by the grantor when the Trust is set up. Heir, family members, or charity are some common beneficiaries of the Trust in India.
+<br><br>
+Trusts can be utilized to reduce taxes, simplify or avert the probate process & safeguard assets.
+<br><br>
+There are various types of Trust in India, such as;<br><br>
+Revocable;<br><br>
+Testamentary<br><br>
+Irrevocable<br><br>
+Charitable<br><br>
+Asset protection<br><br>
+Spendthrift<br><br>
+Special needs<br><br>
+What are the Benefits of Trust Registration?<br><br>
+To Involve In Charitable Undertakings<br><br>
+A Charitable Trust is primarily a way to set up your assets to benefit you, concerned beneficiaries, & a charity simultaneously. Such Trust could render various advantages for a person seeking to aid society with nonessential assets, such as stocks or real estate.
+<br><br>
+Accessibility to Tax Exemptions<br><br>
+All registered trusts in India have access to several tax exemptions offered by the Income-tax department. Since the object of the Trust doesn’t revolve around profit generation, like NGOs, they are eligible to avail various tax relaxations. However, such a benefit is only available to trust that have a registered deed at their disposal.
+<br><br>
+Trusts are very useful in ensuring taxation relaxation on capital and income. The Trust may facilitate better coverage for the settlor, the beneficiaries & the trust assets from stringent tax provisions.
+<br><br>
+Provide Benefits to Financially Aggrieved Individual<br><br>
+The registered Trust facilitates the much-needed financial aid to the poor people and the masses via charitable activities.
+<br><br>
+Encounter Minimal Legal Hindrances<br><br>
+The Indian Trusts Act, 1882, ensures comprehensive legal protection for the Trust. It also prevents any third party to make an unnecessary claim that could endanger the legal standing of Trust.
+<br><br>
+Ensures Legal Coverage for the Family Wealth<br><br>
+Trust can be used to allocate specific assets such as land/an interest in the entity formed by the family, which otherwise would not be practical for a trustor to split between individuals.
+<br><br>
+Avert Probate Court<br><br>
+Anybody can leverage trust registration as a tool for transferring an asset to the heir in the absence of a Will. As the legal title of the assets transfers from the settlor to the Trustee in case when they are "settled", there is no change of ownership after settlor demise, thus evading the requirement for probate of a will on account of trust assets.
+<br><br>
+Unlike probate, the trust acts as a private agreement that skip the requirement for additional registration. The use of a trust can also avert the economic adversity often encountered by surviving spouse even as waiting for grant of probate.
+<br><br>
+Immigration/Emigration of Family<br><br>
+When an individual & her/his family move to another nation, it is a perfect event to establish a trust to get rid of taxation in the destination country, thereby safeguarding the family assets and facilitating flexibility in its organization.
+<br><br>
+What are the Types of Trusts?<br><br>
+There are three types of trusts in India:<br><br>
+Public Trust<br><br>
+Private Trust<br><br>
+Public Cum-Private Trust<br><br>
+While private trusts function as per the provisions of the Indian trusts Act, 1882, public trusts are categorized into religious & charitable trusts. The Religious Endowments Act, 1863, Charitable and Religious Trust Act, 1920, the Bombay Public Trust Act, 1950 are some of the prominent statutes for the enforcement of public trusts in India.
+<br><br>
+Private Trust<br><br>
+Private Trust refers to a legal arrangement created for the benefit of individuals other than a public or charitable purpose. It is formed for the financial benefit of one or more beneficiaries who are known to the Trustor. Private Trust doesn’t serve a charitable purpose, and its benefits are only accessible to designated beneficiaries. Such trusts are bound to follow the provisions of the Indian Trusts Act, 1882
+<br><br>
+Public Trust<br><br>
+A Public Trust essentially benefits the public at large. Unlike private trusts, public trusts do not function under the Indian Trusts Act and are formed to serve a charitable or religious purpose. Such Trust follows the general law, which is in effect for the time being. Just like the private Trust, these trusts may be formed inter vivos by will.
+<br><br>
+Public-Cum-Private Trusts<br><br>
+As the name suggests, the Public-Cum-Private Trusts serve a dual purpose. They are eligible to use their income for the public as well as private purposes. That implies that beneficiaries of such Trust could be either public or private persons or both.
+<br><br>
+Fundamental Documentation Required for Trust Registration<br><br>
+Following are key documents that one needs to arrange for trust registration:<br><br>
+Proof related to Identity for Trustor & Trustee such as Aadhaar Card, Voter ID, Passport, DL<br><br>
+Address Proof related to Registered Office such as Copy of Certificate of Property/Utility Bills<br><br>
+No objection certification from the Landlord if the property is rented .<br><br>
+Trust deed's objective<br><br>
+Detail about the Trustee and settlor such as Self-attested copy Id & Address Proof and occupation<br><br>
+Trust Deed on Proper Stamp Value<br><br>
+Trustee and settlor Photos<br><br>
+Trustee and settlor<br><br>
+PAN details<br><br>
+Trust deed must reflect the following information:<br><br>
+Number of trustees<br><br>
+Trust registered address<br><br>
+Proposed name of trust<br><br>
+Proposed Rules that will govern the trust<br><br>
+Presence of settlor as well as two witnesses at the time of registration of Trust<br><br>
+Step-by-Step Procedure for Registering a Trust in India<br><br>
+The detailed Procedure for trust registration entails the given steps:<br><br>
+Step 1: Select an Apt Name for the Trust<br><br>
+The first and foremost step in the process of Trust registration is the name selection for the proposed Trust. Be mindful while serving such a purpose and take the following points into account to avoid any hassles:
+<br><br>
+The name should fit the provisions of the Emblems and Names Act, 1950<br><br>
+There should be no violation whatsoever when it comes to Trademark Act.<br><br>
+The name should stay to the originality.<br><br>
+Step 2: Drafting of Trust Deed<br><br>
+Drafting of Trust Deed is an important undertaking because it is the only thing that makes the Trust legally enforceable.<br><br>
+
+In general, the trust deed consolidates the below-mentioned clauses:<br><br>
+
+Objects<br><br>
+The Object clause reflects the object behind the formation of the Trust<br><br>
+
+Acceptance of Funds<br><br>
+This clause enables the Trust to accept contributions, donations & subscriptions from any person, government body, or charitable avenue, in the form of cash, immovable assets without any charge on it. Furthermore, the clause states that any contributions that hamper the Trust’s object are non-acceptable in nature.
+<br><br>
+Investments: the investment clause sets out the conditions for the lawful and effective administration of the Trust’s fund. Further, this clause also framed conditions for effective allocation of the additional funds that are not in use and could help in generating extra income via investment.
+<br><br>
+Power of the Trustees<br><br>
+As the name suggests, this specific clause talks about the responsibilities of the trustees.
+<br><br>
+Generally, such clauses confer the following powers to the trustees.<br><br>
+Appointing employee(s)<br><br>
+Alienating the trust properties<br><br>
+Opening the bank account in the Trust’s name<br><br>
+Suing defaulters in case of legal dispute on behalf of the Trust<br><br>
+Accepting any gift, donation via legitimate individuals or sources<br><br>
+Investing additional funding in securities<br><br>
+Accounts and Audit<br><br>
+This clause mandates the trustees to administer the book of account on a regular basis. Further, it also sets out the requirement for account auditing that should be conducted by the certified CA.
+<br><br>
+Winding Up<br><br>
+A trust is wound up when all of the Trust properties/assets are lawfully distributed to the beneficiaries or to a similar entity, either directly or via resettlement. The involved parties must identify any tax obligations incurred owing to the transfer of assets when the Trust is wound up. Furthermore, this clause renders the requirement of conducting such legal undertaking with the approval of charity commissioner/Court/any other law to mitigate any chances of legal dispute.
+<br><br>
+<a href="http://localhost:8000/PLCR/" class="previous">&laquo; Previous</a>
+<a href="http://localhost:8000/SR" class="next">Next &raquo;</a> </div>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Need Help??</h1> 
+                  <label for="name">Name</label>
+                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
+                  <br>
+                  <label for="SelectService">Select Service</label>
+                  <br>
+
+                  <select class="whatever floating-select" name="service_id" id="service_id" required>
+                    <option value slected disable></option>
+                    <option value="1">Private Limited Company Registration</option>
+                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+                    <option value="3">>One Person Company Registration</option>
+                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+                    <option value="5">Partnership Firm Registration</option>
+                    <option value="6">Subsidary Company Registration</option>
+                    <option value="7">Subsidary of an Indian Company in India</option>
+                    <option value="8">Public Limited Company Registratiom</option>
+                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+                    <option value="10">Trust Registration</option>
+                    <option value="11">Society Registration</option>
+                    <option value="12">USA Company Incorporation</option>
+                    <option value="13">>Register a NBFC Company in India</option>
+                    <option value="14">NIDHI Company Registration</option>
+                    <option value="15">Digital Signature Certificae(DSC)</option>
+                    <option value="16">Tax Deduction Account Number(TAN)</option>
+                    <option value="17">Trademark Registration</option>
+                    <option value="18">Trademark Renewal</option>
+                    <option value="19">International Trademark Application</option>
+                    <option value="20">Trademark Ownership Transfer</option>
+                    <option value="21">File a Trademark Opposition</option>
+                    <option value="22">Respond to a Trademark Objection</option>
+                    <option value="23">Patent Search</option>
+                    <option value="24">Apply for a Provisional Patent</option>
+                    <option value="25">Apply for a Patent</option>
+                    <option value="26">Changes in IEC<</option>
+                    <option value="27">Changes in GST</option>
+                    <option value="28">LUT Application</option>
+                    <option value="29">Professional Tax for Employees</option>
+                    <option value="30">Professional Tax for Directors</option>
+                    <option value="31">ESI Registration</option>
+                    <option value="32">PF Registration</option>
+                    <option value="33">ESI Filing</option>
+                    <option value="34">PF Filing</option>
+                    <option value="35">Cancellation of GST</option>
+                    <option value="36">Professional Tax Registration</option>
+                    <option value="37">DIPP Certification</option>
+                    <option value="38">Loan Agreement</option>
+                    <option value="39">Religion Change</option>
+                    <option value="40">Gender Change</option>
+                    <option value="41">Mutual Divorce</option>
+                    <option value="42">Court Marriage</option>
+                    <option value="43">Breach of Contract Claims</option>
+                    <option value="44">Initial Pleading</option>
+                    <option value="45">Landlord/Tenant Issues</option>
+                    <option value="46">Sale Deed</option>
+                    <option value="47">Post Discovery</option>
+                    <option value="48">Landlord/Tenant Issues</option>
+                    <option value="49">Property Registration</option>
+                    <option value="50">File annual Returns for your Private Limited Company</option>
+                    <option value="51">Something Else.....</option>
+                  </select>
+                  <span class="highlight"></span>
+                  
+                  <br><br>
+
+                
+                  <label for="email">Email</label>
+                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+                  <br><br>
+
+                  <label for="phone">Phone Number</label><br>
+                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+                  <br><br>
+                
+                  <label for = "subject">Subject</label><br>
+                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
+                  <br>              <br>
+                 
+                 <button type="submit" class="btn">Submit</button>
+
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+<br>
+<br>
+<div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+</div>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<footer class="footer mt-auto text-white-50 z-index-2">
+  <div class="container-fluid bg-dark">
+      <div class="container py-12 pe-2">
+          <div class="row">
+              <div class="col-lg-8 mt-2 mt-md-0">
+                  <p class="mb-4"> Disclaimer: </p>
+                  <p>
+                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+</html>

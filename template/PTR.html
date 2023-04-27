@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create a column layout with Flexbox */
+.row {
+  display: flex;
+}
+
+/* Left column (menu) */
+.left {
+  flex: 35%;
+  padding: 15px 0;
+}
+
+.left h2 {
+  padding-left: 8px;
+}
+
+/* Right column (page content) */
+.right {
+  flex: 65%;
+  padding: 15px;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu inside the left column */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: #eee;
+}
+.header{
+    border: 1% solid black;
+    height: 85%auto;
+    }
+    .menu-bar{background-color:blanchedalmond;
+    height: 100%;
+    width: 100%;
+    display: inline-flex; 
+    }
+    .menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .menu-bar ul li {
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .menu-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .menu-bar ul li:hover {
+    background-color: green;
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar{background-color:rgb(238, 218, 218);
+    height: 62px fit-content;
+    width: 59% fit-content;
+    float: right;
+    }
+    .foot-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .foot-bar ul li {
+    background-color: rgb(233, 227, 220);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px  fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: rgb(23, 2, 43);
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .foot-bar ul li:hover {
+    background-color: darkgrey;
+    border-radius: 100px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .footer{
+    border: 1px solid rgb(17, 17, 17);
+    height: 100px fit-content;
+    }
+    .open-button {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 180px;
+}
+.form-popup {
+  display: none;
+  position:sticky;
+  bottom: 50px;
+  right: 20px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: fit-content;
+  padding: 40px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=email], .form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border:chocolate;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=email]:focus, .form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 17px;
+  width: 50px fit-content;
+  height:25px fit-content;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: red;
+  display: none;
+  padding: 50px;
+  text-align: left;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: rgb(255, 252, 51);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 1px;
+  height: 20px fit-content;
+  width: 20px fit-content;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<div class="border" style="background-color: antiquewhite;">
+  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div >Instagram</div>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div>Facebook</div>
+  </a>                        
+</div>
+<header>
+{% load static %}
+<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
+<div class="container-x1">
+<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
+<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
+</a>
+</div>
+</nav>
+<div class="header">
+
+<div class="menu-bar">
+<ul>   
+<li class="active" ><a href="http://localhost:8000/">Home</a></li>
+<li><a href="http://localhost:8000/about_us/">About</a></li>
+<li><a href="http://localhost:8000/advocate">Advocates</a></li>
+<li><a href="http://localhost:8000/solution">Solutions</a></li>
+</ul>
+</div>
+</div>
+
+</header>
+<body>
+
+<h2>Search For Your Issue</h2>
+
+<div class="row">
+  <div class="left" style="background-color:#bbb;">
+    <h2>Search</h2>
+    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+    <ul id="myMenu"> <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
+      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+      <li><a href="http://localhost:8000/DIPCC">DIPP Certification</a></li>
+      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+      <li><a href="http://localhost:8000/F">Fundraising</a></li>
+      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
+      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
+      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
+      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
+      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+    </ul>
+  </div>
+  
+  <div class="right" style="background-color:#ddd;">
+   <h2>Solution.....</h2><br><br>
+   Professional Tax Registration and Compliance<br><br>
+Professional tax is a direct tax levied on persons earning an income by either practicing a profession, employment, calling, or trade. Unlike income tax imposed by the Central Government, professional tax is levied by the government of a state or union territory in India. In the case of salaried and wage earners, the professional tax is liable to be deducted by the Employer from the salary/wages, and the same is to be deposited to the state government. In the case of other classes of individuals, this tax is liable to be paid by the employee himself. The tax calculation and amount collected may vary from one State to another, but it has a maximum limit of Rs. 2500/- per year.
+<br><br>
+Professional Tax Applicability<br><br>
+This tax is levied on all kinds of professions, trades, and employment. Profession tax is applicable to the following classes of persons:
+<br><br>
+An Individual<br><br>
+A Hindu Undivided Family (HUF)<br><br>
+A Company/Firm/Co-operative Society/Association of persons or a body of individuals, whether incorporated or not<br><br>
+The professionals earning an income from salary or other practices such as a lawyer, teachers, doctors, chartered accountants, etc. are required to pay professional tax.
+<br><br>Professional Tax Rate<br><br>
+The maximum amount payable per annum towards professional tax is INR 2,500. The professional tax is usually a slab amount based on the gross income of the professional. It is deducted from his income every month.
+<br><br>
+The Commercial Taxes Department of a state/union territory is the nodal agency that collects professional tax on the basis of predetermined tax slabs which vary for each state and union territory. The tax is calculated on the annual taxable income of the individual; however, it can be paid either annually or monthly.
+<br><br>
+Who Pays Profession Tax?<br><br>
+In the case of Salaried and Wage-earners, the Professional Tax is liable to be deducted by the Employer from the Salary/Wages, and the Employer is liable to deposit the same with the state government.
+<br><br>
+Self-employed persons who carry out their profession or trade on their own and fall in the ambit of profession tax are liable to pay the tax themselves to the state government.
+<br><br>
+Employer’s Responsibility for Professional Tax<br><br>
+The owner of a business is responsible for deducting professional tax from the salaries of his employees and paying the amount so collected to the appropriate government department. He/she has to furnish a return to the tax department in the prescribed form within the specified time. The return should include proof of tax payment. In case of not enclosing the payment proof, the register will consider the return incomplete and invalid.
+<br><br>
+Exemptions for Payment of Professional Tax<br><br>
+There are exemptions provided for certain individuals to pay Professional Tax under the Professional Tax Rules. The following individuals are exempted to pay Professional Tax:
+<br><br>
+Parents of children with permanent disability or mental disability<br><br>
+Members of the forces as defined in the Army Act, 1950, the Air Force Act, 1950, and the Navy Act, 1957 including members of auxiliary forces or reservists, serving in the State.
+<br><br>Badli workers in the textile industry<br><br>
+An individual suffering from a permanent physical disability (including blindness)<br><br>
+Women exclusively engaged as agents under the Mahila Pradhan Kshetriya Bachat Yojana or Director of Small Savings.<br><br>
+Parents or guardians of individuals suffering from a mental disability.<br><br>
+Individuals, above 65 years of age<br><br>
+Professional Tax Registration and Compliance<br><br>
+Professional Tax Registration is mandatory within 30 days of employing staff in a business or, in the case of professionals, 30 days from the start of the practice.
+<br><br>
+Application for the Registration Certificate should be made to the assessed state tax department within 30 days of employing staff for his business.
+<br><br>If the assessee has more than one place of work, then the application should be made separately to each authority with respect to the place of work under the jurisdiction of that authority.
+<br><br>Due Dates for Professional Tax Payment<br><br>
+If an employer has employed more than 20 employees, he is required to make the payment within 15 days from the end of the month. However, if an employer has less than 20 employees, he is required to pay quarterly (i.e. by the 15th of next month from the end of the quarter).
+<br><br>
+Professional Tax Return<br><br>
+The Professional Tax Return is to be filed by all the persons having Professional Tax Registration and the due dates for filing of such returns vary from State to State.
+<br><br>
+Benefits of Professional Tax Registration<br><br>
+The benefits of Professional tax Registration are given below:<br><br>
+
+It is simple to comply with the Professional Tax Compliance, which results in a smooth registration process with minimum restrictions.
+<br><br>It is compulsory to pay Professional tax as per the law. Hence, the timely payment of Professional tax can help avoid penalties and any punitive action against the Employer or a self-employed person.
+<br><br>Professional Tax Compliance is simple, which can enable a smooth and hassle-free Registration Process.
+<br><br>The Professional Tax acts as a revenue source for the state governments that helps the government to implement schemes for the various welfare and development of the region.
+<br><br>The Employer or the self-employed person can claim a deduction on the previously paid professional tax.<br><br>
+Documents required for Professional Tax Registration<br><br>
+Certificate of Incorporation / LLP Agreement<br><br>
+MOA and AOA<br><br>
+PAN Card of Company/LLP/Proprietor/Owner/Director<br><br>
+NOC from the landlord, where the business is situated<br><br>
+Passport size photos of Proprietor/Owner/Director<br><br>
+Address and identity proof of Proprietor/Owner/Director<br><br>
+Details of employees and salaries paid<br><br>
+Additional registrations and licenses<br><br>
+Procedure for Professional Tax Registration<br><br>
+The procedure for Professional Tax Registration depends from State to State. Further, Returns must also be filed at specified intervals depending on the State’s requirement. Professionals /Employers seeking professional tax registration shall follow the below-mentioned procedure.
+<br><br>
+The applicant must file the application form and the requisite documents.<br><br>
+The applicant needs to submit the Application with the necessary documents to the concerned state government. A copy of the same should also be submitted to the tax department.
+<br><br>On receipt of an application, the tax authority shall scrutinize the application to ensure that all the information is correct.
+<br><br>Issue of Registration Certificate: The authority will issue the Registration certificate after successfully scrutinizing all the documents.
+<br><br>Penalties Related To Professional Tax Registration<br><br>
+When professional tax policy becomes applicable, all such jurisdictions may impose a penalty for failure to register Profession Tax. However, the precise amount of the Penalty will depend on state regulatory law.
+<br><br>
+There are also penalties for failing to submit the PT return by the deadline and withholding payments after they are due. Each state’s professional tax regulations determine the actual fine. Businesses that fail to register professional tax, pay taxes late, or file returns on time may face fines, late fees, or imprisonment.
+<br><br>
+<a href="http://localhost:8000/COGST" class="previous">&laquo; Previous</a>
+<a href="http://localhost:8000/DIPPC" class="next">Next &raquo;</a> </div>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Need Help??</h1> 
+                  <label for="name">Name</label>
+                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
+                  <br>
+                  <label for="SelectService">Select Service</label>
+                  <br>
+
+                  <select class="whatever floating-select" name="service_id" id="service_id" required>
+                    <option value slected disable></option>
+                    <option value="1">Private Limited Company Registration</option>
+                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+                    <option value="3">>One Person Company Registration</option>
+                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+                    <option value="5">Partnership Firm Registration</option>
+                    <option value="6">Subsidary Company Registration</option>
+                    <option value="7">Subsidary of an Indian Company in India</option>
+                    <option value="8">Public Limited Company Registratiom</option>
+                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+                    <option value="10">Trust Registration</option>
+                    <option value="11">Society Registration</option>
+                    <option value="12">USA Company Incorporation</option>
+                    <option value="13">>Register a NBFC Company in India</option>
+                    <option value="14">NIDHI Company Registration</option>
+                    <option value="15">Digital Signature Certificae(DSC)</option>
+                    <option value="16">Tax Deduction Account Number(TAN)</option>
+                    <option value="17">Trademark Registration</option>
+                    <option value="18">Trademark Renewal</option>
+                    <option value="19">International Trademark Application</option>
+                    <option value="20">Trademark Ownership Transfer</option>
+                    <option value="21">File a Trademark Opposition</option>
+                    <option value="22">Respond to a Trademark Objection</option>
+                    <option value="23">Patent Search</option>
+                    <option value="24">Apply for a Provisional Patent</option>
+                    <option value="25">Apply for a Patent</option>
+                    <option value="26">Changes in IEC<</option>
+                    <option value="27">Changes in GST</option>
+                    <option value="28">LUT Application</option>
+                    <option value="29">Professional Tax for Employees</option>
+                    <option value="30">Professional Tax for Directors</option>
+                    <option value="31">ESI Registration</option>
+                    <option value="32">PF Registration</option>
+                    <option value="33">ESI Filing</option>
+                    <option value="34">PF Filing</option>
+                    <option value="35">Cancellation of GST</option>
+                    <option value="36">Professional Tax Registration</option>
+                    <option value="37">DIPP Certification</option>
+                    <option value="38">Loan Agreement</option>
+                    <option value="39">Religion Change</option>
+                    <option value="40">Gender Change</option>
+                    <option value="41">Mutual Divorce</option>
+                    <option value="42">Court Marriage</option>
+                    <option value="43">Breach of Contract Claims</option>
+                    <option value="44">Initial Pleading</option>
+                    <option value="45">Landlord/Tenant Issues</option>
+                    <option value="46">Sale Deed</option>
+                    <option value="47">Post Discovery</option>
+                    <option value="48">Landlord/Tenant Issues</option>
+                    <option value="49">Property Registration</option>
+                    <option value="50">File annual Returns for your Private Limited Company</option>
+                    <option value="51">Something Else.....</option>
+                  </select>
+                  <span class="highlight"></span>
+                  
+                  <br><br>
+
+                
+                  <label for="email">Email</label>
+                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+                  <br><br>
+
+                  <label for="phone">Phone Number</label><br>
+                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+                  <br><br>
+                
+                  <label for = "subject">Subject</label><br>
+                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
+                  <br>              <br>
+                 
+                 <button type="submit" class="btn">Submit</button>
+
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+<br>
+<br>
+<div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+</div>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<footer class="footer mt-auto text-white-50 z-index-2">
+  <div class="container-fluid bg-dark">
+      <div class="container py-12 pe-2">
+          <div class="row">
+              <div class="col-lg-8 mt-2 mt-md-0">
+                  <p class="mb-4"> Disclaimer: </p>
+                  <p>
+                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+</html>

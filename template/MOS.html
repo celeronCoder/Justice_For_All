@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create a column layout with Flexbox */
+.row {
+  display: flex;
+}
+
+/* Left column (menu) */
+.left {
+  flex: 35%;
+  padding: 15px 0;
+}
+
+.left h2 {
+  padding-left: 8px;
+}
+
+/* Right column (page content) */
+.right {
+  flex: 65%;
+  padding: 15px;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu inside the left column */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: #eee;
+}
+.header{
+    border: 1% solid black;
+    height: 85%auto;
+    }
+    .menu-bar{background-color:blanchedalmond;
+    height: 100%;
+    width: 100%;
+    display: inline-flex; 
+    }
+    .menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .menu-bar ul li {
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .menu-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .menu-bar ul li:hover {
+    background-color: green;
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar{background-color:rgb(238, 218, 218);
+    height: 62px fit-content;
+    width: 59% fit-content;
+    float: right;
+    }
+    .foot-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .foot-bar ul li {
+    background-color: rgb(233, 227, 220);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px  fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: rgb(23, 2, 43);
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .foot-bar ul li:hover {
+    background-color: darkgrey;
+    border-radius: 100px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .footer{
+    border: 1px solid rgb(17, 17, 17);
+    height: 100px fit-content;
+    }
+    .open-button {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 180px;
+}
+.form-popup {
+  display: none;
+  position:sticky;
+  bottom: 50px;
+  right: 20px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: fit-content;
+  padding: 40px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=email], .form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border:chocolate;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=email]:focus, .form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 17px;
+  width: 50px fit-content;
+  height:25px fit-content;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: red;
+  display: none;
+  padding: 50px;
+  text-align: left;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: rgb(255, 252, 51);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 1px;
+  height: 20px fit-content;
+  width: 20px fit-content;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<div class="border" style="background-color: antiquewhite;">
+  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div >Instagram</div>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div>Facebook</div>
+  </a>                        
+</div>
+<header>
+{% load static %}
+<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
+<div class="container-x1">
+<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
+<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
+</a>
+</div>
+</nav>
+<div class="header">
+
+<div class="menu-bar">
+<ul>   
+<li class="active" ><a href="http://localhost:8000/">Home</a></li>
+<li><a href="http://localhost:8000/about_us/">About</a></li>
+<li><a href="http://localhost:8000/advocate">Advocates</a></li>
+<li><a href="http://localhost:8000/solution">Solutions</a></li>
+</ul>
+</div>
+</div>
+
+</header>
+<body>
+
+<h2>Search For Your Issue</h2>
+
+<div class="row">
+  <div class="left" style="background-color:#bbb;">
+    <h2>Search</h2>
+    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+    <ul id="myMenu">
+      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
+      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+      <li><a href="http://localhost:8000/F">Fundraising</a></li>
+      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
+      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
+      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
+      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
+      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+    </ul>
+  </div>
+  
+  <div class="right" style="background-color:#ddd;">
+   <h2>Solution.....</h2><br><br>
+   MANAGEMENT OF THE AFFAIRS OF THE SOCIETY<br><br>
+Subjects to the provisions of the Act, the Rules and the Bye-laws of the Society, the final authority of the Society shall vest in its General Body Meeting, summoned in such manner as is specified in these Bye-laws.
+<br><br>The Management of the affairs of the Society shall vest in the Committee duly constituted in accordance with the provisions of the Act, the Rules and the Bye-laws of the Society.
+<br><br>Subject to the direction given or regulation made by a Meeting of The General Body of the Society, the Committee shall exercise all powers, expressly conferred on it and discharge all functions entrusted to it under the bye-law No. 137.
+<br><br>A Banking Account shall be opened by the Society in the nearest State or District Central Co-op Bank / a Scheduled Bank having awarded “A” Audit Class in last three consecutive years, Nationalised Bank, and in any other mode permitted by general or special order of the State Government, as provided under section 70 of the Act and the account shall be operated upon and all acquaintances and discharges shall be signed by the Secretary jointly with the Chairman or Treasurer.
+<br><br>The Committee shall consist of *11/13/15/17/19 Members of the Society. This strength includes the reservation of seats as provided under section 73B and 73C of the Act.
+<br><br>Note: *The strength of the managing committee and strength of the quorum for conducting the meeting would be as under :-
+<br><br><br><br>
+No of Members of the Society<br><br>
+Strength of the Managing Committee<br><br>
+Reserved<br><br>
+General Woman SC/ST OBC VJ/NT/SBC Total<br><br>
+Quorum for Meeting*<br><br>
+Upto 100 6 2 1 1 1 11 6<br><br>
+101 to 200 8 2 1 1 1 13 7<br><br>
+201 to 300 10 2 1 1 1 15 8<br><br>
+301 to 500 12 2 1 1 1 17 9<br><br>
+501 and above 14 2 1 1 1 19 10<br><br><br><br>
+
+*Quorum for the Meeting will be simple majority of the existing Committee Members<br><br>
+a. Election of all the Members of the Committee shall be held once in 5 years, before the expiry of its term, in accordance with the provisions of Sec 73-CB of the Act and the Rules / procedure framed there under. It shall be the duty of the Committee to intimate to the State Election Authority for holding of its election before expiry of its term. On failure the Committee Members shall cease to hold office after expiry of its term, and attract action by the Registrar under section 77 A.
+<br><br>b. The Committee of the Society may co-opt two “Expert Directors” relating to the objects and activities under taken by the Society… The number of such co-opted Members shall not exceed two in addition to the strength of the committee as provided in bye-laws No. 113., such co-opted Members shall not have the right to vote in any election of the Society in their capacity as such Member or to be eligible to be elected as office bearers of the committee.
+<br><br>c. The Committee of the Society may co-opt two “Functional Directors”, such Members shall be excluded for the purposes of counting the total numbers of the committee and shall have no right to vote.
+<br><br>d. In respect of housing society having contribution of the Government towards its share capital, then the members of the committee shall include two officers o the Government nominated by the State Government, which shall be in addition to the number of members specified as above, and as provided under section 73 AAA of the Act.
+<br><br>e. The Election of the Society shall be conducted bye the State Cooperative Election Authority under section 73CB
+<br><br>No Officer of the Society shall have any interest, directly or indirectly otherwise than as such officer: (a) in any contract made with the Society, (b) in any property sold or purchased by the Society, (c) In any other transaction of the Society, except as investment made in or loan taken from the Society for provision of residential accommodation bye the Society to any paid employee of the Society.
+<br><br><br><br>No person shall be eligible for being elected as a Member of the Committee or co-opted on it, if :
+<br><br>a. he/she has been convicted of the offence, involving moral turpitude, unless the period of six years has elapsed since his conviction;
+<br><br>b. he/she has defaults the payment of dues to the Society, within three months from the date of service of notice in writing, served either by hand delivery or by registered post, demanding the payment of dues;
+<br><br>c. he/she has been held responsible under Section 79/88/147 of the Act or has been held responsible for the payment of the costs of enquiry under Section 85 of the Act;
+<br><br>d. In case of an Associate Member, non-submission of the no-objection certificate and undertaking as prescribed under these bye-laws, by the Member;
+<br><br>e. he is not an Active Member;
+<br><br>f. he has without previous permission in writing has sublet his flat or part thereof or given it on leave and license or care taker basis or has parted with its possession in any other manner or has sold his shares and interest in the society
+<br><br><br><br>In a General Election of Members of the Committee of a Society, on the election of two-thirds or more number of Members, the Returning Officer or any other Officer or Authority conducting such election shall within seven days after the declaration of results of the election of such Members, the committee has, for whatever reason, has not been so far constituted, forward their names together with their permanent addresses to the Registrar, who shall, within fifteen days from the date of receipt thereof by him , publish or cause to be published such names and addresses by affixing a notice on the Notice Board or at any prominent place in his office; and upon Constitution of the Committee such publication, the Committee of the Society shall be deemed to be duly constituted. In determining two-thirds of the number of Members, a fraction shall be ignored.
+<br><br>a. A person shall cease to be the Member of the Committee, if:
+<br><br>i. he has incurred any of the disqualifications mentioned under the byelaw No. 116 or;
+<br><br>ii. he has failed to attend any three consecutive monthly meetings of the Committee, without leave of absence.
+<br><br>b. If a Member of the Committee attracts any of the disqualifications under the bye-law no. 118 (1), the Committee shall record the fact in the minutes of its meeting and the Secretary of the Society shall inform the Member and Registrar accordingly. Such Member shall cease to be the Member of Managing Committee on the order of the Registrar.
+<br><br>No Member of the Committee shall be present at the consideration of any matter, in which he is directly or indirectly interested.
+<br><br>The period of office of the Committee elected under the bye-law No. 114(a) shall be for 5 years from the date of assuming the office.
+<br><br>a. The first meeting of the newly elected jointly with outgoing Committee shall be held within 30 days from the date of constitution of the new committee as per bye-law No. 117 and the provisions of Section 73AAA.
+<br><br>b. Subject to the provisions of the bye-law No. 121(a) the Secretary of the outgoing Committee shall issue notice of the first meeting to the Members of the newly elected Committee and the outgoing Committee to convene the joint meeting, the Chairman of the outgoing committee shall call it. On the failure of both, the Registration Authority may call such a meeting.
+<br><br>All records of the Society shall be kept at its premises, convenient to the secretary, with the approval of the Committee of the Society.
+<br><br>When the new Committee is elected, the Secretary of the outgoing committee shall prepare the list of papers and property of the Society in his custody and hand over the charge thereof to the outgoing Chairman. The retiring Chairman shall hand over the charge of the office of the Committee and all papers and property of the Society, in his possession to the Chairman of the new Committee, as per provisions contained in Section 160 of the MCS Act 1960.
+<br><br><br><br>Note : The word ‘Paper’ used in this bye-laws and any other bye-laws shall mean all and / or any items mentioned in the bye-laws nos. 141 and 142, and data / information in digital form
+<br><br>a. Every Committee, at its first meeting, after its election shall elect a Chairman, Secretary and Treasure from amongst the Member of the Committee.
+<br><br>b. The Officer of the Society shall hold office for the period of 5 years from the date on which he is elected to be the Chairman as the case may be the Secretary and Treasurer but not beyond the expiry of term of the Committee.
+<br><br>
+Provided that he shall cease to be the Officer, if the motion of No Confidence is moved in the special meeting of the Committee called and presided by the Registrar or such officer not below the rank of a Assistant Registrar upon the notice given by 1/3rd Members of the Committee and the motion of No confidence is passed by the 2/3rd Members present at such meeting, who are entitled to vote at the election of such Chairman, Secretary of Treasurer.
+<br><br>
+Provided further that another motion of No Confidence shall not be brought against the Chairman or as the case may be the Secretary or Treasurer of the Society unless the period of 6 months has elapsed from the date of preceding motion of the No Confidence.
+<br><br>
+The Committee meeting shall be normally held in the premises of the Society. The quorum for Committee Meeting shall be as mentioned in Bye-law No. 113. It shall not be competent for the Committee to transact any business unless there is the quorum at the time of consideration of every item on the agenda of the meeting of the Committee.
+<br><br><br><br>
+<br><br>a. The Committee shall meet as often as necessary but at least once in a month.
+<br><br>b. In case of emergency, the Committee may place a resolutions and get the same passed by the Committee Members, however the same be placed before the next subsequent meeting.
+<br><br><br><br>The Committee may fill a casual vacancy on the Committee by nomination out of a same class of Active Members in respect of which the casual vacancy has arisen as per section 73 CB and as per the instruction issued by State Co-operative Election Authority
+<br><br><br><br>The period of office of the co-opted Member of the Committee shall be coterminous with tenure of Office of the Committee.
+<br><br>A Member of the Committee may, by a letter addressed to the Chairman of the Society, resign his Membership of the committee. The resignation shall be effective from the date it is accepted by the Committee or on expiry or the period of one month from the date of the receipt of the letter or resignation bye the Chairman or the Secretary of the Society, whichever is earlier.
+<br><br>a. The Chairman of the Society may resign his office as Chairman by a letter addressed to the Secretary of the Society;
+<br><br>b. The Secretary or Treasurer of the Society may resign his office as Secretary or Treasurer by a letter addressed to the Chairman of the Society.
+<br><br>c. Chairman/Secretary/Treasurer’s resignation will be effective only after its acceptance and handing over the charge to the newly elected Chairman/Secretary/Treasurer, as the case may be.
+<br><br>d. The Committee may accept the resignation of the office of the Chairman/Secretary/Treasurer only after it is satisfied that the Chairman or as the case may be the Secretary or Treasurer of the Society has brought up to date the work entrusted to him and has produced the entire papers and property of the Society, in his possession, before the Committee.
+<br><br>e. In case entire committee intends to resign, the resignations of the committee shall be placed before the General Body and such resignations shall be effective from the date of acceptance of resignations of the entire Committee by the General Body, shall be communicated to the Registrar by the outgoing officers and Registrar may take necessary action as provided under section 77 A of the Act. However the existing Committee shall continue to carry on with only routine functioning of the Society, till alternate arrangement is made by the Registrar.
+<br><br><br><br>The Secretary of the Society shall give 3 clear day’s notice of meetings of the committee to all the Members of the Committee which shall state the date, time and place of the meeting and the business to be transacted there at, in consultation with the Chairman of the Society. Where the Secretary of the Society fails to issue such a notice and agenda of any meeting of the Committee, the Chairman of the Society shall issue it. If the Chairman and the Secretary of the Society fail to issue a notice and agenda of any meeting of the Committee, the concerned Housing Federation, of which Society is affiliated, on its receipt of such information and request may call such a meeting.
+<br><br>The Chairman of the Society shall preside over all the meetings of the Committee, provided that if at any meeting of the Committee, he is absent, those Members of the Committee present shall elect one of them to be the Chairman, for that occasion, who shall preside over the meeting.
+<br><br>Every Member of the Committee shall have one vote. However in case of equality of votes the chairman of the meeting will have a second or casting vote. All decisions shall be taken by majority of vote.
+<br><br>On a requisition by 1/3rd of the Members of the committee, the Secretary of the Society shall convene a special meeting of the Committee within 7 days of the date of receipt of the requisition to discuss the matter mentioned in the requisition to discuss the matter mentioned in the requisition. On the failure of the Secretary of the Society to convene such a meeting within the time stipulated the procedure laid down under the bye-laws No. 131 shall be followed.
+<br><br>The Secretary of the Society shall attend every meeting of the committee and record its minutes and place the same for confirmation before the next meeting of the committee, after the minutes are signed by the Secretary of the Society and the chairman of the meeting in the absence of the Secretary the Chairman of the Society shall make alternate arrangement for recording minutes of the meeting.
+<br><br>The Members of the Committee shall be jointly and severally responsible for all the decisions taken by the committee during its term relating to the business of the Society. The Members of the committee shall be jointly and severally responsible for all the acts and omissions detrimental to the interest of the Society.
+<br><br><br><br>Subject to the bye-law 111 the Committee shall exercise the powers and discharge the functions and duties as mentioned hereunder.
+Sr. No.
+<br><br>Items of the powers, functions and duties The bye-law no. under which the Power, Function or Duty falls
+<br><br>1 To consider acceptance of deposits from Members and raising of funds 11
+<br><br>2 To consider and recommend to the meeting of the general body, the rates of contribution 13(a) and 13(c)
+<br><br>3 To consider all matter relating to the creation, investment and utilization of the Repairs & maintenance, Reserve Fund and Sinking Fund. 12(i) and (ii) 14 (a) (b) and (c) 15
+<br><br>4 To consider and decide the resignations received form Member, Associate Members & Nominal Members. 27 to 30
+<br><br>5 To ensure that nomination and revocations thereof are recorded in the minutes of the committee. 32
+<br><br>6 To take action on the report of the Secretary on inspection of the Flats. 46 (b)
+<br><br>7 To take action on cases of cessation of Membership, including associate and nominal Membership 58
+<br><br>8 To consider and decide the applications for various purposes received by the Society 62
+<br><br>9 To Consider and decide cases of refund o shares and interest in the capital/property of the Society where the shares and interest in the capital/property are acquired by the Society 63
+<br><br>10 To fix the rate of insurance premium in respect of commercial use of flats. 66 a) (xi)
+<br><br>11 To fix in respect of every flat the Society’s charges on the basis of the proportion laid down under the bye-law 69 (a) 66 (b)
+<br><br>12 To review the position of recovery of the charges due to the Society from Members and to initiate action against defaulted charges of the Society 69
+<br><br>13 To verify compliance of the provisions relating to charging of interest in defaulted charges of the Society 69
+<br><br>14 To authorise a Member of the Committee to attest deed of conveyance, share certificates and any other documents to which the seal of the Society is affixed. 72
+
+<br><br>15 To issue letters of allotment of flats to those who have purchased flats from the Promoter (Builder) 74
+<br><br>16 To make available papers of the Society for perusal if asked for bye the Members 23
+<br><br>17 To ensure holding of every annual meeting of the general body are kept on the agenda of the meeting 93
+<br><br>18 To ensure that all matters required to be considered at an annual meeting of the general body are kept on the agenda of the meeting 93
+<br><br>19 To call a special meeting of the general body when required 95
+<br><br>20 To arrange for election of a new Committee prior to the expiry of the period of the existing committee 114
+<br><br>21 To ensure that after elections new committee is duly constituted 117
+<br><br>22 To elect office – bearers of the Society 124
+<br><br>23 To ensure that a meeting of the committee is held once in a month 126
+<br><br>24 To fill in vacancies of the Committee 127
+<br><br>25 To consider resignation of a Member of the Committee 129
+<br><br>26 To consider resignation of an office bearer of the Society 130
+<br><br>27 To obtain securities form the paid employees of the Society 146
+<br><br>28 To approve the audit rectification reports of statutory and internal audits and to forward them to the authorities concerned 152
+<br><br>29 To execute deed of conveyance of the land and building / buildings thereon. 153
+<br><br>30 To take steps to maintain the property of the Society in good condition and to carry out repairs to it and renewals thereof. 154 and 157
+<br><br>31 To Insure the property of the Society 159
+<br><br>32 To suggest to the general body meeting the rates of penalties for breaches of bye-laws and to issue show cause notices 164
+<br><br>33 To regulate operation of the lift of the Society 166
+<br><br>34 To suggest to the meeting of the general body the games to be allowed to be played in the compound of the Society 167
+<br><br>35 To consider and decide any other matters provided under the MCS Act 1960, the MCS Rules 1961 and the Bye-laws of the Society,
+<br><br>but not expressly indicated here in above 76 to 83<br><br>
+36 To regulate parking in the Society 77 to 83<br><br>
+37 To ensure that the Society is affiliated to Housing Federation and its subscription is regularly paid. 6<br><br>
+38 To take the decision on the complaint application in the Managing Committee Meeting and inform the concerned Member of its decision accordingly. 172
+<br><br>39 To enter into contract with the Architect of the Society. 156 (f)<br><br>
+40 To scrutinize the tenders, received for construction work and to submit the same along with Committee’s report to the meeting of the General Body and to enter into contract with the contractor. 156 (i)
+<br><br><br><br>
+The Chairman of the Society shall have the power of overall superintendence, control and guidance in respect of management of the affairs of the Society within the frame-work of the MCS Act 1960. Rule 1961 and the Bye-laws of the Society. In case of any emergency, the chairman of the Society may be competent to exercise any of the powers of the committee. However, while doing so he shall record the reasons thereof in writing Any decision, so taken by the chairman of the Society shall be got ratified in the next meeting of the Committee.
+<br><br>The functions of the Secretary of the Society shall be those mentioned below :<br><br>
+Sr. No. Items of the Powers, Functions and Duties The Bye-law no. under which the Power, Function or Duty falls<br><br>
+1 To issue share certificate to Members within the stipulated period and the prescribed manner 9 & 10<br><br>
+2 To deal with resignations from Members including associate and nominal Members 27 to 30<br><br>
+3 To enter nominations and revocations thereof in the Nominations Register. 31<br><br>
+4 To inspect the property of the Society 46 (a)<br><br>
+5 To issue notices regarding repairs to be carried out in flats. 46 (b)(C)<br><br>
+6 To deal with cases of expulsion of Members. 48 to 53<br><br>
+7 To deal with cases of cessation of Membership including associate and nominal Membership 54<br><br>
+8 To deal with applications for various purposes received by the Society 63<br><br>
+9 To prepare and issue demand notices/bills for payment to the Society’s charges. 68<br><br>
+10 To bring cases of defaults in payment of the Society’s charges to the notice of the Committee 69<br><br>
+11 To issue letter of allotment of flats 76 (a)<br><br>
+12 To issue notices and agenda of all meetings of the general body 97<br><br>
+13 To record the minutes of all the meetings of the general body 107<br><br>
+14 To call the first meeting of the newly constituted committee 121 (b)<br><br>
+15 To issue notices of all the meetings of the Committee 131<br><br>
+16 To attend meetings of the Committee and to record minutes thereof 135<br><br>
+17 To attend meeting accounts books, register and other records, unless otherwise decided by the committee 142<br><br>
+18 To finalize account of the Society in the required manner 145 (b)<br><br>
+19 To produce records of the Society before different authority concerned with the working of the Society with the consent of the Chairman 151
+<br><br>20 To prepare the audit rectification reports in respect of audit memos received from the Statutory and internal Auditors 152
+<br><br>21 To bring breaches of the Bye-laws by the Members of their notices under instructions from the committee and Penalties there to 164
+<br><br>22 To discharge such other functions under the MCS Act 1960 the MCS Rules 1961 and the Bye-laws of the general body meetings, as are not expressly mentioned here in above
+<br><br>23 To place the complaint application with facts before the committee, in the coming meeting 174
+<a href="#" class="previous">&laquo; Previous</a>
+<a href="#" class="next">Next &raquo;</a>
+
+
+  </div>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Need Help??</h1> 
+                  <label for="name">Name</label>
+                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
+                  <br>
+                  <label for="SelectService">Select Service</label>
+                  <br>
+
+                  <select class="whatever floating-select" name="service_id" id="service_id" required>
+                    <option value slected disable></option>
+                    <option value="1">Private Limited Company Registration</option>
+                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+                    <option value="3">>One Person Company Registration</option>
+                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+                    <option value="5">Partnership Firm Registration</option>
+                    <option value="6">Subsidary Company Registration</option>
+                    <option value="7">Subsidary of an Indian Company in India</option>
+                    <option value="8">Public Limited Company Registratiom</option>
+                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+                    <option value="10">Trust Registration</option>
+                    <option value="11">Society Registration</option>
+                    <option value="12">USA Company Incorporation</option>
+                    <option value="13">>Register a NBFC Company in India</option>
+                    <option value="14">NIDHI Company Registration</option>
+                    <option value="15">Digital Signature Certificae(DSC)</option>
+                    <option value="16">Tax Deduction Account Number(TAN)</option>
+                    <option value="17">Trademark Registration</option>
+                    <option value="18">Trademark Renewal</option>
+                    <option value="19">International Trademark Application</option>
+                    <option value="20">Trademark Ownership Transfer</option>
+                    <option value="21">File a Trademark Opposition</option>
+                    <option value="22">Respond to a Trademark Objection</option>
+                    <option value="23">Patent Search</option>
+                    <option value="24">Apply for a Provisional Patent</option>
+                    <option value="25">Apply for a Patent</option>
+                    <option value="26">Changes in IEC<</option>
+                    <option value="27">Changes in GST</option>
+                    <option value="28">LUT Application</option>
+                    <option value="29">Professional Tax for Employees</option>
+                    <option value="30">Professional Tax for Directors</option>
+                    <option value="31">ESI Registration</option>
+                    <option value="32">PF Registration</option>
+                    <option value="33">ESI Filing</option>
+                    <option value="34">PF Filing</option>
+                    <option value="35">Cancellation of GST</option>
+                    <option value="36">Professional Tax Registration</option>
+                    <option value="37">DIPP Certification</option>
+                    <option value="38">Loan Agreement</option>
+                    <option value="39">Religion Change</option>
+                    <option value="40">Gender Change</option>
+                    <option value="41">Mutual Divorce</option>
+                    <option value="42">Court Marriage</option>
+                    <option value="43">Breach of Contract Claims</option>
+                    <option value="44">Initial Pleading</option>
+                    <option value="45">Landlord/Tenant Issues</option>
+                    <option value="46">Sale Deed</option>
+                    <option value="47">Post Discovery</option>
+                    <option value="48">Landlord/Tenant Issues</option>
+                    <option value="49">Property Registration</option>
+                    <option value="50">File annual Returns for your Private Limited Company</option>
+                    <option value="51">Something Else.....</option>
+                  </select>
+                  <span class="highlight"></span>
+                  
+                  <br><br>
+
+                
+                  <label for="email">Email</label>
+                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+                  <br><br>
+
+                  <label for="phone">Phone Number</label><br>
+                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+                  <br><br>
+                
+                  <label for = "subject">Subject</label><br>
+                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
+                  <br>              <br>
+                 
+                 <button type="submit" class="btn">Submit</button>
+
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+<br>
+<br>
+<div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+</div>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<footer class="footer mt-auto text-white-50 z-index-2">
+  <div class="container-fluid bg-dark">
+      <div class="container py-12 pe-2">
+          <div class="row">
+              <div class="col-lg-8 mt-2 mt-md-0">
+                  <p class="mb-4"> Disclaimer: </p>
+                  <p>
+                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+</html>

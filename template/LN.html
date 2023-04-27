@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create a column layout with Flexbox */
+.row {
+  display: flex;
+}
+
+/* Left column (menu) */
+.left {
+  flex: 35%;
+  padding: 15px 0;
+}
+
+.left h2 {
+  padding-left: 8px;
+}
+
+/* Right column (page content) */
+.right {
+  flex: 65%;
+  padding: 15px;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu inside the left column */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: #eee;
+}
+.header{
+    border: 1% solid black;
+    height: 85%auto;
+    }
+    .menu-bar{background-color:blanchedalmond;
+    height: 100%;
+    width: 100%;
+    display: inline-flex; 
+    }
+    .menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .menu-bar ul li {
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .menu-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .menu-bar ul li:hover {
+    background-color: green;
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar{background-color:rgb(238, 218, 218);
+    height: 62px fit-content;
+    width: 59% fit-content;
+    float: right;
+    }
+    .foot-bar ul{
+    display:inline-flex;
+    list-style: none;
+    margin-bottom: 5px;
+    }
+    .foot-bar ul li {
+    background-color: rgb(233, 227, 220);
+    border-radius: 8px;
+    height: 19px fit-content;
+    width: 60px  fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .foot-bar ul li a{
+    height: 52px fit-content;
+    width: 110px fit-content;
+    text-decoration: none;
+    color: rgb(23, 2, 43);
+    font-size: 18px;
+    padding: 2px;
+    margin-bottom: 90px;
+    }
+    .foot-bar ul li:hover {
+    background-color: darkgrey;
+    border-radius: 100px;
+    height: 19px fit-content;
+    width: 60px fit-content;
+    margin-left:10px;
+    padding: 10px;
+    }
+    .footer{
+    border: 1px solid rgb(17, 17, 17);
+    height: 100px fit-content;
+    }
+    .open-button {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 180px;
+}
+.form-popup {
+  display: none;
+  position:sticky;
+  bottom: 50px;
+  right: 20px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: fit-content;
+  padding: 40px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=email], .form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border:chocolate;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=email]:focus, .form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 17px;
+  width: 50px fit-content;
+  height:25px fit-content;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: red;
+  display: none;
+  padding: 50px;
+  text-align: left;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: rgb(255, 252, 51);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 1px;
+  height: 20px fit-content;
+  width: 20px fit-content;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<div class="border" style="background-color: antiquewhite;">
+  <a href="https://www.instagram.com/justice.for.all.adv.pankaj/" onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div >Instagram</div>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=100089989995300" " onclick="return confirm('You are being redirected to an external website. Please note that Justice For All cannot be held responsible for external website content & privacy policies');" class="smaller text-dark text-primary-hover text-underline" target="_blank">
+  <div>Facebook</div>
+  </a>                        
+</div>
+<header>
+{% load static %}
+<nav class="navbar navbar=expand-lg navbar-light bg-white px-0 py-4">
+<div class="container-x1">
+<a class="navbar-brand" href="https://lawmin.gov.in/" onclick="return confirm('You are being redireceted to an external website. Please note that Justice_For_Everyone cannot be held responsible for external website content and privacy policies. ');" title="Ministry of Law & Justice" target="_blank">
+<img src="{% static 'MLJ.png' %}" height="41px" length="41px" width="200px" weight="41px" margin="left" margin-top="100px" class="h-14" alt="Ministry pf Law & Justice"> 
+</a>
+</div>
+</nav>
+<div class="header">
+
+<div class="menu-bar">
+<ul>   
+<li class="active" ><a href="http://localhost:8000/">Home</a></li>
+<li><a href="http://localhost:8000/about_us/">About</a></li>
+<li><a href="http://localhost:8000/advocate">Advocates</a></li>
+<li><a href="http://localhost:8000/solution">Solutions</a></li>
+</ul>
+</div>
+</div>
+
+</header>
+<body>
+
+<h2>Search For Your Issue</h2>
+
+<div class="row">
+  <div class="left" style="background-color:#bbb;">
+    <h2>Search</h2>
+    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+    <ul id="myMenu">
+      <li><a href="http://localhost:8000/PLCR/">Private Limited Company Registration</a></li>
+      <li><a href="http://localhost:8000/TR">Trust Registration</a></li>
+      <li><a href="http://localhost:8000/SR">Society Registration</a></li>
+      <li><a href="http://localhost:8000/DSC">Digital Signature Certificate(DSC)</a></li>
+      <li><a href="http://localhost:8000/TR">Trademark Registration</a></li>
+      <li><a href="http://localhost:8000/AFAP">Apply for a Patent</a></li>
+      <li><a href="http://localhost:8000/CIIEC">Changes in IEC</a></li>
+      <li><a href="http://localhost:8000/CIGST">Changes in GST</a></li>
+      <li><a href="http://localhost:8000/LUTA">LUT Application</a></li>
+      <li><a href="http://localhost:8000/PTFE">Professional Tax for Employees</a></li>
+      <li><a href="http://localhost:8000/PTFD">Professional Tax for Directors</a></li>
+      <li><a href="http://localhost:8000/ESIR">ESI Registration</a></li>
+      <li><a href="http://localhost:8000/PFR">PF Registration</a></li>
+      <li><a href="http://localhost:8000/COGST">Cancellation of GST</a></li>
+      <li><a href="http://localhost:8000/PTR">Professional Tax Registration</a></li>
+      <li><a href="http://localhost:8000/DIPPC">DIPP Certification</a></li>
+      <li><a href="http://localhost:8000/BFL">Basic Food License</a></li>
+      <li><a href="http://localhost:8000/F">Fundraising</a></li>
+      <li><a href="http://localhost:8000/PFAESIF">PF and ESI Filings</a></li>>
+      <li><a href="http://localhost:8000/CR">Copyright Registration</a></li>
+      <li><a href="http://localhost:8000/PS">Payroll Services</a></li>
+      <li><a href="http://localhost:8000/ISOR">ISO Registration</a></li>
+      <li><a href="http://localhost:8000/LWFR">Labour Welfare Fund Registration</a></li>
+      <li><a href="http://localhost:8000/USAC">USA Company Compliances</a></li>
+      <li><a href="http://localhost:8000/NDA">Non-Disclosure Agreement</a></li>
+      <li><a href="http://localhost:8000/MOU">Memorandum  of Understanding (MOU)</a></li>
+      <li><a href="http://localhost:8000/CRLA">Commercial Rental/ Lease Agreement</a></li>
+      <li><a href="http://localhost:8000/PAPOA">Prepare a Power of Attorney</a></li>
+      <li><a href="http://localhost:8000/AR">Agreement Review</a></li>
+      <li><a href="http://localhost:8000/SA">Shareholders' Agreement</a></li>
+      <li><a href="http://localhost:8000/TS">Term Sheet</a></li>
+      <li><a href="http://localhost:8000/RATSGBAI">Review a Term Sheet given by an Investor</a></li>
+      <li><a href="http://localhost:8000/SPA">Share Purchase Agreement</a></li>
+      <li><a href="http://localhost:8000/LA">Legal Agreement</a></li>
+      <li><a href="http://localhost:8000/LN">Legal Notice</a></li>
+      <li><a href="http://localhost:8000/Dis">Disclaimer</a></li>
+      <li><a href="http://localhost:8000/DACC">Draft a Consumer Complaint</a></li>
+      <li><a href="http://localhost:8000/FA">Founders Agreement</a></li>
+      <li><a href="http://localhost:8000/FraA">Franchise Agreement</a></li>
+      <li><a href="http://localhost:8000/FA">Freelancer Agreement</a></li>
+      <li><a href="http://localhost:8000/CA">Consultancy Agreement</a></li>
+      <li><a href="http://localhost:8000/PSA">Profit Sharing Agreement</a></li>
+      <li><a href="http://localhost:8000/CBN">Cheque Bounce Notice</a></li>
+      <li><a href="http://localhost:8000/LA">Loan Agreement</a></li>
+      <li><a href="http://localhost:8000/POW">Probate of Will</a></li>
+      <li><a href="http://localhost:8000/PR">Property Registration</a></li>
+      <li><a href="http://localhost:8000/MOT">Management of Trust</a></li>
+      <li><a href="http://localhost:8000/MOS">Management of Society</a></li>
+      <li><a href="http://localhost:8000/DOPF">Dissolution of Partnership Firm</a></li>
+      <li><a href="http://localhost:8000/PLCR">File annual Returns for your Private Limited Company</a></li>
+      <li><a href="http://localhost:8000/RC">Religion Change</a></li>
+      <li><a href="http://localhost:8000/GC">Gender Change</a></li>
+      <li><a href="http://localhost:8000/AFNC">Apply for Name Change</a></li>
+      <li><a href="http://localhost:8000/MA">Marriage Application</a></li>
+      <li><a href="http://localhost:8000/MD">Mutual Divorce</a></li>
+      <li><a href="http://localhost:8000/CM">Court Marriage</a></li>
+      <li><a href="http://localhost:8000/GD">Gift Deed</a></li>
+      <li><a href="http://localhost:8000/SD">Sale Deed</a></li>
+      <li><a href="http://localhost:8000/BOCC">Breach of Contract Claims</a></li>
+      <li><a href="http://localhost:8000/EC">Equitable Claims</a></li>
+      <li><a href="http://localhost:8000/LTI">Landlord/Tenant Issues</a></li>
+      <li><a href="http://localhost:8000/Dis">Discovery</a></li>
+
+    </ul>
+  </div>
+  
+  <div class="right" style="background-color:#ddd;">
+   <h2>Solution.....</h2><br><br>
+   Legal action can only be taken when already notice has been served upon the entity or person you wish to bring to court. It is only this method that legalizes producing a matter to court. The intimation given is known as 'legal notice.' A legal notice is, hence, formal notification to a person or an entity, notifying the other party of your purpose to commence legal proceedings against them. Legal notice can serve as a target of negotiations among the parties and save time, effort, and money spent in court cases.
+   <br><br>
+This makes the party aware of your complaint. Many times, a legal notice served will bring the other party on heels, and the difficulty can get resolved out of court, too, with fruitful arguments on both sides. If the opposite party is still not heeding to the grievance, one can always start the court procedures after a particular interval, as pronounced by the law.
+<br><br>
+A legal notice is filed as per 'Section 80 of Code of Civil Procedure, 1908', only in civil cases. A legal notice is a notification and thus carries the following information:
+<br><br>
+Precise statements and facts describing the grievance for which the response is to be taken.<br><br>
+Options/relief solicited by the grieving party.<br><br>
+Moreover, the problem in hand is determined, a summary of facts, and the way it can be determined.<br><br>
+A comprehensive brief of the problems that the aggrieved party is facing, combined with what can be done to resolve the issue, needs to be mentioned. The Legal notice should include a detailed account of how relief can be taken/problem solved if mutually agreed upon the grievance.
+<br><br>
+Essential Ingredients of a Legal Notice<br><br>
+Name and required report<br><br>
+Description<br><br>
+Place of residency of the notice sender<br><br>
+Aspects of the effect<br><br>
+The monetary relief needed by the sender of the notice<br><br>
+The Summary of the legal basis for the compensation claimed<br><br>
+Expenses on Sending Legal Notice<br><br>
+<br><br>The plan of composing and sending a legal notice document to someone within or from a veteran's office will usually generally cost anywhere from ₹2500/ to ₹6500/-. Nevertheless, the cost will also depend on the case in question; for instance, if a legal notice is to be sent concerning a little cheque bounce, the compensation will be as cheap at ₹500/- whereas in case of drafting complex case issues will cost on the higher side.
+<br><br><br><br>
+Benefits of Legal Notice<br><br>
+Report<br><br>
+A legal notice, if sent, passes your intention before the commencement of legal proceedings. A legal notice gives the other party aware of the injury. A legal notice tells the other party of the same and the outcomes of their actions, which they may encounter in a court of law.
+<br><br>
+Recorded<br><br>
+A legal notice is a written intimation which conveys the opponent your plan of action. A legal notice creates anxiety in the other party's mind that the aggrieved party is going to the court of law.
+<br><br>
+Outside Court Settlement<br><br>
+A legal notice constitutes or mentions the complaint of the party, which is comprehensive of all the necessary facts. It specifies the relief plus the legal remedy ordered by the party. It is also made clear in the report that the objection can also be sorted amicably if the other party agrees to and within the provided time frame.
+<br><br>
+Shared Conclusion<br><br>
+Legal notice can be prolific in the procurement of the wanted result rather than oral transmission. A notice and or a reply conscripted for a legal notice can, consequently, bring a mutual compromise between the two parties.
+<br><br><br><br>
+Fewer Expenses<br><br>
+A notice is a potent tool and not so costly. The cost of the advice may differ from office to office, and the complexity of the issue affected, though.
+<br><br>
+Dismissal of Uncertainty<br><br><br><br>
+Any doubt concerning the intentions is resolved once a reply is assumed. If no response is received in the time frame with concerns to the notice, then it becomes clear that the acquiring party has taken notice casually, and the legal remedial devices can be availed there onward.
+<br><br>
+Inscription<br><br>
+It is a written record that a valid relief was sought from the receiving party before going to the court of law. The notice can further be annexed with the court records and can be presented during litigation.
+<br><br><br><br>
+Checklist for Legal Notice<br><br>
+Authorized rights to the resources are denied.<br><br>
+A dismissed cheque.<br><br>
+Private disputes i.e., divorce, sustaining, and custody of juveniles<br><br>
+To achieve a specific representation of the contract.<br><br>
+If the intellectual property of the legitimate owner has been infringed<br><br>
+When agents of any company are subject to sexual harassment, cruelty, or violation of labor laws.<br><br>
+Illegal termination from a job.<br><br>
+A pay dispute between the association and its employees or laborers<br><br>
+Breach of agreement by the signatory<br><br>
+Procedure: Arranging a Legal Notice<br><br>
+The first step is to compose a legal notice, with the issue, the remedy sought, and a particular time frame (say, 30 to 60 days) to solve the problem, is to be directed to the other party, and sent through a registered AD post.
+<br><br>After tendering the notice, save the copy of the release sent. This may come in helpful in case of filing for the court proceeding.
+<br><br>Wait for a given time before the filing of the court trial.
+<br><br>The person or entity on whom the legal notice is addressed will have the above mentioned days to revert with the notice.
+<br><br>Although the opposite party may or may not respond to the legal notice, it is necessary for a person on whom the legal notice is addressed to send a reply in the specified time. If not replied to notice, one may be at the deprivation of not following the law, and thus, may provide the other party undue influence while appearing in the court.
+<br><br>Legal notice can be sent individually, too. One can draft a legal notice and approve it before sending it to the other party. Nevertheless, since wording, legal notice is necessary if the case reaches the court, and the citing of law under which you have raised the claim is required, having an expert in law to make the copies of the legal notice will work to your advantage.
+<br><br>The same applies to reply to a legal notice, too, since here also, one may not know the appropriate law to be used to revert to the claims demanded by the other party.
+<br><br>Is issuance of Legal Notice obligatory?
+<br><br>Essentially, as per Section ‘80 of the Code of Civil Procedure, 1908’, it is necessary to serve a legal notice before the filing of a suit if the opposing party is State or Public officer. But, in general, it is seen that Advocates serve legal advice ere the filing of all the Civil cases. Nevertheless, it is not mandatory to help legal notice in all civil cases except in case of the filing of a suit facing Government or Public officer. Still, formally it has been sent by the party planning to sue.
+<br><br>
+Details to Identify<br><br>
+The individual/party being served with the lawsuit/notice is called "the respondent" or "defendant." A 'legal notice' may be responded to only if it has credit and needs to be replied.
+<br><br>One of the most outspoken reasons as to why legal notices are used deals with integrity. It is obvious that the notice sent by the plaintiff may not arrive at the respondent; this can be due to a variation in address, location, or data about the respondent that is not available to the plaintiff. So far, usually, it has not been across such a situation, but there are appropriate legal steps we can take in these situations.
+<br><br>If the notice has material – and the facts stated therein, if contested against in the court, could go opposite you – then do consult a restricted and reputed lawyer who practices in the issues related to the notice being sent and review it with them. For example, if the notice involves belongings disputes, visit a civil lawyer. On the other hand, if the notice is concerning family disputes, visit a lawyer who exercises family law – and so on.
+<br><br>Regarding the question of whether to reply to the notice or not, leave it to your lawyer. Your initial consultation with the lawyer will help you understand if the notice needs to be responded to (or not), and what the right steps are to resolve the issue at hand.
+<br><br>In case the notice is changed into a suit, you must respond. Ensure that all your facts are in place, the next rounds by your lawyer are advised in a due sequence of action.
+<br><br>
+<a href="#" class="previous">&laquo; Previous</a>
+<a href="#" class="next">Next &raquo;</a>
+ </div>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Need Help??</h1> 
+                  <label for="name">Name</label>
+                  <input name='name' type="text" class="form-control" id="name" aria-describedby="first name" placeholder="Enter Your Name" required>
+                  <br>
+                  <label for="SelectService">Select Service</label>
+                  <br>
+
+                  <select class="whatever floating-select" name="service_id" id="service_id" required>
+                    <option value slected disable></option>
+                    <option value="1">Private Limited Company Registration</option>
+                    <option value="2">Private Limited Company with Indian and Foreign Shareholders</option>
+                    <option value="3">>One Person Company Registration</option>
+                    <option value="4">Limited Liability Partnership(LLP) Registratiom</option>
+                    <option value="5">Partnership Firm Registration</option>
+                    <option value="6">Subsidary Company Registration</option>
+                    <option value="7">Subsidary of an Indian Company in India</option>
+                    <option value="8">Public Limited Company Registratiom</option>
+                    <option value="9">Section 8 (Not-for-profit) Company Registratiom</option>
+                    <option value="10">Trust Registration</option>
+                    <option value="11">Society Registration</option>
+                    <option value="12">USA Company Incorporation</option>
+                    <option value="13">>Register a NBFC Company in India</option>
+                    <option value="14">NIDHI Company Registration</option>
+                    <option value="15">Digital Signature Certificae(DSC)</option>
+                    <option value="16">Tax Deduction Account Number(TAN)</option>
+                    <option value="17">Trademark Registration</option>
+                    <option value="18">Trademark Renewal</option>
+                    <option value="19">International Trademark Application</option>
+                    <option value="20">Trademark Ownership Transfer</option>
+                    <option value="21">File a Trademark Opposition</option>
+                    <option value="22">Respond to a Trademark Objection</option>
+                    <option value="23">Patent Search</option>
+                    <option value="24">Apply for a Provisional Patent</option>
+                    <option value="25">Apply for a Patent</option>
+                    <option value="26">Changes in IEC<</option>
+                    <option value="27">Changes in GST</option>
+                    <option value="28">LUT Application</option>
+                    <option value="29">Professional Tax for Employees</option>
+                    <option value="30">Professional Tax for Directors</option>
+                    <option value="31">ESI Registration</option>
+                    <option value="32">PF Registration</option>
+                    <option value="33">ESI Filing</option>
+                    <option value="34">PF Filing</option>
+                    <option value="35">Cancellation of GST</option>
+                    <option value="36">Professional Tax Registration</option>
+                    <option value="37">DIPP Certification</option>
+                    <option value="38">Loan Agreement</option>
+                    <option value="39">Religion Change</option>
+                    <option value="40">Gender Change</option>
+                    <option value="41">Mutual Divorce</option>
+                    <option value="42">Court Marriage</option>
+                    <option value="43">Breach of Contract Claims</option>
+                    <option value="44">Initial Pleading</option>
+                    <option value="45">Landlord/Tenant Issues</option>
+                    <option value="46">Sale Deed</option>
+                    <option value="47">Post Discovery</option>
+                    <option value="48">Landlord/Tenant Issues</option>
+                    <option value="49">Property Registration</option>
+                    <option value="50">File annual Returns for your Private Limited Company</option>
+                    <option value="51">Something Else.....</option>
+                  </select>
+                  <span class="highlight"></span>
+                  
+                  <br><br>
+
+                
+                  <label for="email">Email</label>
+                  <input name='email' type="email" class="form-control" id="email" placeholder="Email" required>
+                  <br><br>
+
+                  <label for="phone">Phone Number</label><br>
+                  <input name='email' type="number" class="form-control" id="phone" placeholder="Phone Number" required>
+                  <br><br>
+                
+                  <label for = "subject">Subject</label><br>
+                  <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="Brief of your Issue..." required></textarea>
+                  <br>              <br>
+                 
+                 <button type="submit" class="btn">Submit</button>
+
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+<br>
+<br>
+<div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+</div>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<footer class="footer mt-auto text-white-50 z-index-2">
+  <div class="container-fluid bg-dark">
+      <div class="container py-12 pe-2">
+          <div class="row">
+              <div class="col-lg-8 mt-2 mt-md-0">
+                  <p class="mb-4"> Disclaimer: </p>
+                  <p>
+                      " This site is designed and hosted by Justice_For_Everyone and the contents are provided by Justice For All also. For any further information, pleace contact us on Contact .
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+</html>
